@@ -1,0 +1,18 @@
+format: jb-book
+root: index
+parts:
+  - caption: Overview
+    chapters:
+    - file: syllabus
+    # - file: project
+    # - file: template
+    
+  # - caption: Lectures
+  #   chapters:
+  #   - file: lectures/L1-intro
+  #   - file: lectures/L2-opendata
+    
+  # - caption: ⌨️ Hands-on sessions
+  #   chapters:
+  #   - file: handson/H1-Jupyter
+  #   - file: handson/H2-FAIRdata

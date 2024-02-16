@@ -1,0 +1,10 @@
+name: ncu-os
+
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - jupyter-book=0.12
+  # - pip
+  # - pip:
+  #   - sphinx-inline-tabs
