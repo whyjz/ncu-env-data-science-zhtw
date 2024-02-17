@@ -1,29 +1,181 @@
-# Syllabus
+# Syllabus 
 
-**RS5046: Environmental data science (環境資料科學)**
+**RS5046/GP5024: Environmental data science (環境資料科學)**
 
-Whyjay Zheng (鄭懷傑), whyjz@csrsr.ncu.edu.tw
+Whyjay Zheng (鄭懷傑), whyjz@csrsr.ncu.edu.tw, Tuesday 10:00 am - 12:30 pm at R2-203 
 
-## Course objectives
+Office hours by appointment are in my office (R3-230).
 
-TBD
-<!-- - Explore the open science practices that are or will be highlighted in our community. 
-- Share our thoughts about open science and how to improve it for better science collaboration and communication. 
-- Gain hands-on experience in open science through class discussion and term projects. -->
+## Course goals
+
+- Familiar yourself with the language data scientists use to communicate. 
+- Understand some of the most popular statistical models in environmental science.
+- Develop skills to process real data for insights.
+- Collaborate with your teammates for a big data science project.
 
 ## Prerequisites 
 
-You must have some background knowledge in statistics and computer programming.
+Before taking this course, you should already have the necessary knowledge about statistics and computer programming. Check out [this web page](https://scikit-learn.org/stable/tutorial/statistical_inference/supervised_learning.html) and see if you can understand most of the ideas and steps presented here within a reasonable reading time. 
+
+If more than two questions in Quiz #1 are challenging, I suggest you take introductory statistics/programming first.
 
 ## Textbook
 
-Hsieh, W. (2023). Introduction to Environmental Data Science. Cambridge: Cambridge University Press. doi:10.1017/9781107588493 (PDF available through the NCU library)
+Hsieh, W. (2023). Introduction to Environmental Data Science. Cambridge: Cambridge University Press. doi:[10.1017/9781107588493](https://doi.org/10.1017/9781107588493) (PDF available through the [NCU library](https://ncu.primo.exlibrisgroup.com/discovery/search?selection=any,contains,&query=any,contains,Introduction%20to%20Environmental%20Data%20Science&tab=nculib&search_scope=MyInstitution&vid=886UST_NCU:886UST_NCU&lang=zh-tw&offset=0))
 
-## Format
+## Course calendar 
 
-I recommend you acquire the necessary knowledge about statistics and programming before taking this course. Check out this web page: https://scikit-learn.org/stable/tutorial/statistical_inference/supervised_learning.html -- if you can understand most of the ideas and steps presented here within a reasonable reading time, then you are ready for some new challenges from this course :)
+Readings and assignments are due **before the class starts**.
 
-Part 1
+```{list-table}
+:header-rows: 1
+
+* - Week #
+  - Topics
+  - Readings due
+  - Assignments due
+* - 1 (Feb 20)
+  - Syllabus and warm-up
+  - 
+  - 
+* - 2 (Feb 27)
+  - Statistical Tests (I)
+  - 1.1--1.5, 3.1--3.4, 3.15, 3.16
+  -
+* - 3 (Mar 5)
+  - Statistical Tests (II)
+  - 4.1--4.5, 4.8
+  -
+* - 4 (Mar 12)
+  - Regression Models (I)
+  - TBD
+  - Problem set #1
+* - 5 (Mar 19)
+  - Regression Models (II)
+  - TBD
+  -
+* - 6 (Mar 26)
+  - Regression Models (III)
+  - TBD
+  -
+* - 7 (Apr 2)
+  - Neural Networks (I)
+  - TBD
+  - Problem set #2
+* - 8 (Apr 9)
+  - Neural Networks (II)
+  - TBD
+  - Term project proposal
+* - 9 (Apr 16)
+  - NO CLASS 
+  - 
+  - Problem set #3
+* - 10 (Apr 23)
+  - Kernel Methods (I)
+  - TBD
+  -
+* - 11 (Apr 30)
+  - Kernel Methods (II)
+  - TBD
+  -
+* - 12 (May 7)
+  - NO CLASS
+  -
+  - Problem set #4
+* - 13 (May 14)
+  - Random Forests (I)
+  - TBD
+  -
+* - 14 (May 21)
+  - Random Forests (II)
+  - TBD
+  -
+* - 15 (May 28)
+  - Wrap-up
+  - TBD
+  - Problem set #5
+* - 16 (Jun 4)
+  - Term project presentation
+  -
+  -
+* - 17 (Jun 11)
+  - NO CLASS
+  - 
+  - Term project paper
+* - 18 (Jun 18)
+  - NO CLASS
+  - 
+  - 
+```
+This tentative schedule is subject to change depending on our progress and participants' needs.
+
+## Course components
+
+### Readings
+The assigned readings are sections from Hsieh's book (see course calendar for the section numbers). We will have you discuss your reflection on the content during the class discussion (and maybe with some quizzes).
+
+### During the class
+You will see three segments during the class time:
+
+1. Group discussion (10:00-10:30): Please find solutions or perspectives to my questions on a worksheet as a group. These questions are typically related to the assigned readings or the homework.
+2. Lecture (10:30-11:50): I (Whyjay) will review today's topics.
+3. Hands-on session or the second group discussion (11:50-): We will demo some workflows and data processing skills (for your homework and term project) and have you work on that with the help of classmates and me.
+
+Non-graded quizzes (if any) are typically distributed at the beginning of the lecture. We will let you work on that for 5-10 minutes.
+
+### Homework assignments
+There will be five problem sets throughout the semester. You must work on them individually (i.e., no collaboration and plagiarism). Assignments are due before class starts (see course calendar for due dates). Electronic submission through ee-class is recommended, but other forms are also acceptable. Please make sure I get your submission before the deadline to avoid a potential late penalty if you don't use ee-class.
+
+### Term project
+Your group term project consists of three milestones: (1) Half to one-page long project proposal as a group, due April 9 before the class starts. (2) Oral presentations as a group on June 4; details TBD. (3) An online webpage showcasing your project work, published no later than June 11.
+
+## Grading
+- Readings and class discussion (20％): Each group worksheet accounts for 2% of the grade. I grade it using a simple rubric system: Good (2%), Fair (1%), and Absent (0%). All group members receive the same grade. This semester, we will have twelve worksheets, and the two lowest-graded worksheets will be dropped for final grade calculation.
+
+- Assignments (50％): Each problem set accounts for 12.5% of the grade. The lowest-graded one will be dropped for final grade calculation. Most of the problems are from Hsieh's book, in which the suggested solution is provided. But remember: **The doing is often more important than the outcome.** The grades of your assignments are heavily based on the reproducibility of your workflow (7%) rather than the correctness of your results (3%). Please include scripts, screenshots, or other elements that can make other people reproduce your work. 
+
+- Term project (30％): Project proposal accounts for 5%. I will typically give you full credits for this unless it does not fulfill format requirements. Oral presentation accounts for 15%, and the final webpage accounts for 10%. These are graded based on the quality/completeness of the work, clarity of the presentation, and the ease of other people's reuse of your workflow or results. All team members receive the same base grade above, plus individual grade adjustments based on a confidential poll from the teammates. 
+
+(late-work-policy)=
+### Late work policy
+- Write-ups: A 10% penalty will be applied for each day past the deadline. 
+- Term project presentation: If you are absent on the oral presentation date, we accept video recordings to be shared within the class as a make-up. However, a 20% penalty will be applied for each day past the presentation date. 
+- With reasonable proof, the policies above may be exempted under special circumstances, such as family emergencies or urgent medical conditions. Please let me know (Whyjay) as soon as possible if this happens so we can discuss make-up plans as needed.
+
+
+## Code of conduct
+
+### Diversity, Equity, and Inclusion (DEI)
+
+- We will not tolerate any forms of discrimination and harassment during the class. 
+
+- We encourage conversations about inequality whenever you sense that. This includes but is not limited to [hidden curriculum](https://en.wikipedia.org/wiki/Hidden_curriculum) and [microaggression](https://en.wikipedia.org/wiki/Microaggression). 
+
+- Be respectful about different ideas and perspectives during discussion, and be mindful about your choice of words. 
+
+### Attribution of work
+
+- Please be careful about using copyrighted material in any assignments, and make sure you have permission/license with proper attribution whenever you use it.
+
+- Again, do not work with other students on the homework assignments. They must be your sole work.
+
+### AI policy
+Generative AI is allowed and encouraged (HEY... this is the power of data science!!). Use it with discretion, though -- generative AI is good at popular tasks (such as giving a code for visualizing a common data structure) but not so good at giving ideas and perspectives. Their answers are usually very dull (if not failing a sanity check) due to the nature of the training process.
+
+### Working languages
+We use English as the main language to communicate during the class and the oral presentation. Some exceptions are:
+
+- You can use a different language in group discussion if every group member agrees. 
+
+- Students taking RS5046 must use English for writing individual assignments, and students taking GP5024 can choose between English and 中文.
+
+You are welcome to complete assignments using any programming language. I am familiar with Python and Matlab and can comment more if you use either. We will use Python with the Jupyter ecosystem (including Colab) for the class demos.
+
+
+
+<!-- Other topics in data science (such as principal component and clustering analysis) will be covered through assigned readings, which we rely on during the class discussion. -->
+
+<!-- Part 1
 Statistical Tests: Are there interactions between environmental factors? (Weeks 1-3)
 Part 2
 Regression Models: Why is regularization so important? (Weeks 4-6)
@@ -34,127 +186,15 @@ Kernel Methods: Is dimensionality a curse or a blessing? (Weeks 10-12)
 Part 5
 Random Forests: When one model is not enough, make several? (Weeks 13-15)
 Part 6
-Final hacker group presentation (Week 16)
-
-Other topics in data science (such as principal component and clustering analysis) will be covered through assigned readings, which we rely on during the class discussion.
-
-Programming assignments can be completed using any language, but I am familiar with Python and Matlab and can assist if you use either.
+Final hacker group presentation (Week 16) -->
 
 
-<!-- 1. Tuesday 12:00 pm - 12:50 pm at R2-115 (mostly hands-on sessions)
-2. Thursday 1:00 pm - 2:50 pm at **R2-223-2 (Updated!)** for lectures and discussion
+<!-- Colab
+Data science skills
 
-The hands-on sessions (labeled ⌨️ in [Weekly topics](syllabus.html#weekly-topics)) are on Tuesday and **require access to a computer**. You are welcome to use the computers available in R2-115 or bring your own.
+Grouping 
 
-As a class for open science, all written material presented in this class, including handouts, slides, and student term papers, will be available or posted online for public access. Your grade and all the sensitive information will remain private.
-
-This is a **highly interactive class** as we have to learn open science through lots of communication. -->
-
-### Code of conduct
-
-#### Diversity, Equity and Inclusion (DEI)
-
-- We will not tolerate any forms of discrimination and harassments during the class. 
-
-- We encourage conversations about inequality whenever you sense that. This include but is not limited to [hidden curriculum](https://en.wikipedia.org/wiki/Hidden_curriculum) and [microaggression](https://en.wikipedia.org/wiki/Microaggression). 
-
-- Be respectful about different ideas and perspectives during discussion, and be mindful about your choice of words. 
-
-#### Attribution of work
-
-- Be careful about using the copyrighted material, and make sure you have the permission/license with proper attribution whenever using it.
-
-- Do not work with other students for the term project; it must be your sole work unless the instructor gives you permission to do so.
-
-## Weekly topics
-
-<!-- This is a tentative schedule; the actual content is subject to change depending on our progress and participants' needs.
-
-- Week 1
-  - 2/14: Checking in & course introduction
-  - 2/16: What is open science?
-- Week 2
-  - 2/21: ⌨️ Our working environment: Jupyter
-  - 2/23: Open data and beyond (1): Background
-- Week 3
-  - 2/28: NO CLASS
-  - 3/2: Open data and beyond (2): Licenses & The FAIR policy
-- Week 4
-  - 3/7: ⌨️ FAIRly share your data and code (1)
-  - 3/9: Path to open academic publishing (1): Background
-- Week 5
-  - 3/14: ⌨️ FAIRly share your data and code (2)
-  - 3/16: Path to open academic publishing (2): Open access
-- Week 6
-  - 3/21: ⌨️ Achieving 100% reproducibility (1)
-  - 3/23: Path to open academic publishing (3): Predatory journals and preprints
-- Week 7
-  - 3/28: ⌨️ Achieving 100% reproducibility (2)
-  - 3/30: Reproducing and reusing academic work (1): Questionable research practices
-- Week 8
-  - 4/4: NO CLASS
-  - 4/6: NO CLASS
-- Week 9
-  - 4/11: Q&A; **Project progress report write-up due**
-  - 4/13: **Project progress presentation**
-- Week 10
-  - 4/18: ⌨️ Writing narrative science (1)
-  - 4/20: Reproducing and reusing academic work (2): Code sharing
-- Week 11
-  - 4/25: ⌨️ Writing narrative science (2)
-  - 4/27: Communicating science (1): Scientific writing
-- Week 12
-  - 5/2: ⌨️ Writing narrative science (3)
-  - 5/4: Communicating science (2): Data visualization
-- Week 13
-  - 5/9: ⌨️ Explorative data visualization (1)
-  - 5/11: Communicating science (3): Community and collaboration
-- Week 14
-  - 5/16: ⌨️ Explorative data visualization (2)
-  - 5/18: Open data sets in remote sensing, Earth & environmental sciences (1)
-- Week 15
-  - 5/23: ⌨️ Getting and analyzing remotely sensed open data
-  - 5/25: Open data sets in remote sensing, Earth & environmental sciences (2) + Career plans
-- Week 16
-  - 5/30: NO CLASS
-  - 6/1: **Project final presentation**
-- Week 17
-  - 6/6: Wrap-up: the future of open science
-  - 6/8: NO CLASS; **Project final report write-up due**
-- Week 18
-  - 6/13: NO CLASS
-  - 6/15: NO CLASS -->
-  
-## Grading
-
-- weekly reading assignments and class discussion 20％
-- five homework assignments (including programming components) 50％
-- hacker group projects (including programming components) 30％
-
-<!-- Your grade is entirely based on the class project and is divided into four components: 
-
-- progress report (write-up): 10%
-- progress report (oral presentation): 20%
-- final report (oral presentation): 30%
-- final report (write-up): 40%
-
-The class attendance won't affect your final grade expect for two oral presentation sessions (**4/13** and **6/1**; see [Late work policy](late-work-policy)). -->
-
-<!-- (late-work-policy)=
-### Late work policy
-
-- Write-ups: 10% penalty will be applied for each day past the deadline. 
-- Oral presentations: If you are absent on the date of oral presentation, we accept video recordings (shared within the class) as a make-up. However, 20% penalty will be applied for each day past the presentation date. 
-- The policies above may be exempted under special circumstances, such as family emergency or urgent medical conditions with reasonable proof. Please inform the instructor as early as possible should this happens so we can talk about make-up plans accordingly. -->
-
-## Resources
-
-### Office hours
-
-By appointment, in my office (R3-230).
-
-### Other resources 
-
-<!-- No textbook is required. Reference and other reading/technical resources will be available in the corresponding lecture pages. 
-
-- [Dr. Quisheng Wu's Youtube channel for geopstial data science, with a focus on Google Earth Engine](https://www.youtube.com/c/QiushengWu) -->
+Get things work
+1. Get data
+2. Finish quiz #1 4.
+-->
