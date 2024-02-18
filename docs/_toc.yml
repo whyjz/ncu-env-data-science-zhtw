@@ -4,7 +4,7 @@ parts:
   - caption: Overview
     chapters:
     - file: syllabus
-    # - file: project
+    - file: assignments
     # - file: template
     
   # - caption: Lectures
