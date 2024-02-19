@@ -163,6 +163,9 @@ I will evaluate your submissions and post your grades using Ee-class. The grade 
 
 - Again, do not work with other students on the homework assignments. They must be your sole work.
 
+### Study time
+Since this is a 3-credit course, I expect you to have ~6 hours of study time every week outside of the class to get an adequate grade. If you spend much less or much more than that on readings, assignments, and the project, Please let me know.
+
 ### AI policy
 Generative AI is allowed and encouraged (HEY... this is the power of data science!!). Use it with discretion, though -- generative AI is good at popular tasks (such as giving a code for visualizing a typical data structure) but not so good at giving ideas and perspectives. Their answers are usually very dull (if not failing a sanity check) due to the nature of the training process.
 
