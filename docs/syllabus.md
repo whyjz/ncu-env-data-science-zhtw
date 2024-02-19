@@ -127,7 +127,9 @@ Non-graded quizzes (if any) are typically distributed at the beginning of the le
 There will be five problem sets throughout the semester. You must work on them individually (i.e., no collaboration and plagiarism). Assignments are due before class starts (see course calendar for due dates). Electronic submission through ee-class is recommended, but other forms are also acceptable. Please make sure I get your submission before the deadline to avoid a potential late penalty if you don't use ee-class.
 
 ### Term project
-Your group term project consists of three milestones: (1) Half to one-page long project proposal as a group, due April 9 before the class starts. (2) Oral presentations as a group on June 4; details TBD. (3) An online webpage showcasing your project work, published no later than June 11.
+Our term project is group-based. Every group consists of no more than four people working on the same project goals they propose. The group leader is responsible for leading the team through several tasks, such as brainstorming the proposal topics, organizing collaboration, etc.
+
+Term project consists of three milestones: (1) Half to one-page long project proposal as a group, due April 9 before the class starts. (2) Oral presentations as a group on June 4; details TBD. (3) An online webpage showcasing your project work, published no later than June 11.
 
 ## Grading
 I will evaluate your submissions and post your grades using Ee-class. The grade breakdown is as follows:
@@ -173,7 +175,12 @@ We use English as the primary language to communicate during the class and the o
 
 You are welcome to complete assignments using any programming language. I am familiar with Python and Matlab and can comment more if you use either. We will use Python with the Jupyter ecosystem (including Colab) for the class demos.
 
+### Auditing 
 
+Auditing is welcome. If you plan to audit the course, please note:
+
+- You will not be able to submit assignments and join any term project teams. 
+- You can join any group during the in-class discussion time as long as all the group members agree.
 
 <!-- Other topics in data science (such as principal component and clustering analysis) will be covered through assigned readings, which we rely on during the class discussion. -->
 
