@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Warming-up &#8212; Environmental Data Science</title>
+    <title>Statistical Tests: Are there interactions between environmental factors? &#8212; Environmental Data Science</title>
   
   
   
@@ -57,11 +57,12 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'outlines/week1';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'outlines/week2-3';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Statistical Tests: Are there interactions between environmental factors?" href="week2-3.html" />
-    <link rel="prev" title="Assignments" href="../assignments.html" />
+    <link rel="prev" title="Warming-up" href="week1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -175,8 +176,8 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Outlines</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Warming-up</a></li>
-<li class="toctree-l1"><a class="reference internal" href="week2-3.html">Statistical Tests: Are there interactions between environmental factors?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="week1.html">Warming-up</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Statistical Tests: Are there interactions between environmental factors?</a></li>
 </ul>
 
     </div>
@@ -231,7 +232,7 @@
       
       
       
-      <li><a href="../_sources/outlines/week1.md" target="_blank"
+      <li><a href="../_sources/outlines/week2-3.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -315,7 +316,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Warming-up</h1>
+    <h1>Statistical Tests: Are there interactions between environmental factors?</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -325,8 +326,15 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-outline">Lecture outline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-outline">Lecture outline</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basics">Basics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-skills">Data skills</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-about-probability-distributions">More about probability distributions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypothesis-testing">Hypothesis testing</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#group-discussion-demo-topics">Group discussion &amp; demo topics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slides-just-for-my-convenience-will-be-removed-after-today-s-class-due-to-copyright-issues">Slides (Just for my convenience; will be removed after today’s class due to copyright issues)</a></li>
 </ul>
             </nav>
         </div>
@@ -338,28 +346,88 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="warming-up">
-<h1>Warming-up<a class="headerlink" href="#warming-up" title="Link to this heading">#</a></h1>
-<p><strong>2024.02.20</strong></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="statistical-tests-are-there-interactions-between-environmental-factors">
+<h1>Statistical Tests: Are there interactions between environmental factors?<a class="headerlink" href="#statistical-tests-are-there-interactions-between-environmental-factors" title="Link to this heading">#</a></h1>
+<p><strong>2024.02.27, 2024.03.05</strong></p>
 <section id="lecture-outline">
 <h2>Lecture outline<a class="headerlink" href="#lecture-outline" title="Link to this heading">#</a></h2>
-<p>What does the term “data science” mean to you?</p>
-<p>So we have three terms here:</p>
+<section id="basics">
+<h3>Basics<a class="headerlink" href="#basics" title="Link to this heading">#</a></h3>
+<p>Random variable: A <strong>value</strong> that follows a probability distribution. Are the following quantities random variables?</p>
 <ul class="simple">
-<li><p>Statistics</p></li>
-<li><p>Machine learning (ML)</p></li>
-<li><p>Data science
-How are they different from each other? For example, what is the difference between a “statistical model” and a “machine learning model?” Or maybe they are the same thing? Just fancy words to be created to confuse people?</p></li>
+<li><p>The number of apples in a basket</p></li>
+<li><p>Your height</p></li>
+<li><p>The height of a person sitting here who I randomly pick up</p></li>
+<li><p>Today’s temperature</p></li>
+<li><p>The number I get by rolling a die</p></li>
 </ul>
-<p>What is “learning” as in machine learning?</p>
-<p>What is the difference between supervised and unsupervised learning? (Q1 in Quiz #1)</p>
+<p>What is a probability density function (PDF)? How is it different from a probability distribution?</p>
+<p>Now let’s revisit expectation, variance, and their mathematical expressions (cont. Q2 in Quiz #1): Derive the expectation and the variance of the Bernoulli distribution <span class="math notranslate nohighlight">\(Ber(x|p) = p^x(1-p)^{1-x}\)</span>.</p>
+</section>
+<section id="data-skills">
+<h3>Data skills<a class="headerlink" href="#data-skills" title="Link to this heading">#</a></h3>
+<p>Here are things we don’t primarily focus on during the class but are essential for building up your data skills for reproducible science.</p>
+<ul class="simple">
+<li><p>Programming</p></li>
+<li><p>Collaboration and version control (Git &amp; GitHub) (Check out Q4 in Quiz #1)</p></li>
+<li><p>Jupyter (incl. Google Colab)</p></li>
+<li><p>Data import and wrangling</p></li>
+<li><p>Visualization</p></li>
+</ul>
+</section>
+<section id="more-about-probability-distributions">
+<h3>More about probability distributions<a class="headerlink" href="#more-about-probability-distributions" title="Link to this heading">#</a></h3>
+<p>Gaussian: many distributions converge to this thanks to the central limit theory</p>
+<p>Poisson distribution (let’s check Q5 in worksheet #1)</p>
+<p>Student t-distribution: Bounded to the mean</p>
+<p>Chi-squared (<span class="math notranslate nohighlight">\(\Chi^2\)</span>) distribution: Bounded to the square of the Gaussians</p>
+</section>
+<section id="hypothesis-testing">
+<h3>Hypothesis testing<a class="headerlink" href="#hypothesis-testing" title="Link to this heading">#</a></h3>
+<p>When to use hypothesis testing?</p>
+<p>Five general steps:</p>
+<ol class="arabic simple">
+<li><p>Set up <span class="math notranslate nohighlight">\(H_0\)</span> (null hypothesis)</p></li>
+<li><p>Set up <span class="math notranslate nohighlight">\(H_1\)</span> (alternative hypothesis)</p></li>
+<li><p>Set up test statistic and significance level (<span class="math notranslate nohighlight">\(\alpha\)</span>)</p></li>
+<li><p>Find the null distribution for the test statistic; calculate the <span class="math notranslate nohighlight">\(p\)</span>-value</p></li>
+<li><p>Reject or not reject <span class="math notranslate nohighlight">\(H_0\)</span> by comparing <span class="math notranslate nohighlight">\(p\)</span> with <span class="math notranslate nohighlight">\(\alpha\)</span></p></li>
+</ol>
+<p>Case study: <strong>One-sample t-test</strong> (Section 4.2.1)</p>
+<p>Type I vs Type II errors (aka False positive vs False negative)</p>
+<ul class="simple">
+<li><p>How do we design <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(N\)</span> while keeping both types of errors in mind?</p></li>
+</ul>
+<p>Parametric vs non-parametric tests: which should I use?</p>
+<p>How do hypothesis tests relate to the confidence interval?</p>
+<p>Other cases where t-tests are of use</p>
+<p>Non-parametric tests</p>
+<ul class="simple">
+<li><p>Wilcoxon–Mann–Whitney test</p></li>
+<li><p>Kolmogorov–Smirnov test</p></li>
+<li><p>Pearson’s chi-squared test (TBD)</p></li>
+</ul>
+<p>Bootstrapping</p>
+<!-- Do you think an inflated die is fair? How to test it?
+
+Histogram and statistical distributions -->
+<!-- List at least one random variable in environmental science and remote sensing that fit each statistical distribution:
+- Gaussian distribution (aka normal distribution)
+- Gamma distribution
+- Beta distribution
+- Binomial distribution -->
+<!-- Suppose Yushan measures 3952.43 m by a satellite altimeter. And the maximum measurement error of this altimeter is 0.2 m according to its documentation. What is the uncertainty of Yushan’s height? What is the 95% confidence interval of Yushan’s height? -->
+</section>
 </section>
 <section id="group-discussion-demo-topics">
 <h2>Group discussion &amp; demo topics<a class="headerlink" href="#group-discussion-demo-topics" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
-<li><p>Can you implement Q3 in Quiz #1 and show me the histogram?</p></li>
-<li><p>Get the data necessary for doing Exercise 4.2 in Hsieh’s book.</p></li>
+<li><p>Load an Exercise data set using Jupyter Notebook (hosted by Google Colaboratory, Callysto Hub, or your local machine)</p></li>
 </ol>
+</section>
+<section id="slides-just-for-my-convenience-will-be-removed-after-today-s-class-due-to-copyright-issues">
+<h2>Slides (Just for my convenience; will be removed after today’s class due to copyright issues)<a class="headerlink" href="#slides-just-for-my-convenience-will-be-removed-after-today-s-class-due-to-copyright-issues" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://docs.google.com/presentation/d/17eIMIMbfPACRaUueoTIXn2FfH2eFSqOPnURORtjEc3g/edit?usp=sharing">Slides</a></p>
 </section>
 </section>
 
@@ -394,22 +462,13 @@ How are they different from each other? For example, what is the difference betw
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../assignments.html"
+       href="week1.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Assignments</p>
+        <p class="prev-next-title">Warming-up</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="week2-3.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Statistical Tests: Are there interactions between environmental factors?</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -427,8 +486,15 @@ How are they different from each other? For example, what is the difference betw
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-outline">Lecture outline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-outline">Lecture outline</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basics">Basics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-skills">Data skills</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-about-probability-distributions">More about probability distributions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypothesis-testing">Hypothesis testing</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#group-discussion-demo-topics">Group discussion &amp; demo topics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slides-just-for-my-convenience-will-be-removed-after-today-s-class-due-to-copyright-issues">Slides (Just for my convenience; will be removed after today’s class due to copyright issues)</a></li>
 </ul>
   </nav></div>
 
