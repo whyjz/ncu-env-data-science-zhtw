@@ -10,7 +10,7 @@ parts:
   - caption: Outlines
     chapters:
     - file: outlines/week1
-  #   - file: lectures/L2-opendata
+    - file: outlines/week2-3
     
   # - caption: ⌨️ Hands-on sessions
   #   chapters:

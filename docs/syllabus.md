@@ -187,8 +187,7 @@ Auditing is welcome. If you plan to audit the course, please note:
 
 <!-- Other topics in data science (such as principal component and clustering analysis) will be covered through assigned readings, which we rely on during the class discussion. -->
 
-<!-- Part 1
-Statistical Tests: Are there interactions between environmental factors? (Weeks 1-3)
+<!-- 
 Part 2
 Regression Models: Why is regularization so important? (Weeks 4-6)
 Part 3
