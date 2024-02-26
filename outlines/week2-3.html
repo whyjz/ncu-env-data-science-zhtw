@@ -330,7 +330,15 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basics">Basics</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-skills">Data skills</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-about-probability-distributions">More about probability distributions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypothesis-testing">Hypothesis testing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypothesis-testing">Hypothesis testing</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#five-general-steps">Five general steps</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study">Case study</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#type-i-vs-type-ii-errors">Type I vs Type II errors</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#other-related-topics">Other related topics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#non-parametric-tests-tbd">Non-parametric tests (TBD)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrapping-tbd">Bootstrapping (TBD)</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#group-discussion-demo-topics">Group discussion &amp; demo topics</a></li>
@@ -377,15 +385,18 @@ document.write(`
 </section>
 <section id="more-about-probability-distributions">
 <h3>More about probability distributions<a class="headerlink" href="#more-about-probability-distributions" title="Link to this heading">#</a></h3>
-<p>Gaussian: many distributions converge to this thanks to the central limit theory</p>
-<p>Poisson distribution (let’s check Q5 in worksheet #1)</p>
-<p>Student t-distribution: Bounded to the mean</p>
-<p>Chi-squared (<span class="math notranslate nohighlight">\(\Chi^2\)</span>) distribution: Bounded to the square of the Gaussians</p>
+<ul class="simple">
+<li><p>Gaussian: many distributions converge to this thanks to the central limit theory</p></li>
+<li><p>Poisson distribution (let’s check Q5 in worksheet #1)</p></li>
+<li><p>Student t-distribution: Bounded to the mean</p></li>
+<li><p>Chi-squared (<span class="math notranslate nohighlight">\(\chi^2\)</span>) distribution: Bounded to the square of the Gaussians</p></li>
+</ul>
 </section>
 <section id="hypothesis-testing">
 <h3>Hypothesis testing<a class="headerlink" href="#hypothesis-testing" title="Link to this heading">#</a></h3>
 <p>When to use hypothesis testing?</p>
-<p>Five general steps:</p>
+<section id="five-general-steps">
+<h4>Five general steps<a class="headerlink" href="#five-general-steps" title="Link to this heading">#</a></h4>
 <ol class="arabic simple">
 <li><p>Set up <span class="math notranslate nohighlight">\(H_0\)</span> (null hypothesis)</p></li>
 <li><p>Set up <span class="math notranslate nohighlight">\(H_1\)</span> (alternative hypothesis)</p></li>
@@ -393,21 +404,34 @@ document.write(`
 <li><p>Find the null distribution for the test statistic; calculate the <span class="math notranslate nohighlight">\(p\)</span>-value</p></li>
 <li><p>Reject or not reject <span class="math notranslate nohighlight">\(H_0\)</span> by comparing <span class="math notranslate nohighlight">\(p\)</span> with <span class="math notranslate nohighlight">\(\alpha\)</span></p></li>
 </ol>
-<p>Case study: <strong>One-sample t-test</strong> (Section 4.2.1)</p>
-<p>Type I vs Type II errors (aka False positive vs False negative)</p>
-<ul class="simple">
-<li><p>How do we design <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(N\)</span> while keeping both types of errors in mind?</p></li>
-</ul>
+</section>
+<section id="case-study">
+<h4>Case study<a class="headerlink" href="#case-study" title="Link to this heading">#</a></h4>
+<p><strong>One-sample t-test</strong> (Section 4.2.1): Is the mean weight of a fish species from two lakes different?</p>
+<p>We already know this species’ population mean (<span class="math notranslate nohighlight">\(\mu_0\)</span>) in the large lake. And we have a sample mean (<span class="math notranslate nohighlight">\(\bar{x}\)</span>) from 20 fish in the small lake.</p>
+<p>Test statstic <span class="math notranslate nohighlight">\(t = \frac{\bar{x} - \mu_0}{s / \sqrt{N}}\)</span></p>
+</section>
+<section id="type-i-vs-type-ii-errors">
+<h4>Type I vs Type II errors<a class="headerlink" href="#type-i-vs-type-ii-errors" title="Link to this heading">#</a></h4>
+<p>aka False positive vs False negative</p>
+<p>How do we design <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(N\)</span> while keeping both types of errors in mind?</p>
+</section>
+<section id="other-related-topics">
+<h4>Other related topics<a class="headerlink" href="#other-related-topics" title="Link to this heading">#</a></h4>
 <p>Parametric vs non-parametric tests: which should I use?</p>
 <p>How do hypothesis tests relate to the confidence interval?</p>
-<p>Other cases where t-tests are of use</p>
-<p>Non-parametric tests</p>
+<p>Other cases where t-tests are of use (TBD)</p>
+</section>
+<section id="non-parametric-tests-tbd">
+<h4>Non-parametric tests (TBD)<a class="headerlink" href="#non-parametric-tests-tbd" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p>Wilcoxon–Mann–Whitney test</p></li>
 <li><p>Kolmogorov–Smirnov test</p></li>
-<li><p>Pearson’s chi-squared test (TBD)</p></li>
+<li><p>Pearson’s chi-squared test</p></li>
 </ul>
-<p>Bootstrapping</p>
+</section>
+<section id="bootstrapping-tbd">
+<h4>Bootstrapping (TBD)<a class="headerlink" href="#bootstrapping-tbd" title="Link to this heading">#</a></h4>
 <!-- Do you think an inflated die is fair? How to test it?
 
 Histogram and statistical distributions -->
@@ -419,10 +443,11 @@ Histogram and statistical distributions -->
 <!-- Suppose Yushan measures 3952.43 m by a satellite altimeter. And the maximum measurement error of this altimeter is 0.2 m according to its documentation. What is the uncertainty of Yushan’s height? What is the 95% confidence interval of Yushan’s height? -->
 </section>
 </section>
+</section>
 <section id="group-discussion-demo-topics">
 <h2>Group discussion &amp; demo topics<a class="headerlink" href="#group-discussion-demo-topics" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
-<li><p>Load an Exercise data set using Jupyter Notebook (hosted by Google Colaboratory, Callysto Hub, or your local machine)</p></li>
+<li><p>Load an Exercise data set using Jupyter Notebook (hosted by <a class="reference external" href="https://colab.google/">Google Colaboratory</a>, <a class="reference external" href="https://www.callysto.ca/">Callysto Hub</a>, or your local machine)</p></li>
 </ol>
 </section>
 <section id="slides-just-for-my-convenience-will-be-removed-after-today-s-class-due-to-copyright-issues">
@@ -490,7 +515,15 @@ Histogram and statistical distributions -->
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basics">Basics</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-skills">Data skills</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-about-probability-distributions">More about probability distributions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypothesis-testing">Hypothesis testing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypothesis-testing">Hypothesis testing</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#five-general-steps">Five general steps</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study">Case study</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#type-i-vs-type-ii-errors">Type I vs Type II errors</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#other-related-topics">Other related topics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#non-parametric-tests-tbd">Non-parametric tests (TBD)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrapping-tbd">Bootstrapping (TBD)</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#group-discussion-demo-topics">Group discussion &amp; demo topics</a></li>
