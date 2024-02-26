@@ -29,42 +29,49 @@ Here are things we don't primarily focus on during the class but are essential f
 
 ### More about probability distributions
 
-Gaussian: many distributions converge to this thanks to the central limit theory
-
-Poisson distribution (let's check Q5 in worksheet #1)
-
-Student t-distribution: Bounded to the mean
-
-Chi-squared ($\Chi^2$) distribution: Bounded to the square of the Gaussians
+- Gaussian: many distributions converge to this thanks to the central limit theory
+- Poisson distribution (let's check Q5 in worksheet #1)
+- Student t-distribution: Bounded to the mean
+- Chi-squared ($\chi^2$) distribution: Bounded to the square of the Gaussians
 
 ### Hypothesis testing
 
 When to use hypothesis testing?
 
-Five general steps:
+#### Five general steps
 1. Set up $H_0$ (null hypothesis)
 2. Set up $H_1$ (alternative hypothesis)
 3. Set up test statistic and significance level ($\alpha$)
 4. Find the null distribution for the test statistic; calculate the $p$-value
 5. Reject or not reject $H_0$ by comparing $p$ with $\alpha$
 
-Case study: **One-sample t-test** (Section 4.2.1)
+#### Case study
+**One-sample t-test** (Section 4.2.1): Is the mean weight of a fish species from two lakes different? 
 
-Type I vs Type II errors (aka False positive vs False negative)
-- How do we design $\alpha$ and $N$ while keeping both types of errors in mind?
+We already know this species' population mean ($\mu_0$) in the large lake. And we have a sample mean ($\bar{x}$) from 20 fish in the small lake.
+
+Test statstic $t = \frac{\bar{x} - \mu_0}{s / \sqrt{N}}$
+
+#### Type I vs Type II errors 
+
+aka False positive vs False negative
+
+How do we design $\alpha$ and $N$ while keeping both types of errors in mind?
+
+#### Other related topics
 
 Parametric vs non-parametric tests: which should I use?
 
 How do hypothesis tests relate to the confidence interval?
 
-Other cases where t-tests are of use
+Other cases where t-tests are of use (TBD)
 
-Non-parametric tests
+#### Non-parametric tests (TBD)
 - Wilcoxon–Mann–Whitney test
 - Kolmogorov–Smirnov test
-- Pearson's chi-squared test (TBD)
+- Pearson's chi-squared test
 
-Bootstrapping
+#### Bootstrapping (TBD)
 
 <!-- Do you think an inflated die is fair? How to test it?
 
@@ -80,7 +87,7 @@ Histogram and statistical distributions -->
 
 ## Group discussion & demo topics
 
-1. Load an Exercise data set using Jupyter Notebook (hosted by Google Colaboratory, Callysto Hub, or your local machine)
+1. Load an Exercise data set using Jupyter Notebook (hosted by [Google Colaboratory](https://colab.google/), [Callysto Hub](https://www.callysto.ca/), or your local machine)
 
 ## Slides (Just for my convenience; will be removed after today's class due to copyright issues)
 
