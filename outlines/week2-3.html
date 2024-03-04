@@ -334,9 +334,9 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#five-general-steps">Five general steps</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study">Case study</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#type-i-vs-type-ii-errors">Type I vs Type II errors</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#other-related-topics">Other related topics</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#non-parametric-tests-tbd">Non-parametric tests (TBD)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrapping-tbd">Bootstrapping (TBD)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#in-depth-topics-about-t-tests">In-depth topics about t-tests</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#non-parametric-tests">Non-parametric tests</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrapping">Bootstrapping</a></li>
 </ul>
 </li>
 </ul>
@@ -416,22 +416,29 @@ document.write(`
 <p>aka False positive vs False negative</p>
 <p>How do we design <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(N\)</span> while keeping both types of errors in mind?</p>
 </section>
-<section id="other-related-topics">
-<h4>Other related topics<a class="headerlink" href="#other-related-topics" title="Link to this heading">#</a></h4>
-<p>Parametric vs non-parametric tests: which should I use?</p>
-<p>How do hypothesis tests relate to the confidence interval?</p>
-<p>Other cases where t-tests are of use (TBD)</p>
-</section>
-<section id="non-parametric-tests-tbd">
-<h4>Non-parametric tests (TBD)<a class="headerlink" href="#non-parametric-tests-tbd" title="Link to this heading">#</a></h4>
+<section id="in-depth-topics-about-t-tests">
+<h4>In-depth topics about t-tests<a class="headerlink" href="#in-depth-topics-about-t-tests" title="Link to this heading">#</a></h4>
+<p><strong>Two-sample t-test</strong>: Assumption towards the samples matters</p>
 <ul class="simple">
-<li><p>Wilcoxon–Mann–Whitney test</p></li>
-<li><p>Kolmogorov–Smirnov test</p></li>
-<li><p>Pearson’s chi-squared test</p></li>
+<li><p>Are both variances the same?</p></li>
+<li><p>Are two samples potentially dependent?</p></li>
+</ul>
+<p>T-tests can also test the correlation with the null hypothesis <span class="math notranslate nohighlight">\(\rho = 0\)</span>.</p>
+</section>
+<section id="non-parametric-tests">
+<h4>Non-parametric tests<a class="headerlink" href="#non-parametric-tests" title="Link to this heading">#</a></h4>
+<p>Parametric vs non-parametric tests: which should I use?</p>
+<p>Here are tests we may mention during the class lecture:</p>
+<ul class="simple">
+<li><p>Wilcoxon–Mann–Whitney test: Location (mean) difference</p></li>
+<li><p>Kolmogorov–Smirnov test: Goodness of fit for continuous data</p></li>
+<li><p>Pearson’s chi-squared test: Goodness of fit for categorical data</p></li>
 </ul>
 </section>
-<section id="bootstrapping-tbd">
-<h4>Bootstrapping (TBD)<a class="headerlink" href="#bootstrapping-tbd" title="Link to this heading">#</a></h4>
+<section id="bootstrapping">
+<h4>Bootstrapping<a class="headerlink" href="#bootstrapping" title="Link to this heading">#</a></h4>
+<p>How do we do bootstrapping?</p>
+<p>As we have the traditional method (Section 4.4) for estimating the CI, what is the point of using bootstrapping?</p>
 <!-- Do you think an inflated die is fair? How to test it?
 
 Histogram and statistical distributions -->
@@ -448,6 +455,7 @@ Histogram and statistical distributions -->
 <h2>Group discussion &amp; demo topics<a class="headerlink" href="#group-discussion-demo-topics" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>Load an Exercise data set using Jupyter Notebook (hosted by <a class="reference external" href="https://colab.google/">Google Colaboratory</a>, <a class="reference external" href="https://www.callysto.ca/">Callysto Hub</a>, or your local machine)</p></li>
+<li><p>Any questions about the first problem set?</p></li>
 </ol>
 </section>
 <section id="slides-just-for-my-convenience-will-be-removed-after-today-s-class-due-to-copyright-issues">
@@ -519,9 +527,9 @@ Histogram and statistical distributions -->
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#five-general-steps">Five general steps</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study">Case study</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#type-i-vs-type-ii-errors">Type I vs Type II errors</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#other-related-topics">Other related topics</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#non-parametric-tests-tbd">Non-parametric tests (TBD)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrapping-tbd">Bootstrapping (TBD)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#in-depth-topics-about-t-tests">In-depth topics about t-tests</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#non-parametric-tests">Non-parametric tests</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrapping">Bootstrapping</a></li>
 </ul>
 </li>
 </ul>
