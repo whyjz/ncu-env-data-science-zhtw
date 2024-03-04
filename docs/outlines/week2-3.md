@@ -58,20 +58,29 @@ aka False positive vs False negative
 
 How do we design $\alpha$ and $N$ while keeping both types of errors in mind?
 
-#### Other related topics
+#### In-depth topics about t-tests
+
+**Two-sample t-test**: Assumption towards the samples matters
+- Are both variances the same?
+- Are two samples potentially dependent?
+
+T-tests can also test the correlation with the null hypothesis $\rho = 0$.
+
+#### Non-parametric tests
 
 Parametric vs non-parametric tests: which should I use?
 
-How do hypothesis tests relate to the confidence interval?
+Here are tests we may mention during the class lecture:
+- Wilcoxon–Mann–Whitney test: Location (mean) difference 
+- Kolmogorov–Smirnov test: Goodness of fit for continuous data
+- Pearson's chi-squared test: Goodness of fit for categorical data
 
-Other cases where t-tests are of use (TBD)
+#### Bootstrapping
 
-#### Non-parametric tests (TBD)
-- Wilcoxon–Mann–Whitney test
-- Kolmogorov–Smirnov test
-- Pearson's chi-squared test
+How do we do bootstrapping? 
 
-#### Bootstrapping (TBD)
+As we have the traditional method (Section 4.4) for estimating the CI, what is the point of using bootstrapping?
+
 
 <!-- Do you think an inflated die is fair? How to test it?
 
@@ -88,6 +97,7 @@ Histogram and statistical distributions -->
 ## Group discussion & demo topics
 
 1. Load an Exercise data set using Jupyter Notebook (hosted by [Google Colaboratory](https://colab.google/), [Callysto Hub](https://www.callysto.ca/), or your local machine)
+2. Any questions about the first problem set?
 
 ## Slides (Just for my convenience; will be removed after today's class due to copyright issues)
 

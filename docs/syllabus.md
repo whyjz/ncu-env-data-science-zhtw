@@ -48,7 +48,7 @@ Readings and assignments are due **before the class starts**.
   -
 * - 4 (Mar 12)
   - Regression Models (I)
-  - TBD
+  - 5.1, 5.2, 5.5, 5.6
   - Problem set #1
 * - 5 (Mar 19)
   - Regression Models (II)
