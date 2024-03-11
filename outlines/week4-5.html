@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Warming-up &#8212; Environmental Data Science</title>
+    <title>Regression Models: Why is regularization so important? &#8212; Environmental Data Science</title>
   
   
   
@@ -57,11 +57,12 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'outlines/week1';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'outlines/week4-5';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Statistical Tests: Are there interactions between environmental factors?" href="week2-3.html" />
-    <link rel="prev" title="Assignments" href="../assignments.html" />
+    <link rel="prev" title="Statistical Tests: Are there interactions between environmental factors?" href="week2-3.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -175,9 +176,9 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Outlines</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Warming-up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="week1.html">Warming-up</a></li>
 <li class="toctree-l1"><a class="reference internal" href="week2-3.html">Statistical Tests: Are there interactions between environmental factors?</a></li>
-<li class="toctree-l1"><a class="reference internal" href="week4-5.html">Regression Models: Why is regularization so important?</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Regression Models: Why is regularization so important?</a></li>
 </ul>
 
     </div>
@@ -232,7 +233,7 @@
       
       
       
-      <li><a href="../_sources/outlines/week1.md" target="_blank"
+      <li><a href="../_sources/outlines/week4-5.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -316,7 +317,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Warming-up</h1>
+    <h1>Regression Models: Why is regularization so important?</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -326,8 +327,23 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-outline">Lecture outline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-outline">Lecture outline</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basics">Basics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-linear-regression-mlr">Multiple linear regression (MLR)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-topics-for-mlr">Advanced topics for MLR</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stepwise-regression">Stepwise regression</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regularized-least-squares-models">Regularized least-squares models</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ridge-regression">Ridge regression</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lasso">Lasso</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generalized-least-squares">Generalized Least Squares</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#group-discussion-demo-topics">Group discussion &amp; demo topics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slides-just-for-my-convenience-will-be-removed-after-today-s-class-due-to-copyright-issues">Slides (Just for my convenience; will be removed after today’s class due to copyright issues)</a></li>
 </ul>
             </nav>
         </div>
@@ -339,28 +355,89 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="warming-up">
-<h1>Warming-up<a class="headerlink" href="#warming-up" title="Link to this heading">#</a></h1>
-<p><strong>2024.02.20</strong></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="regression-models-why-is-regularization-so-important">
+<h1>Regression Models: Why is regularization so important?<a class="headerlink" href="#regression-models-why-is-regularization-so-important" title="Link to this heading">#</a></h1>
+<p><strong>2024.03.12, 2024.03.19</strong></p>
 <section id="lecture-outline">
 <h2>Lecture outline<a class="headerlink" href="#lecture-outline" title="Link to this heading">#</a></h2>
-<p>What does the term “data science” mean to you?</p>
-<p>So we have three terms here:</p>
+<section id="basics">
+<h3>Basics<a class="headerlink" href="#basics" title="Link to this heading">#</a></h3>
+<p>Review of the simple linear regression:</p>
 <ul class="simple">
-<li><p>Statistics</p></li>
-<li><p>Machine learning (ML)</p></li>
-<li><p>Data science
-How are they different from each other? For example, what is the difference between a “statistical model” and a “machine learning model?” Or maybe they are the same thing? Just fancy words to be created to confuse people?</p></li>
+<li><p>Model description and associated assumption</p></li>
+<li><p>Advantage of the “least square”</p></li>
+<li><p>Normal equations</p></li>
 </ul>
-<p>What is “learning” as in machine learning?</p>
-<p>What is the difference between supervised and unsupervised learning? (Q1 in Quiz #1)</p>
+<p>The sum of squares: how much variability can be explained/modeled by a regression model?</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(SST = SSE + SSR\)</span></p></li>
+</ul>
+<p>Confidence interval vs. Prediction interval</p>
+<p>When there is a serial correlation…</p>
+<ul class="simple">
+<li><p>Durbin–Watson statistic</p></li>
+</ul>
+</section>
+<section id="multiple-linear-regression-mlr">
+<h3>Multiple linear regression (MLR)<a class="headerlink" href="#multiple-linear-regression-mlr" title="Link to this heading">#</a></h3>
+<p>What does “linear” mean in a linear regression model?</p>
+<p>Two equivalent expressions that are commonly seen in the environmental science studies:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\textbf{y} = \textbf{X}\textbf{a} + \boldsymbol{\epsilon}\)</span>    (We’ll use this at the class)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\textbf{d} = \textbf{G}\textbf{m}\)</span>    (Many geophysicists use this)</p></li>
+</ul>
+<p>Least-squares solution:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\hat{\textbf{a}}=(\textbf{X}^\text{T}\textbf{X})^{-1}\textbf{X}^\text{T}\textbf{y}\)</span></p></li>
+</ul>
+<p>Gauss–Markov Theorem and BLUE</p>
+</section>
+<section id="advanced-topics-for-mlr">
+<h3>Advanced topics for MLR<a class="headerlink" href="#advanced-topics-for-mlr" title="Link to this heading">#</a></h3>
+<p>Circular and categorical Data: transform them so that we can use a linear model</p>
+<p>Analysis of Variance (ANOVA)</p>
+<ul class="simple">
+<li><p>Sum of squares explained by each predictor</p></li>
+<li><p>F-test</p></li>
+</ul>
+<section id="stepwise-regression">
+<h4>Stepwise regression<a class="headerlink" href="#stepwise-regression" title="Link to this heading">#</a></h4>
+<p>When you have lots of potential predictors…</p>
+<ul class="simple">
+<li><p>The more, the better?</p></li>
+<li><p>The less, the better?</p></li>
+<li><p>When you have no choice but to keep all the predictors?</p></li>
+</ul>
+<p>How do we do stepwise regression?</p>
+<p>Criticism: Isn’t this <strong>cherry-picking</strong>?</p>
+<p>Rank-deficient problems and regularized least-squares (i.e., a family of shrinkage methods)</p>
+</section>
+</section>
+<section id="regularized-least-squares-models">
+<h3>Regularized least-squares models<a class="headerlink" href="#regularized-least-squares-models" title="Link to this heading">#</a></h3>
+<p>TBD</p>
+<section id="ridge-regression">
+<h4>Ridge regression<a class="headerlink" href="#ridge-regression" title="Link to this heading">#</a></h4>
+<p>TBD</p>
+</section>
+<section id="lasso">
+<h4>Lasso<a class="headerlink" href="#lasso" title="Link to this heading">#</a></h4>
+<p>TBD</p>
+</section>
+</section>
+<section id="generalized-least-squares">
+<h3>Generalized Least Squares<a class="headerlink" href="#generalized-least-squares" title="Link to this heading">#</a></h3>
+<p>Weighted least squares</p>
+<p>TBD</p>
+</section>
 </section>
 <section id="group-discussion-demo-topics">
 <h2>Group discussion &amp; demo topics<a class="headerlink" href="#group-discussion-demo-topics" title="Link to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p>Can you implement Q3 in Quiz #1 and show me the histogram?</p></li>
-<li><p>Get the data necessary for doing Exercise 4.2 in Hsieh’s book.</p></li>
-</ol>
+<p>TBD</p>
+</section>
+<section id="slides-just-for-my-convenience-will-be-removed-after-today-s-class-due-to-copyright-issues">
+<h2>Slides (Just for my convenience; will be removed after today’s class due to copyright issues)<a class="headerlink" href="#slides-just-for-my-convenience-will-be-removed-after-today-s-class-due-to-copyright-issues" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://docs.google.com/presentation/d/17eIMIMbfPACRaUueoTIXn2FfH2eFSqOPnURORtjEc3g/edit?usp=sharing">Slides</a></p>
 </section>
 </section>
 
@@ -395,22 +472,13 @@ How are they different from each other? For example, what is the difference betw
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../assignments.html"
+       href="week2-3.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Assignments</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="week2-3.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Statistical Tests: Are there interactions between environmental factors?</p>
       </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -428,8 +496,23 @@ How are they different from each other? For example, what is the difference betw
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-outline">Lecture outline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-outline">Lecture outline</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basics">Basics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-linear-regression-mlr">Multiple linear regression (MLR)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-topics-for-mlr">Advanced topics for MLR</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stepwise-regression">Stepwise regression</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regularized-least-squares-models">Regularized least-squares models</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ridge-regression">Ridge regression</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lasso">Lasso</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generalized-least-squares">Generalized Least Squares</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#group-discussion-demo-topics">Group discussion &amp; demo topics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slides-just-for-my-convenience-will-be-removed-after-today-s-class-due-to-copyright-issues">Slides (Just for my convenience; will be removed after today’s class due to copyright issues)</a></li>
 </ul>
   </nav></div>
 

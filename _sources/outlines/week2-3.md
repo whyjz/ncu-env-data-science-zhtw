@@ -98,7 +98,3 @@ Histogram and statistical distributions -->
 
 1. Load an Exercise data set using Jupyter Notebook (hosted by [Google Colaboratory](https://colab.google/), [Callysto Hub](https://www.callysto.ca/), or your local machine)
 2. Any questions about the first problem set?
-
-## Slides (Just for my convenience; will be removed after today's class due to copyright issues)
-
-[Slides](https://docs.google.com/presentation/d/17eIMIMbfPACRaUueoTIXn2FfH2eFSqOPnURORtjEc3g/edit?usp=sharing)

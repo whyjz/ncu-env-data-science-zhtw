@@ -52,18 +52,18 @@ Readings and assignments are due **before the class starts**.
   - Problem set #1
 * - 5 (Mar 19)
   - Regression Models (II)
-  - TBD
+  - 2.11, 2.13, 5.7, 5.8, 5.10
   -
 * - 6 (Mar 26)
-  - Regression Models (III)
-  - TBD
+  - Neural Networks (I)
+  - 6.1--6.4
   -
 * - 7 (Apr 2)
-  - Neural Networks (I)
+  - Neural Networks (II)
   - TBD
   - Problem set #2
 * - 8 (Apr 9)
-  - Neural Networks (II)
+  - Neural Networks (III)
   - TBD
   - Term project proposal
 * - 9 (Apr 16)
