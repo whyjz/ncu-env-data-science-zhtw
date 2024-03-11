@@ -11,6 +11,7 @@ parts:
     chapters:
     - file: outlines/week1
     - file: outlines/week2-3
+    - file: outlines/week4-5
     
   # - caption: ⌨️ Hands-on sessions
   #   chapters:
