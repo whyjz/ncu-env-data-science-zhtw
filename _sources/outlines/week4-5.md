@@ -51,29 +51,45 @@ How do we do stepwise regression?
 
 Criticism: Isn't this **cherry-picking**?
 
-Rank-deficient problems and regularized least-squares (i.e., a family of shrinkage methods)
+Rank-deficient (or ill-conditioned) problems and regularized least-squares (i.e., a family of shrinkage methods)
 
 ### Regularized least-squares models
 
-TBD
+Regularization tries to redesign the loss function by imposing an additional constraint.
+
+What are its benefits?
+- To keep all the predictors in the regression model
+- To improve the solution by making the input towards full rank or better conditions.
 
 #### Ridge regression
 
-TBD
+a.k.a. L-2 regularization or Tikhonov regression 
+
+Two expressions of the ridge regression: Implicit (Lagrangian, check out Appendix B of the textbook) and Explicit
+
+ridge regression solution:
+- $\hat{\textbf{a}}=(\textbf{X}^\text{T}\textbf{X}+\lambda \textbf{I})^{-1}\textbf{X}^\text{T}\textbf{y}$
+
+How to select $\lambda$?
 
 #### Lasso
 
-TBD
+a.k.a. L-1 regularization
+
+Lasso is typically solved numerically since its loss function is not differentiable.
+
+The most distinct difference between Lasso and Ridge: predictor selection
 
 ### Generalized Least Squares
 
-Weighted least squares
+Exploring more ways to redesign the loss function!
 
-TBD
+Data covariance matrix and weighted least squares
 
 ## Group discussion & demo topics
 
-TBD
+1. Overview of the term project output: an example https://ucb-stat-159-s23.github.io/project-Group28/README.html 
+2. Another example is this class webpage.
 
 ## Slides (Just for my convenience; will be removed after today's class due to copyright issues)
 

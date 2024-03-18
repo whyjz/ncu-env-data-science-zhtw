@@ -410,30 +410,46 @@ document.write(`
 </ul>
 <p>How do we do stepwise regression?</p>
 <p>Criticism: Isn’t this <strong>cherry-picking</strong>?</p>
-<p>Rank-deficient problems and regularized least-squares (i.e., a family of shrinkage methods)</p>
+<p>Rank-deficient (or ill-conditioned) problems and regularized least-squares (i.e., a family of shrinkage methods)</p>
 </section>
 </section>
 <section id="regularized-least-squares-models">
 <h3>Regularized least-squares models<a class="headerlink" href="#regularized-least-squares-models" title="Link to this heading">#</a></h3>
-<p>TBD</p>
+<p>Regularization tries to redesign the loss function by imposing an additional constraint.</p>
+<p>What are its benefits?</p>
+<ul class="simple">
+<li><p>To keep all the predictors in the regression model</p></li>
+<li><p>To improve the solution by making the input towards full rank or better conditions.</p></li>
+</ul>
 <section id="ridge-regression">
 <h4>Ridge regression<a class="headerlink" href="#ridge-regression" title="Link to this heading">#</a></h4>
-<p>TBD</p>
+<p>a.k.a. L-2 regularization or Tikhonov regression</p>
+<p>Two expressions of the ridge regression: Implicit (Lagrangian, check out Appendix B of the textbook) and Explicit</p>
+<p>ridge regression solution:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\hat{\textbf{a}}=(\textbf{X}^\text{T}\textbf{X}+\lambda \textbf{I})^{-1}\textbf{X}^\text{T}\textbf{y}\)</span></p></li>
+</ul>
+<p>How to select <span class="math notranslate nohighlight">\(\lambda\)</span>?</p>
 </section>
 <section id="lasso">
 <h4>Lasso<a class="headerlink" href="#lasso" title="Link to this heading">#</a></h4>
-<p>TBD</p>
+<p>a.k.a. L-1 regularization</p>
+<p>Lasso is typically solved numerically since its loss function is not differentiable.</p>
+<p>The most distinct difference between Lasso and Ridge: predictor selection</p>
 </section>
 </section>
 <section id="generalized-least-squares">
 <h3>Generalized Least Squares<a class="headerlink" href="#generalized-least-squares" title="Link to this heading">#</a></h3>
-<p>Weighted least squares</p>
-<p>TBD</p>
+<p>Exploring more ways to redesign the loss function!</p>
+<p>Data covariance matrix and weighted least squares</p>
 </section>
 </section>
 <section id="group-discussion-demo-topics">
 <h2>Group discussion &amp; demo topics<a class="headerlink" href="#group-discussion-demo-topics" title="Link to this heading">#</a></h2>
-<p>TBD</p>
+<ol class="arabic simple">
+<li><p>Overview of the term project output: an example <a class="reference external" href="https://ucb-stat-159-s23.github.io/project-Group28/README.html">https://ucb-stat-159-s23.github.io/project-Group28/README.html</a></p></li>
+<li><p>Another example is this class webpage.</p></li>
+</ol>
 </section>
 <section id="slides-just-for-my-convenience-will-be-removed-after-today-s-class-due-to-copyright-issues">
 <h2>Slides (Just for my convenience; will be removed after today’s class due to copyright issues)<a class="headerlink" href="#slides-just-for-my-convenience-will-be-removed-after-today-s-class-due-to-copyright-issues" title="Link to this heading">#</a></h2>
