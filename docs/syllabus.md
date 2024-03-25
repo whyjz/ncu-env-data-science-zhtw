@@ -60,7 +60,7 @@ Readings and assignments are due **before the class starts**.
   -
 * - 7 (Apr 2)
   - Neural Networks (II)
-  - TBD
+  - 6.5, 6.8, 7.1--7.6
   - Problem set #2
 * - 8 (Apr 9)
   - Neural Networks (III)
