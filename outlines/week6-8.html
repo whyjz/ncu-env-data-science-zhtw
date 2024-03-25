@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Warming-up &#8212; Environmental Data Science</title>
+    <title>Neural Networks: How can you trust deep models that seem like black boxes? &#8212; Environmental Data Science</title>
   
   
   
@@ -57,11 +57,12 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'outlines/week1';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'outlines/week6-8';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Statistical Tests: Are there interactions between environmental factors?" href="week2-3.html" />
-    <link rel="prev" title="Assignments" href="../assignments.html" />
+    <link rel="prev" title="Regression Models: Why is regularization so important?" href="week4-5.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -175,10 +176,10 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Outlines</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Warming-up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="week1.html">Warming-up</a></li>
 <li class="toctree-l1"><a class="reference internal" href="week2-3.html">Statistical Tests: Are there interactions between environmental factors?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="week4-5.html">Regression Models: Why is regularization so important?</a></li>
-<li class="toctree-l1"><a class="reference internal" href="week6-8.html">Neural Networks: How can you trust deep models that seem like black boxes?</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Neural Networks: How can you trust deep models that seem like black boxes?</a></li>
 </ul>
 
     </div>
@@ -233,7 +234,7 @@
       
       
       
-      <li><a href="../_sources/outlines/week1.md" target="_blank"
+      <li><a href="../_sources/outlines/week6-8.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -317,7 +318,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Warming-up</h1>
+    <h1>Neural Networks: How can you trust deep models that seem like black boxes?</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -327,8 +328,14 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-outline">Lecture outline</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#group-discussion-demo-topics">Group discussion &amp; demo topics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-outline">Lecture outline</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perceptrons">Perceptrons</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-layer-perceptrons-mlp">Multi-layer Perceptrons (MLP)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extreme-learning-machine-elm">Extreme learning Machine (ELM)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rbf">RBF</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slides-just-for-my-convenience-will-be-removed-after-today-s-class-due-to-copyright-issues">Slides (Just for my convenience; will be removed after today’s class due to copyright issues)</a></li>
 </ul>
             </nav>
         </div>
@@ -340,28 +347,55 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="warming-up">
-<h1>Warming-up<a class="headerlink" href="#warming-up" title="Link to this heading">#</a></h1>
-<p><strong>2024.02.20</strong></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="neural-networks-how-can-you-trust-deep-models-that-seem-like-black-boxes">
+<h1>Neural Networks: How can you trust deep models that seem like black boxes?<a class="headerlink" href="#neural-networks-how-can-you-trust-deep-models-that-seem-like-black-boxes" title="Link to this heading">#</a></h1>
+<p><strong>2024.03.26, 2024.04.02, 2024.04.09</strong></p>
 <section id="lecture-outline">
 <h2>Lecture outline<a class="headerlink" href="#lecture-outline" title="Link to this heading">#</a></h2>
-<p>What does the term “data science” mean to you?</p>
-<p>So we have three terms here:</p>
+<p>Neural Network (NN): it’s biological origin and how it relates to data science</p>
+<section id="perceptrons">
+<h3>Perceptrons<a class="headerlink" href="#perceptrons" title="Link to this heading">#</a></h3>
+<p>The basic structure of a neural network!</p>
+<p><strong>Activation function</strong>:</p>
 <ul class="simple">
-<li><p>Statistics</p></li>
-<li><p>Machine learning (ML)</p></li>
-<li><p>Data science
-How are they different from each other? For example, what is the difference between a “statistical model” and a “machine learning model?” Or maybe they are the same thing? Just fancy words to be created to confuse people?</p></li>
+<li><p>Heaviside step function</p></li>
+<li><p>logistic function (or <span class="math notranslate nohighlight">\(tanh\)</span>)</p></li>
+<li><p>Rectified linear unit (ReLU)</p></li>
+<li><p>Softplus</p></li>
 </ul>
-<p>What is “learning” as in machine learning?</p>
-<p>What is the difference between supervised and unsupervised learning? (Q1 in Quiz #1)</p>
+<p>Limitation on non-linear separation</p>
 </section>
-<section id="group-discussion-demo-topics">
-<h2>Group discussion &amp; demo topics<a class="headerlink" href="#group-discussion-demo-topics" title="Link to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p>Can you implement Q3 in Quiz #1 and show me the histogram?</p></li>
-<li><p>Get the data necessary for doing Exercise 4.2 in Hsieh’s book.</p></li>
-</ol>
+<section id="multi-layer-perceptrons-mlp">
+<h3>Multi-layer Perceptrons (MLP)<a class="headerlink" href="#multi-layer-perceptrons-mlp" title="Link to this heading">#</a></h3>
+<p>The simplest NN that has practical use!</p>
+<p>Hidden layer: transform the linear perceptron model into a non-linear model.</p>
+<p>Predictors, parameters, and loss function of MLP</p>
+<ul class="simple">
+<li><p>number of observations vs parameters</p></li>
+</ul>
+<p>Challenges of a non-linear optimization</p>
+<ul class="simple">
+<li><p>curse of dimensionality?</p></li>
+<li><p>potential solution: Ensembles</p></li>
+</ul>
+<p>What’s the advantage?</p>
+<p>MLP: a Universal approximator!</p>
+</section>
+<section id="extreme-learning-machine-elm">
+<h3>Extreme learning Machine (ELM)<a class="headerlink" href="#extreme-learning-machine-elm" title="Link to this heading">#</a></h3>
+<p>The idea of using ensembles -&gt; transform a non-linear problem back to a linear problem</p>
+<p>What’s the advantage?</p>
+<p>How to determine the number of hidden layer nodes <span class="math notranslate nohighlight">\(L\)</span>?</p>
+<p>Skip connection</p>
+</section>
+<section id="rbf">
+<h3>RBF<a class="headerlink" href="#rbf" title="Link to this heading">#</a></h3>
+<p>TBD</p>
+</section>
+</section>
+<section id="slides-just-for-my-convenience-will-be-removed-after-today-s-class-due-to-copyright-issues">
+<h2>Slides (Just for my convenience; will be removed after today’s class due to copyright issues)<a class="headerlink" href="#slides-just-for-my-convenience-will-be-removed-after-today-s-class-due-to-copyright-issues" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://docs.google.com/presentation/d/17eIMIMbfPACRaUueoTIXn2FfH2eFSqOPnURORtjEc3g/edit?usp=sharing">Slides</a></p>
 </section>
 </section>
 
@@ -396,22 +430,13 @@ How are they different from each other? For example, what is the difference betw
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../assignments.html"
+       href="week4-5.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Assignments</p>
+        <p class="prev-next-title">Regression Models: Why is regularization so important?</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="week2-3.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Statistical Tests: Are there interactions between environmental factors?</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -429,8 +454,14 @@ How are they different from each other? For example, what is the difference betw
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-outline">Lecture outline</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#group-discussion-demo-topics">Group discussion &amp; demo topics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-outline">Lecture outline</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perceptrons">Perceptrons</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-layer-perceptrons-mlp">Multi-layer Perceptrons (MLP)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extreme-learning-machine-elm">Extreme learning Machine (ELM)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rbf">RBF</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slides-just-for-my-convenience-will-be-removed-after-today-s-class-due-to-copyright-issues">Slides (Just for my convenience; will be removed after today’s class due to copyright issues)</a></li>
 </ul>
   </nav></div>
 
