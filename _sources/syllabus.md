@@ -64,7 +64,7 @@ Readings and assignments are due **before the class starts**.
   - Problem set #2
 * - 8 (Apr 9)
   - Neural Networks (III)
-  - TBD
+  - 8.1--8.7
   - Term project proposal
 * - 9 (Apr 16)
   - NO CLASS 
