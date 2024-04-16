@@ -332,7 +332,10 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perceptrons">Perceptrons</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-layer-perceptrons-mlp">Multi-layer Perceptrons (MLP)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extreme-learning-machine-elm">Extreme learning Machine (ELM)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rbf">RBF</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#radial-basis-functions-rbf">Radial Basis Functions (RBF)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#back-propagation">Back-Propagation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tuning-and-validation">Tuning and validation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-emsemble-methods">Other Emsemble methods</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slides-just-for-my-convenience-will-be-removed-after-today-s-class-due-to-copyright-issues">Slides (Just for my convenience; will be removed after today’s class due to copyright issues)</a></li>
@@ -388,9 +391,32 @@ document.write(`
 <p>How to determine the number of hidden layer nodes <span class="math notranslate nohighlight">\(L\)</span>?</p>
 <p>Skip connection</p>
 </section>
-<section id="rbf">
-<h3>RBF<a class="headerlink" href="#rbf" title="Link to this heading">#</a></h3>
-<p>TBD</p>
+<section id="radial-basis-functions-rbf">
+<h3>Radial Basis Functions (RBF)<a class="headerlink" href="#radial-basis-functions-rbf" title="Link to this heading">#</a></h3>
+<p>This is another way to reduce the non-linearity of NN into a linear problem.</p>
+<p>Why is it called “Radial Basis?” We’ll revisit this during the kernel method section.</p>
+</section>
+<section id="back-propagation">
+<h3>Back-Propagation<a class="headerlink" href="#back-propagation" title="Link to this heading">#</a></h3>
+<p>The life save of the MLP problem!</p>
+<p>Learning rate <span class="math notranslate nohighlight">\(\eta\)</span></p>
+<p>From the textbook: “Nowadays, the term ‘back-propagation’ is used somewhat ambiguously.”</p>
+<ul class="simple">
+<li><p>It could mean the original back-propagation algorithm (with inefficient gradient descent)</p></li>
+<li><p>or, more likely, it could mean using only the first part involving the backward error propagation to compute the gradient of J</p></li>
+</ul>
+</section>
+<section id="tuning-and-validation">
+<h3>Tuning and validation<a class="headerlink" href="#tuning-and-validation" title="Link to this heading">#</a></h3>
+<p>Grid search, random search, validation, cross-validation, and double cross-validation</p>
+</section>
+<section id="other-emsemble-methods">
+<h3>Other Emsemble methods<a class="headerlink" href="#other-emsemble-methods" title="Link to this heading">#</a></h3>
+<p>Help reduce the variance error (Section 8.3)</p>
+<ul class="simple">
+<li><p>Bagging</p></li>
+<li><p>Stacking</p></li>
+</ul>
 </section>
 </section>
 <section id="slides-just-for-my-convenience-will-be-removed-after-today-s-class-due-to-copyright-issues">
@@ -458,7 +484,10 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perceptrons">Perceptrons</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-layer-perceptrons-mlp">Multi-layer Perceptrons (MLP)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extreme-learning-machine-elm">Extreme learning Machine (ELM)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rbf">RBF</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#radial-basis-functions-rbf">Radial Basis Functions (RBF)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#back-propagation">Back-Propagation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tuning-and-validation">Tuning and validation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-emsemble-methods">Other Emsemble methods</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slides-just-for-my-convenience-will-be-removed-after-today-s-class-due-to-copyright-issues">Slides (Just for my convenience; will be removed after today’s class due to copyright issues)</a></li>
