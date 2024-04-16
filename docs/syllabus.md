@@ -72,7 +72,7 @@ Readings and assignments are due **before the class starts**.
   - Problem set #3
 * - 10 (Apr 23)
   - Kernel Methods (I)
-  - TBD
+  - 2.14--2.16, 13.1--13.5
   -
 * - 11 (Apr 30)
   - Kernel Methods (II)

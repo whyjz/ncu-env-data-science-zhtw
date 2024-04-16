@@ -90,7 +90,3 @@ Data covariance matrix and weighted least squares
 
 1. Overview of the term project output: an example https://ucb-stat-159-s23.github.io/project-Group28/README.html 
 2. Another example is this class webpage.
-
-## Slides (Just for my convenience; will be removed after today's class due to copyright issues)
-
-[Slides](https://docs.google.com/presentation/d/17eIMIMbfPACRaUueoTIXn2FfH2eFSqOPnURORtjEc3g/edit?usp=sharing)
