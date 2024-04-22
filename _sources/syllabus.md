@@ -76,7 +76,7 @@ Readings and assignments are due **before the class starts**.
   -
 * - 11 (Apr 30)
   - Kernel Methods (II)
-  - TBD
+  - 12.1, 13.7, 13.8
   -
 * - 12 (May 7)
   - NO CLASS

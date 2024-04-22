@@ -12,6 +12,12 @@ Complete Exercises 5.2, 5.6, 5.7, and 5.9 in Hsieh's book.
 
 Complete Exercises 6.5, 6.6, and 8.1 in Hsieh's book.
 
-## Problem sets #4--5
+## Problem set #4
+
+1. Complete Exercise 12.1 in Hsieh's book.
+2. Following the first question, use the support vector machine to classify the forest types in the given dataset. Feel free to choose one-versus-the-rest or one-versus-one approach (and specify your choice). Train using the first two predictors and compare the results with the linear discriminant analysis.
+3. Generate a synthetic signal with added noise $y = \sin x + 0.5 \times \mathcal{N}(0, 1)$ and collect 40 data points that are distributed within the range $x = [0, 4\pi]$. Now use (a) ridge regression, (b) kernel ridge regression, and (c) Gaussian progress regression to model the data and give the prediction at the range $x = [0, 8\pi]$ with visualization. Describe and justify your kernel selection and hyperparameter tuning process whenever necessary. Compare the results from three regression methods.
+
+## Problem set #5
 
 TBD
