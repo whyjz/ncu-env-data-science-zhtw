@@ -71,7 +71,3 @@ Help reduce the variance error (Section 8.3)
 
 - Bagging
 - Stacking
-
-## Slides (Just for my convenience; will be removed after today's class due to copyright issues)
-
-[Slides](https://docs.google.com/presentation/d/17eIMIMbfPACRaUueoTIXn2FfH2eFSqOPnURORtjEc3g/edit?usp=sharing)

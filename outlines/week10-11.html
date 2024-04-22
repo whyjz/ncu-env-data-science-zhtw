@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Statistical Tests: Are there interactions between environmental factors? &#8212; Environmental Data Science</title>
+    <title>Kernel Methods: Is dimensionality a curse or a blessing? &#8212; Environmental Data Science</title>
   
   
   
@@ -57,13 +57,10 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'outlines/week2-3';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'outlines/week10-11';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Regression Models: Why is regularization so important?" href="week4-5.html" />
-    <link rel="prev" title="Warming-up" href="week1.html" />
+    <link rel="prev" title="Neural Networks: How can you trust deep models that seem like black boxes?" href="week6-8.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -178,10 +175,10 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Outlines</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="week1.html">Warming-up</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Statistical Tests: Are there interactions between environmental factors?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="week2-3.html">Statistical Tests: Are there interactions between environmental factors?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="week4-5.html">Regression Models: Why is regularization so important?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="week6-8.html">Neural Networks: How can you trust deep models that seem like black boxes?</a></li>
-<li class="toctree-l1"><a class="reference internal" href="week10-11.html">Kernel Methods: Is dimensionality a curse or a blessing?</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Kernel Methods: Is dimensionality a curse or a blessing?</a></li>
 </ul>
 
     </div>
@@ -236,7 +233,7 @@
       
       
       
-      <li><a href="../_sources/outlines/week2-3.md" target="_blank"
+      <li><a href="../_sources/outlines/week10-11.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -320,7 +317,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Statistical Tests: Are there interactions between environmental factors?</h1>
+    <h1>Kernel Methods: Is dimensionality a curse or a blessing?</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -331,21 +328,17 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-outline">Lecture outline</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basics">Basics</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-skills">Data skills</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-about-probability-distributions">More about probability distributions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypothesis-testing">Hypothesis testing</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#five-general-steps">Five general steps</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study">Case study</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#type-i-vs-type-ii-errors">Type I vs Type II errors</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#in-depth-topics-about-t-tests">In-depth topics about t-tests</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#non-parametric-tests">Non-parametric tests</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrapping">Bootstrapping</a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-overview-of-the-classification-problem-and-the-bayes-theory">Quick overview of the classification problem and the Bayes theory</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nn-vs-kernel-methods">NN vs Kernel Methods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#timing-a-regression-problem">Timing a regression problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kernels">Kernels</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-ridge-regression">Kernel ridge regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#support-vector-machine">Support Vector Machine</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-process-regresion">Gaussian process regresion</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#group-discussion-demo-topics">Group discussion &amp; demo topics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slides-just-for-my-convenience-will-be-removed-after-today-s-class-due-to-copyright-issues">Slides (Just for my convenience; will be removed after today’s class due to copyright issues)</a></li>
 </ul>
             </nav>
         </div>
@@ -357,109 +350,59 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="statistical-tests-are-there-interactions-between-environmental-factors">
-<h1>Statistical Tests: Are there interactions between environmental factors?<a class="headerlink" href="#statistical-tests-are-there-interactions-between-environmental-factors" title="Link to this heading">#</a></h1>
-<p><strong>2024.02.27, 2024.03.05</strong></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="kernel-methods-is-dimensionality-a-curse-or-a-blessing">
+<h1>Kernel Methods: Is dimensionality a curse or a blessing?<a class="headerlink" href="#kernel-methods-is-dimensionality-a-curse-or-a-blessing" title="Link to this heading">#</a></h1>
+<p><strong>2024.04.23, 2024.04.30</strong></p>
 <section id="lecture-outline">
 <h2>Lecture outline<a class="headerlink" href="#lecture-outline" title="Link to this heading">#</a></h2>
-<section id="basics">
-<h3>Basics<a class="headerlink" href="#basics" title="Link to this heading">#</a></h3>
-<p>Random variable: A <strong>value</strong> that follows a probability distribution. Are the following quantities random variables?</p>
-<ul class="simple">
-<li><p>The number of apples in a basket</p></li>
-<li><p>Your height</p></li>
-<li><p>The height of a person sitting here who I randomly pick up</p></li>
-<li><p>Today’s temperature</p></li>
-<li><p>The number I get by rolling a die</p></li>
-</ul>
-<p>What is a probability density function (PDF)? How is it different from a probability distribution?</p>
-<p>Now let’s revisit expectation, variance, and their mathematical expressions (cont. Q2 in Quiz #1): Derive the expectation and the variance of the Bernoulli distribution <span class="math notranslate nohighlight">\(Ber(x|p) = p^x(1-p)^{1-x}\)</span>.</p>
+<section id="quick-overview-of-the-classification-problem-and-the-bayes-theory">
+<h3>Quick overview of the classification problem and the Bayes theory<a class="headerlink" href="#quick-overview-of-the-classification-problem-and-the-bayes-theory" title="Link to this heading">#</a></h3>
+<p>Classification vs cluster analysis</p>
 </section>
-<section id="data-skills">
-<h3>Data skills<a class="headerlink" href="#data-skills" title="Link to this heading">#</a></h3>
-<p>Here are things we don’t primarily focus on during the class but are essential for building up your data skills for reproducible science.</p>
+<section id="nn-vs-kernel-methods">
+<h3>NN vs Kernel Methods<a class="headerlink" href="#nn-vs-kernel-methods" title="Link to this heading">#</a></h3>
+<p>Higher dimension!</p>
+</section>
+<section id="timing-a-regression-problem">
+<h3>Timing a regression problem<a class="headerlink" href="#timing-a-regression-problem" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Programming</p></li>
-<li><p>Collaboration and version control (Git &amp; GitHub) (Check out Q4 in Quiz #1)</p></li>
-<li><p>Jupyter (incl. Google Colab)</p></li>
-<li><p>Data import and wrangling</p></li>
-<li><p>Visualization</p></li>
+<li><p>Primal and Dual Solutions: which one is faster?</p></li>
+<li><p>Primal and Dual Solutions for ridge regression</p></li>
 </ul>
 </section>
-<section id="more-about-probability-distributions">
-<h3>More about probability distributions<a class="headerlink" href="#more-about-probability-distributions" title="Link to this heading">#</a></h3>
+<section id="kernels">
+<h3>Kernels<a class="headerlink" href="#kernels" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Gaussian: many distributions converge to this thanks to the central limit theory</p></li>
-<li><p>Poisson distribution (let’s check Q5 in worksheet #1)</p></li>
-<li><p>Student t-distribution: Bounded to the mean</p></li>
-<li><p>Chi-squared (<span class="math notranslate nohighlight">\(\chi^2\)</span>) distribution: Bounded to the square of the Gaussians</p></li>
+<li><p>Feature map</p></li>
+<li><p>kernel trick</p></li>
+<li><p>Mercer theorem vs positive semi-definite kernel function</p></li>
+<li><p>Differernt kernels</p></li>
+<li><p>advantages and disadvantages</p></li>
 </ul>
 </section>
-<section id="hypothesis-testing">
-<h3>Hypothesis testing<a class="headerlink" href="#hypothesis-testing" title="Link to this heading">#</a></h3>
-<p>When to use hypothesis testing?</p>
-<section id="five-general-steps">
-<h4>Five general steps<a class="headerlink" href="#five-general-steps" title="Link to this heading">#</a></h4>
-<ol class="arabic simple">
-<li><p>Set up <span class="math notranslate nohighlight">\(H_0\)</span> (null hypothesis)</p></li>
-<li><p>Set up <span class="math notranslate nohighlight">\(H_1\)</span> (alternative hypothesis)</p></li>
-<li><p>Set up test statistic and significance level (<span class="math notranslate nohighlight">\(\alpha\)</span>)</p></li>
-<li><p>Find the null distribution for the test statistic; calculate the <span class="math notranslate nohighlight">\(p\)</span>-value</p></li>
-<li><p>Reject or not reject <span class="math notranslate nohighlight">\(H_0\)</span> by comparing <span class="math notranslate nohighlight">\(p\)</span> with <span class="math notranslate nohighlight">\(\alpha\)</span></p></li>
-</ol>
-</section>
-<section id="case-study">
-<h4>Case study<a class="headerlink" href="#case-study" title="Link to this heading">#</a></h4>
-<p><strong>One-sample t-test</strong> (Section 4.2.1): Is the mean weight of a fish species from two lakes different?</p>
-<p>We already know this species’ population mean (<span class="math notranslate nohighlight">\(\mu_0\)</span>) in the large lake. And we have a sample mean (<span class="math notranslate nohighlight">\(\bar{x}\)</span>) from 20 fish in the small lake.</p>
-<p>Test statstic <span class="math notranslate nohighlight">\(t = \frac{\bar{x} - \mu_0}{s / \sqrt{N}}\)</span></p>
-</section>
-<section id="type-i-vs-type-ii-errors">
-<h4>Type I vs Type II errors<a class="headerlink" href="#type-i-vs-type-ii-errors" title="Link to this heading">#</a></h4>
-<p>aka False positive vs False negative</p>
-<p>How do we design <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(N\)</span> while keeping both types of errors in mind?</p>
-</section>
-<section id="in-depth-topics-about-t-tests">
-<h4>In-depth topics about t-tests<a class="headerlink" href="#in-depth-topics-about-t-tests" title="Link to this heading">#</a></h4>
-<p><strong>Two-sample t-test</strong>: Assumption towards the samples matters</p>
+<section id="kernel-ridge-regression">
+<h3>Kernel ridge regression<a class="headerlink" href="#kernel-ridge-regression" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Are both variances the same?</p></li>
-<li><p>Are two samples potentially dependent?</p></li>
-</ul>
-<p>T-tests can also test the correlation with the null hypothesis <span class="math notranslate nohighlight">\(\rho = 0\)</span>.</p>
-</section>
-<section id="non-parametric-tests">
-<h4>Non-parametric tests<a class="headerlink" href="#non-parametric-tests" title="Link to this heading">#</a></h4>
-<p>Parametric vs non-parametric tests: which should I use?</p>
-<p>Here are tests we may mention during the class lecture:</p>
-<ul class="simple">
-<li><p>Wilcoxon–Mann–Whitney test: Location (mean) difference</p></li>
-<li><p>Kolmogorov–Smirnov test: Goodness of fit for continuous data</p></li>
-<li><p>Pearson’s chi-squared test: Goodness of fit for categorical data</p></li>
+<li><p>Procedure</p></li>
+<li><p>Modularized design</p></li>
 </ul>
 </section>
-<section id="bootstrapping">
-<h4>Bootstrapping<a class="headerlink" href="#bootstrapping" title="Link to this heading">#</a></h4>
-<p>How do we do bootstrapping?</p>
-<p>As we have the traditional method (Section 4.4) for estimating the CI, what is the point of using bootstrapping?</p>
-<!-- Do you think an inflated die is fair? How to test it?
-
-Histogram and statistical distributions -->
-<!-- List at least one random variable in environmental science and remote sensing that fit each statistical distribution:
-- Gaussian distribution (aka normal distribution)
-- Gamma distribution
-- Beta distribution
-- Binomial distribution -->
-<!-- Suppose Yushan measures 3952.43 m by a satellite altimeter. And the maximum measurement error of this altimeter is 0.2 m according to its documentation. What is the uncertainty of Yushan’s height? What is the 95% confidence interval of Yushan’s height? -->
+<section id="support-vector-machine">
+<h3>Support Vector Machine<a class="headerlink" href="#support-vector-machine" title="Link to this heading">#</a></h3>
+<p>TBD</p>
 </section>
+<section id="gaussian-process-regresion">
+<h3>Gaussian process regresion<a class="headerlink" href="#gaussian-process-regresion" title="Link to this heading">#</a></h3>
+<p>TBD</p>
 </section>
 </section>
 <section id="group-discussion-demo-topics">
 <h2>Group discussion &amp; demo topics<a class="headerlink" href="#group-discussion-demo-topics" title="Link to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p>Load an Exercise data set using Jupyter Notebook (hosted by <a class="reference external" href="https://colab.google/">Google Colaboratory</a>, <a class="reference external" href="https://www.callysto.ca/">Callysto Hub</a>, or your local machine)</p></li>
-<li><p>Any questions about the first problem set?</p></li>
-</ol>
+<p>TBD</p>
+</section>
+<section id="slides-just-for-my-convenience-will-be-removed-after-today-s-class-due-to-copyright-issues">
+<h2>Slides (Just for my convenience; will be removed after today’s class due to copyright issues)<a class="headerlink" href="#slides-just-for-my-convenience-will-be-removed-after-today-s-class-due-to-copyright-issues" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://docs.google.com/presentation/d/17eIMIMbfPACRaUueoTIXn2FfH2eFSqOPnURORtjEc3g/edit?usp=sharing">Slides</a></p>
 </section>
 </section>
 
@@ -494,22 +437,13 @@ Histogram and statistical distributions -->
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="week1.html"
+       href="week6-8.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Warming-up</p>
+        <p class="prev-next-title">Neural Networks: How can you trust deep models that seem like black boxes?</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="week4-5.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Regression Models: Why is regularization so important?</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -528,21 +462,17 @@ Histogram and statistical distributions -->
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-outline">Lecture outline</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basics">Basics</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-skills">Data skills</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-about-probability-distributions">More about probability distributions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypothesis-testing">Hypothesis testing</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#five-general-steps">Five general steps</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study">Case study</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#type-i-vs-type-ii-errors">Type I vs Type II errors</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#in-depth-topics-about-t-tests">In-depth topics about t-tests</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#non-parametric-tests">Non-parametric tests</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrapping">Bootstrapping</a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-overview-of-the-classification-problem-and-the-bayes-theory">Quick overview of the classification problem and the Bayes theory</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nn-vs-kernel-methods">NN vs Kernel Methods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#timing-a-regression-problem">Timing a regression problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kernels">Kernels</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-ridge-regression">Kernel ridge regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#support-vector-machine">Support Vector Machine</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-process-regresion">Gaussian process regresion</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#group-discussion-demo-topics">Group discussion &amp; demo topics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slides-just-for-my-convenience-will-be-removed-after-today-s-class-due-to-copyright-issues">Slides (Just for my convenience; will be removed after today’s class due to copyright issues)</a></li>
 </ul>
   </nav></div>
 
