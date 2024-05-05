@@ -84,7 +84,7 @@ Readings and assignments are due **before the class starts**.
   - Problem set #4
 * - 13 (May 14)
   - Random Forests (I)
-  - TBD
+  - 2.17, 14.1, 14.2
   -
 * - 14 (May 21)
   - Random Forests (II)
