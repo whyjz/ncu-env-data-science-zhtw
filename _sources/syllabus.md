@@ -88,7 +88,7 @@ Readings and assignments are due **before the class starts**.
   -
 * - 14 (May 21)
   - Random Forests (II)
-  - TBD
+  - 14.3, 16.8, 16.9
   -
 * - 15 (May 28)
   - Wrap-up
