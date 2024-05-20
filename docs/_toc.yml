@@ -5,7 +5,6 @@ parts:
     chapters:
     - file: syllabus
     - file: assignments
-    # - file: template
     
   - caption: Outlines
     chapters:
@@ -14,8 +13,4 @@ parts:
     - file: outlines/week4-5
     - file: outlines/week6-8
     - file: outlines/week10-11
-    
-  # - caption: ⌨️ Hands-on sessions
-  #   chapters:
-  #   - file: handson/H1-Jupyter
-  #   - file: handson/H2-FAIRdata
+    - file: outlines/week13-14
