@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Neural Networks: How can you trust deep models that seem like black boxes? &#8212; Environmental Data Science</title>
+    <title>Random Forests: When one model is not enough, make several? &#8212; Environmental Data Science</title>
   
   
   
@@ -59,11 +59,10 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'outlines/week6-8';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'outlines/week13-14';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Kernel Methods: Is dimensionality a curse or a blessing?" href="week10-11.html" />
-    <link rel="prev" title="Regression Models: Why is regularization so important?" href="week4-5.html" />
+    <link rel="prev" title="Kernel Methods: Is dimensionality a curse or a blessing?" href="week10-11.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -180,9 +179,9 @@
 <li class="toctree-l1"><a class="reference internal" href="week1.html">Warming-up</a></li>
 <li class="toctree-l1"><a class="reference internal" href="week2-3.html">Statistical Tests: Are there interactions between environmental factors?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="week4-5.html">Regression Models: Why is regularization so important?</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Neural Networks: How can you trust deep models that seem like black boxes?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="week6-8.html">Neural Networks: How can you trust deep models that seem like black boxes?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="week10-11.html">Kernel Methods: Is dimensionality a curse or a blessing?</a></li>
-<li class="toctree-l1"><a class="reference internal" href="week13-14.html">Random Forests: When one model is not enough, make several?</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Random Forests: When one model is not enough, make several?</a></li>
 </ul>
 
     </div>
@@ -237,7 +236,7 @@
       
       
       
-      <li><a href="../_sources/outlines/week6-8.md" target="_blank"
+      <li><a href="../_sources/outlines/week13-14.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -321,7 +320,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Neural Networks: How can you trust deep models that seem like black boxes?</h1>
+    <h1>Random Forests: When one model is not enough, make several?</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -332,15 +331,16 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-outline">Lecture outline</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perceptrons">Perceptrons</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-layer-perceptrons-mlp">Multi-layer Perceptrons (MLP)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extreme-learning-machine-elm">Extreme learning Machine (ELM)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#radial-basis-functions-rbf">Radial Basis Functions (RBF)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#back-propagation">Back-Propagation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tuning-and-validation">Tuning and validation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-emsemble-methods">Other Emsemble methods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-and-regression-trees-cart">Classification and Regression Trees (CART)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randon-forest">Randon Forest</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boosting">Boosting</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-boosting">Gradient boosting</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#group-discussion-demo-topics">Group discussion &amp; demo topics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slides-just-for-my-convenience-will-be-removed-after-today-s-class-due-to-copyright-issues">Slides (Just for my convenience; will be removed after today’s class due to copyright issues)</a></li>
 </ul>
             </nav>
         </div>
@@ -352,74 +352,46 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="neural-networks-how-can-you-trust-deep-models-that-seem-like-black-boxes">
-<h1>Neural Networks: How can you trust deep models that seem like black boxes?<a class="headerlink" href="#neural-networks-how-can-you-trust-deep-models-that-seem-like-black-boxes" title="Link to this heading">#</a></h1>
-<p><strong>2024.03.26, 2024.04.02, 2024.04.09</strong></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="random-forests-when-one-model-is-not-enough-make-several">
+<h1>Random Forests: When one model is not enough, make several?<a class="headerlink" href="#random-forests-when-one-model-is-not-enough-make-several" title="Link to this heading">#</a></h1>
+<p><strong>2024.05.14, 2024.05.21</strong></p>
 <section id="lecture-outline">
 <h2>Lecture outline<a class="headerlink" href="#lecture-outline" title="Link to this heading">#</a></h2>
-<p>Neural Network (NN): it’s biological origin and how it relates to data science</p>
-<section id="perceptrons">
-<h3>Perceptrons<a class="headerlink" href="#perceptrons" title="Link to this heading">#</a></h3>
-<p>The basic structure of a neural network!</p>
-<p><strong>Activation function</strong>:</p>
+<section id="classification-and-regression-trees-cart">
+<h3>Classification and Regression Trees (CART)<a class="headerlink" href="#classification-and-regression-trees-cart" title="Link to this heading">#</a></h3>
+<p>Split and fit using constant functions.</p>
 <ul class="simple">
-<li><p>Heaviside step function</p></li>
-<li><p>logistic function (or <span class="math notranslate nohighlight">\(tanh\)</span>)</p></li>
-<li><p>Rectified linear unit (ReLU)</p></li>
-<li><p>Softplus</p></li>
-</ul>
-<p>Limitation on non-linear separation</p>
-</section>
-<section id="multi-layer-perceptrons-mlp">
-<h3>Multi-layer Perceptrons (MLP)<a class="headerlink" href="#multi-layer-perceptrons-mlp" title="Link to this heading">#</a></h3>
-<p>The simplest NN that has practical use!</p>
-<p>Hidden layer: transform the linear perceptron model into a non-linear model.</p>
-<p>Predictors, parameters, and loss function of MLP</p>
-<ul class="simple">
-<li><p>number of observations vs parameters</p></li>
-</ul>
-<p>Challenges of a non-linear optimization</p>
-<ul class="simple">
-<li><p>curse of dimensionality?</p></li>
-<li><p>potential solution: Ensembles</p></li>
-</ul>
-<p>What’s the advantage?</p>
-<p>MLP: a Universal approximator!</p>
-</section>
-<section id="extreme-learning-machine-elm">
-<h3>Extreme learning Machine (ELM)<a class="headerlink" href="#extreme-learning-machine-elm" title="Link to this heading">#</a></h3>
-<p>The idea of using ensembles -&gt; transform a non-linear problem back to a linear problem</p>
-<p>What’s the advantage?</p>
-<p>How to determine the number of hidden layer nodes <span class="math notranslate nohighlight">\(L\)</span>?</p>
-<p>Skip connection</p>
-</section>
-<section id="radial-basis-functions-rbf">
-<h3>Radial Basis Functions (RBF)<a class="headerlink" href="#radial-basis-functions-rbf" title="Link to this heading">#</a></h3>
-<p>This is another way to reduce the non-linearity of NN into a linear problem.</p>
-<p>Why is it called “Radial Basis?” We’ll revisit this during the kernel method section.</p>
-</section>
-<section id="back-propagation">
-<h3>Back-Propagation<a class="headerlink" href="#back-propagation" title="Link to this heading">#</a></h3>
-<p>The life save of the MLP problem!</p>
-<p>Learning rate <span class="math notranslate nohighlight">\(\eta\)</span></p>
-<p>From the textbook: “Nowadays, the term ‘back-propagation’ is used somewhat ambiguously.”</p>
-<ul class="simple">
-<li><p>It could mean the original back-propagation algorithm (with inefficient gradient descent)</p></li>
-<li><p>or, more likely, it could mean using only the first part involving the backward error propagation to compute the gradient of J</p></li>
+<li><p>Prune and regularization</p></li>
+<li><p>Choosing loss function for classification: Entropy or Gini index</p></li>
 </ul>
 </section>
-<section id="tuning-and-validation">
-<h3>Tuning and validation<a class="headerlink" href="#tuning-and-validation" title="Link to this heading">#</a></h3>
-<p>Grid search, random search, validation, cross-validation, and double cross-validation</p>
-</section>
-<section id="other-emsemble-methods">
-<h3>Other Emsemble methods<a class="headerlink" href="#other-emsemble-methods" title="Link to this heading">#</a></h3>
-<p>Help reduce the variance error (Section 8.3)</p>
+<section id="randon-forest">
+<h3>Randon Forest<a class="headerlink" href="#randon-forest" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Bagging</p></li>
-<li><p>Stacking</p></li>
+<li><p>Bootstrap + CART + Ensemble</p></li>
+<li><p>Out-of-bag data for model validation (<span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(n_{min}\)</span></p></li>
+<li><p>Extremely randomized trees: No bootstrap, and instead randomly selecting split points</p></li>
 </ul>
 </section>
+<section id="boosting">
+<h3>Boosting<a class="headerlink" href="#boosting" title="Link to this heading">#</a></h3>
+<p>No bootstrap as well; instead, updating the previous model with a focus on the part the previous model does not do well.</p>
+<section id="gradient-boosting">
+<h4>Gradient boosting<a class="headerlink" href="#gradient-boosting" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Updating the previous model using gradient descent</p></li>
+<li><p>XGBoost (regularized gradient boosting): adding more regularizations</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="group-discussion-demo-topics">
+<h2>Group discussion &amp; demo topics<a class="headerlink" href="#group-discussion-demo-topics" title="Link to this heading">#</a></h2>
+<p>I have made a <a class="reference external" href="https://github.com/whyjz/ncu-env-data-science-template">template</a> for you to automatically publish your Jupyer notebook (or plain markdown files) using GitHub Pages. You can also find the deployed <a class="reference external" href="https://whyjz.github.io/ncu-env-data-science-template/project.html">HTML here</a>.</p>
+</section>
+<section id="slides-just-for-my-convenience-will-be-removed-after-today-s-class-due-to-copyright-issues">
+<h2>Slides (Just for my convenience; will be removed after today’s class due to copyright issues)<a class="headerlink" href="#slides-just-for-my-convenience-will-be-removed-after-today-s-class-due-to-copyright-issues" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://docs.google.com/presentation/d/17eIMIMbfPACRaUueoTIXn2FfH2eFSqOPnURORtjEc3g/edit?usp=sharing">Slides</a></p>
 </section>
 </section>
 
@@ -454,22 +426,13 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="week4-5.html"
+       href="week10-11.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Regression Models: Why is regularization so important?</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="week10-11.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Kernel Methods: Is dimensionality a curse or a blessing?</p>
       </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -488,15 +451,16 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-outline">Lecture outline</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perceptrons">Perceptrons</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-layer-perceptrons-mlp">Multi-layer Perceptrons (MLP)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extreme-learning-machine-elm">Extreme learning Machine (ELM)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#radial-basis-functions-rbf">Radial Basis Functions (RBF)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#back-propagation">Back-Propagation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tuning-and-validation">Tuning and validation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-emsemble-methods">Other Emsemble methods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-and-regression-trees-cart">Classification and Regression Trees (CART)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randon-forest">Randon Forest</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boosting">Boosting</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-boosting">Gradient boosting</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#group-discussion-demo-topics">Group discussion &amp; demo topics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slides-just-for-my-convenience-will-be-removed-after-today-s-class-due-to-copyright-issues">Slides (Just for my convenience; will be removed after today’s class due to copyright issues)</a></li>
 </ul>
   </nav></div>
 

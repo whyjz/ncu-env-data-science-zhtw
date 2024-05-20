@@ -2,7 +2,7 @@
 
 **RS5046/GP5024: Environmental data science (環境資料科學)** Spring 2024
 
-Whyjay Zheng (鄭懷傑), whyjz@csrsr.ncu.edu.tw, Tuesday 10:00 am -- 12:30 pm at R2-203 
+Whyjay Zheng (鄭懷傑), whyjz@csrsr.ncu.edu.tw, Tuesday 10:00 am -- 12:30 pm at TR-A206 (教研大樓)
 
 Office hours by appointment are in my office (R3-230).
 
@@ -92,7 +92,7 @@ Readings and assignments are due **before the class starts**.
   -
 * - 15 (May 28)
   - Wrap-up
-  - TBD
+  - 17.2
   - Problem set #5
 * - 16 (Jun 4)
   - Term project presentation
@@ -127,9 +127,19 @@ Non-graded quizzes (if any) are typically distributed at the beginning of the le
 There will be five problem sets throughout the semester. You must work on them individually (i.e., no collaboration and plagiarism). Assignments are due before class starts (see course calendar for due dates). Electronic submission through ee-class is recommended, but other forms are also acceptable. Please make sure I get your submission before the deadline to avoid a potential late penalty if you don't use ee-class.
 
 ### Term project
-Our term project is group-based. Every group consists of no more than four people working on the same project goals they propose. The group leader is responsible for leading the team through several tasks, such as brainstorming the proposal topics, organizing collaboration, etc.
+Our term project is group-based. Every group consists of no more than four people working on the same project goals they propose. The team leader will have several tasks, such as brainstorming the proposal topics, organizing collaboration, etc.
 
-Term project consists of three milestones: (1) Half to one-page long project proposal as a group, due April 9 before the class starts. (2) Oral presentations as a group on June 4; details TBD. (3) An online webpage showcasing your project work, published no later than June 11.
+Term project consists of three milestones: (1) Half to one-page long project proposal as a group, due April 9 before the class starts. (2) Oral presentations as a group on June 4. (3) An online webpage showcasing your project work, published no later than June 11.
+
+#### Oral presentations: June 4th
+
+A seminar-style presentation with visual aids (slides, media, whiteboard, etc.). Your group talk should be in English and be within 20-30 minutes, followed by a Q&A session. Each group member should speak during the talk. 
+
+#### Online webpage (due June 11th)
+
+Your final group write-up must follow the structure of an academic essay (Introduction, Methods, Results, Discussion, References, etc.) and have an abstract of less than 100 words. The work should be visible online before 10 am on June 11 and remain unchanged until June 18 for grading. I have made a [template](https://github.com/whyjz/ncu-env-data-science-template) for you to automatically publish your Jupyer notebook (or plain markdown files) using GitHub Pages. You can also find the deployed [HTML here](https://whyjz.github.io/ncu-env-data-science-template/project.html). 
+
+After June 18, you can decide whether to keep the report online or not. 
 
 ## Grading
 I will evaluate your submissions and post your grades using Ee-class. The grade breakdown is as follows:
@@ -198,12 +208,3 @@ Part 5
 Random Forests: When one model is not enough, make several? (Weeks 13-15)
 Part 6
 Final hacker group presentation (Week 16) -->
-
-
-<!-- Colab
-Grouping 
-
-Get things work
-1. Get data
-2. Finish quiz #1 4.
--->

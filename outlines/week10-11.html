@@ -57,9 +57,12 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'outlines/week10-11';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Random Forests: When one model is not enough, make several?" href="week13-14.html" />
     <link rel="prev" title="Neural Networks: How can you trust deep models that seem like black boxes?" href="week6-8.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -179,6 +182,7 @@
 <li class="toctree-l1"><a class="reference internal" href="week4-5.html">Regression Models: Why is regularization so important?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="week6-8.html">Neural Networks: How can you trust deep models that seem like black boxes?</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Kernel Methods: Is dimensionality a curse or a blessing?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="week13-14.html">Random Forests: When one model is not enough, make several?</a></li>
 </ul>
 
     </div>
@@ -333,12 +337,14 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#timing-a-regression-problem">Timing a regression problem</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kernels">Kernels</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-ridge-regression">Kernel ridge regression</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#support-vector-machine">Support Vector Machine</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-process-regresion">Gaussian process regresion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#support-vector-machine-svm">Support Vector Machine (SVM)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#linearly-separable-case">Linearly separable case</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#non-linear-svm">Non-linear SVM</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#group-discussion-demo-topics">Group discussion &amp; demo topics</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slides-just-for-my-convenience-will-be-removed-after-today-s-class-due-to-copyright-issues">Slides (Just for my convenience; will be removed after today’s class due to copyright issues)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-process-regression">Gaussian process regression</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -387,22 +393,29 @@ document.write(`
 <li><p>Modularized design</p></li>
 </ul>
 </section>
-<section id="support-vector-machine">
-<h3>Support Vector Machine<a class="headerlink" href="#support-vector-machine" title="Link to this heading">#</a></h3>
-<p>TBD</p>
+<section id="support-vector-machine-svm">
+<h3>Support Vector Machine (SVM)<a class="headerlink" href="#support-vector-machine-svm" title="Link to this heading">#</a></h3>
+<p>The original form of SVM does not have a kernel component!</p>
+<section id="linearly-separable-case">
+<h4>Linearly separable case<a class="headerlink" href="#linearly-separable-case" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Support vectors</p></li>
+<li><p>The pattern in the dual Lagrangian solution implied that we can slip in the kernel trick!</p></li>
+</ul>
 </section>
-<section id="gaussian-process-regresion">
-<h3>Gaussian process regresion<a class="headerlink" href="#gaussian-process-regresion" title="Link to this heading">#</a></h3>
-<p>TBD</p>
+<section id="non-linear-svm">
+<h4>Non-linear SVM<a class="headerlink" href="#non-linear-svm" title="Link to this heading">#</a></h4>
+<p><span class="math notranslate nohighlight">\(\textbf{x}_n^T\textbf{x}_j\)</span> -&gt; <span class="math notranslate nohighlight">\(K(\textbf{x}_n, \textbf{x}_j) \equiv \phi^T(\textbf{x}_n)\phi(\textbf{x}_j) \)</span></p>
 </section>
 </section>
-<section id="group-discussion-demo-topics">
-<h2>Group discussion &amp; demo topics<a class="headerlink" href="#group-discussion-demo-topics" title="Link to this heading">#</a></h2>
-<p>TBD</p>
+<section id="gaussian-process-regression">
+<h3>Gaussian process regression<a class="headerlink" href="#gaussian-process-regression" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Geostatistics</p></li>
+<li><p>Covariance-based interpolation where kernels are used for evaluating the (believed) covariance matrix</p></li>
+</ul>
+<p>Resources: <a class="reference external" href="https://distill.pub/2019/visual-exploration-gaussian-processes/">Görtler, et al., “A Visual Exploration of Gaussian Processes”, Distill, 2019.</a></p>
 </section>
-<section id="slides-just-for-my-convenience-will-be-removed-after-today-s-class-due-to-copyright-issues">
-<h2>Slides (Just for my convenience; will be removed after today’s class due to copyright issues)<a class="headerlink" href="#slides-just-for-my-convenience-will-be-removed-after-today-s-class-due-to-copyright-issues" title="Link to this heading">#</a></h2>
-<p><a class="reference external" href="https://docs.google.com/presentation/d/17eIMIMbfPACRaUueoTIXn2FfH2eFSqOPnURORtjEc3g/edit?usp=sharing">Slides</a></p>
 </section>
 </section>
 
@@ -445,6 +458,15 @@ document.write(`
         <p class="prev-next-title">Neural Networks: How can you trust deep models that seem like black boxes?</p>
       </div>
     </a>
+    <a class="right-next"
+       href="week13-14.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Random Forests: When one model is not enough, make several?</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -467,12 +489,14 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#timing-a-regression-problem">Timing a regression problem</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kernels">Kernels</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-ridge-regression">Kernel ridge regression</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#support-vector-machine">Support Vector Machine</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-process-regresion">Gaussian process regresion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#support-vector-machine-svm">Support Vector Machine (SVM)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#linearly-separable-case">Linearly separable case</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#non-linear-svm">Non-linear SVM</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#group-discussion-demo-topics">Group discussion &amp; demo topics</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slides-just-for-my-convenience-will-be-removed-after-today-s-class-due-to-copyright-issues">Slides (Just for my convenience; will be removed after today’s class due to copyright issues)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-process-regression">Gaussian process regression</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
