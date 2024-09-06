@@ -1,13 +1,13 @@
-# RS5046/GP5024: Environmental data science (環境資料科學)
+# GP5024: 環境資料科學 (Environmental data science)
 
-Welcome to *RS5046/GP5024: Environmental data science*! 
+歡迎來到 *GP5024: 環境資料科學*！
 
-Data science is an ancient yet novel subject that originated from centuries of exploration in statistics. In the past two decades, significant advancements have been seen due to the rapid increase in data size and computing speed. Many promising new concepts and models have emerged. This course aims to expand your in-depth understanding of the data science concepts and techniques commonly seen in environmental science. Through reading and hands-on projects, you will delve into cutting-edge statistical models in environmental science and learn how to use these models to decompose the ways the Earth‘s system runs. Have fun!
+資料科學是一門古老又新穎的主題，它起源於幾個世紀以來對統計學的探索，在近二十年內又因收集資料和電腦計算的速度大幅增加，出現了許多潛力無窮的新概念與模型。本課程歡迎具有統計學與程式設計基礎的您，透過閱讀與專題實作的方式深入了解目前在環境科學領域熱門的統計模型，以及要怎麼利用這些模型解構地球系統的運作。祝你學習愉快！
 
-**Instructor**: [Whyjay Zheng](https://whyjz.github.io/) (鄭懷傑), whyjz@csrsr.ncu.edu.tw
+### 授課人員 ###
 
-Center for Space and Remote Sensing Research, National Central University
+[鄭懷傑](https://whyjz.github.io/) (Whyjay Zheng), whyjz@csrsr.ncu.edu.tw, 中央大學太空及遙測研究中心
 
-**Time and place**: 
+### 時間與地點
 
-Tuesday 10:00 am - 12:30 pm at TR-A206 (教研大樓)
+**2024 年秋季**：科學一館-114，週二 13:00 - 15:30
