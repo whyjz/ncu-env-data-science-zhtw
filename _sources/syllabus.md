@@ -1,199 +1,207 @@
-# Syllabus 
+# 課程大綱
 
-**RS5046/GP5024: Environmental data science (環境資料科學)** Spring 2024
+**GP5024: 環境資料科學 (Environmental data science)** 2024 年秋季
 
-Whyjay Zheng (鄭懷傑), whyjz@csrsr.ncu.edu.tw, Tuesday 10:00 am -- 12:30 pm at TR-A206 (教研大樓)
+[鄭懷傑](https://whyjz.github.io/) (Whyjay Zheng), whyjz@csrsr.ncu.edu.tw, 科學一館-114，週二 13:00 - 15:30
 
-Office hours by appointment are in my office (R3-230).
+## 課程目標
 
-## Course goals
+- 熟悉資料科學家之間的溝通語言。
+- 了解環境科學中一些熱門的統計模型。
+- 發展處理真實數據的技能，看到資料中隱藏的真知灼見。
+- 與隊友合作完成環境科學數據分析的專案。
 
-- Familiar yourself with the language data scientists use to communicate. 
-- Understand some of the most popular statistical models in environmental science.
-- Develop skills to process real data for insights.
-- Collaborate with your teammates for a big data science project.
+## 修課之前應具備的能力
 
-## Prerequisites 
+本課程將需要你具備統計學和程式設計的必要知識。這裡有兩個自我檢查的方法：
 
-Before taking this course, you should already have the necessary knowledge about statistics and computer programming. Check out [this web page](https://scikit-learn.org/stable/tutorial/statistical_inference/supervised_learning.html) and see if you can understand most of the ideas and steps presented here within a reasonable reading time. 
+- 閱讀[此網頁](https://scikit-learn.org/1.4/tutorial/statistical_inference/supervised_learning.html)，如果英文是主要的障礙，可以使用 Google 翻譯或類似的瀏覽器外掛。如果你能在合理的閱讀時間內理解大部分內容和步驟，那麼這門課應該蠻適合你！
+- 如果在 Quiz #1 中有超過兩個問題對你來說很困難，就建議先修讀入門統計學或程式設計課程。
 
-If more than two questions in Quiz #1 are challenging, I suggest you take introductory statistics/programming first.
+## 教科書
 
-## Textbook
+Hsieh, W. (2023). Introduction to Environmental Data Science. Cambridge: Cambridge University Press. doi:[10.1017/9781107588493](https://doi.org/10.1017/9781107588493) (電子書版可在[中央大學圖書館網站](https://ncu.primo.exlibrisgroup.com/discovery/search?selection=any,contains,&query=any,contains,Introduction%20to%20Environmental%20Data%20Science&tab=nculib&search_scope=MyInstitution&vid=886UST_NCU:886UST_NCU&lang=zh-tw&offset=0)取得)
 
-Hsieh, W. (2023). Introduction to Environmental Data Science. Cambridge: Cambridge University Press. doi:[10.1017/9781107588493](https://doi.org/10.1017/9781107588493) (PDF available through the [NCU library](https://ncu.primo.exlibrisgroup.com/discovery/search?selection=any,contains,&query=any,contains,Introduction%20to%20Environmental%20Data%20Science&tab=nculib&search_scope=MyInstitution&vid=886UST_NCU:886UST_NCU&lang=zh-tw&offset=0))
+## 課程時間表
 
-## Course calendar 
-
-Readings and assignments are due **before the class starts**.
+指定閱讀材料和作業必須**在上課前完成**。
 
 ```{list-table}
 :header-rows: 1
 
-* - Week #
-  - Topics
-  - Readings due
-  - Assignments due
-* - 1 (Feb 20)
-  - Syllabus and warm-up
+* - 週次
+  - 主題
+  - 指定閱讀
+  - 作業
+* - 1 (9/10)
+  - 課程大綱與暖身活動
   - 
   - 
-* - 2 (Feb 27)
-  - Statistical Tests (I)
+* - 2 (9/17)
+  - *不上課*
+  - 
+  -
+* - 3 (9/24)
+  - 統計檢定 (I)
   - 1.1--1.5, 3.1--3.4, 3.15, 3.16
   -
-* - 3 (Mar 5)
-  - Statistical Tests (II)
+* - 4 (10/1)
+  - 統計檢定 (II)
   - 4.1--4.5, 4.8
-  -
-* - 4 (Mar 12)
-  - Regression Models (I)
-  - 5.1, 5.2, 5.5, 5.6
-  - Problem set #1
-* - 5 (Mar 19)
-  - Regression Models (II)
-  - 2.11, 2.13, 5.7, 5.8, 5.10
-  -
-* - 6 (Mar 26)
-  - Neural Networks (I)
-  - 6.1--6.4
-  -
-* - 7 (Apr 2)
-  - Neural Networks (II)
-  - 6.5, 6.8, 7.1--7.6
-  - Problem set #2
-* - 8 (Apr 9)
-  - Neural Networks (III)
-  - 8.1--8.7
-  - Term project proposal
-* - 9 (Apr 16)
-  - NO CLASS 
   - 
-  - Problem set #3
-* - 10 (Apr 23)
-  - Kernel Methods (I)
-  - 2.14--2.16, 13.1--13.5
-  -
-* - 11 (Apr 30)
-  - Kernel Methods (II)
-  - 12.1, 13.7, 13.8
-  -
-* - 12 (May 7)
-  - NO CLASS
-  -
-  - Problem set #4
-* - 13 (May 14)
-  - Random Forests (I)
-  - 2.17, 14.1, 14.2
-  -
-* - 14 (May 21)
-  - Random Forests (II)
-  - 14.3, 16.8, 16.9
-  -
-* - 15 (May 28)
-  - Wrap-up
-  - 17.2
-  - Problem set #5
-* - 16 (Jun 4)
-  - Term project presentation
-  -
-  -
-* - 17 (Jun 11)
-  - NO CLASS
+* - 5 (10/8)
+  - *不上課*
   - 
-  - Term project paper
-* - 18 (Jun 18)
-  - NO CLASS
+  - 問題集 1
+* - 6 (10/15)
+  - 迴歸模型 (I)
+  - 待定
+  -
+* - 7 (10/22)
+  - 迴歸模型 (II)
+  - 待定
+  - 
+* - 8 (10/29)
+  - 神經網路 (I)
+  - 待定
+  - 問題集 2
+* - 9 (11/5)
+  - 神經網路 (II)
+  - 待定
+  - 期末專題提案書
+* - 10 (11/12)
+  - 核方法 (I)
+  - 待定
+  - 問題集 3
+* - 11 (11/19)
+  - 核方法 (II)
+  - 待定
+  -
+* - 12 (11/26)
+  - 隨機森林 (I)
+  - 待定
+  - 問題集 4
+* - 13 (12/3)
+  - 隨機森林 (II)
+  - 待定
+  -
+* - 14 (12/10)
+  - *不上課*
+  - 
+  -
+* - 15 (12/17)
+  - 總結
+  - 待定
+  - 問題集 5
+* - 16 (12/24)
+  - 期末專題口頭發表
+  -
+  -
+* - 17 (12/31)
+  - *不上課*
+  - 
+  - 期末專題線上網頁
+* - 18 (1/7)
+  - *不上課*
   - 
   - 
 ```
-This tentative schedule is subject to change depending on our progress and participants' needs.
 
-## Course components
+此時間表每週更新；可能會根據課程進度和學員需求進行調整。
 
-### Readings
-The assigned readings are sections from Hsieh's book (see course calendar for the section numbers). We will have you discuss your reflection on the content during the class discussion (and maybe with some quizzes).
+## 課程內容
 
-### During the class
-You will see three segments during the class time:
+### 指定閱讀
 
-1. Group discussion (10:00--10:30): Please find solutions or perspectives to my questions on a worksheet as a group. These questions are typically related to the assigned readings or the homework.
-2. Lecture (10:30--11:50): I (Whyjay) will review today's topics.
-3. Hands-on session or the second group discussion (11:50--): We will demo some workflows and data processing skills (for your homework and term project) and have you work on that with the help of classmates and me.
+指定的閱讀材料皆來自 Hsieh 的教科書 (參閱課程時間表中的章節編號)。**閱讀必須在上課前完成**，在每週課堂上的前四十分鐘，會進行關於指定閱讀材料內容的小組討論。
 
-Non-graded quizzes (if any) are typically distributed at the beginning of the lecture. We will let you work on that for 5--10 minutes.
+### 課堂內容
 
-### Homework assignments
-There will be five problem sets throughout the semester. You must work on them individually (i.e., no collaboration and plagiarism). Assignments are due before class starts (see course calendar for due dates). Electronic submission through ee-class is recommended, but other forms are also acceptable. Please make sure I get your submission before the deadline to avoid a potential late penalty if you don't use ee-class.
+課堂時間分為三個部分：
 
-### Term project
-Our term project is group-based. Every group consists of no more than four people working on the same project goals they propose. The team leader will have several tasks, such as brainstorming the proposal topics, organizing collaboration, etc.
+1. 小組討論 (13:00--13:40)：以二至三人的小組為單位，討論並撰寫完成一張紙本練習題，題目都與指定的閱讀材料有關。
+2. 授課 (13:40--15:00)：我 (Whyjay) 會介紹當天的主題。
+3. 實作或第二次小組討論 (15:00--15:30)：我會展示一些數據處理的工作流程 (用於作業和期末專題研究)，你也會有一些時間，在我和同學的互相協助下親自熟悉這些操作。筆電非必須，但歡迎攜帶。
 
-Term project consists of three milestones: (1) Half to one-page long project proposal as a group, due April 9 before the class starts. (2) Oral presentations as a group on June 4. (3) An online webpage showcasing your project work, published no later than June 11.
+課堂有時會有不列入評分的小測驗，如果有的話通常在課堂開始時進行。你會有 5--10 分鐘的時間來解答。
 
-#### Oral presentations: June 4th
+### 作業
 
-A seminar-style presentation with visual aids (slides, media, whiteboard, etc.). Your group talk should be in English and be within 20-30 minutes, followed by a Q&A session. Each group member should speak during the talk. 
+在整個學期中將有五份問題集。**你必須獨立完成這些作業，不允許合作和抄襲**。請參閱課程時間表中的作業截止週次，而作業必須在當週上課前完成繳交。建議使用 ee-class 繳交電子作業，但其他繳交形式也可以接受。如果你不使用 ee-class 的話，請確保我在截止日期前可以收到你的作業，以免發生遲交扣分的情形。
 
-#### Online webpage (due June 11th)
+### 期末專題
 
-Your final group write-up must follow the structure of an academic essay (Introduction, Methods, Results, Discussion, References, etc.) and have an abstract of less than 100 words. The work should be visible online before 10 am on June 11 and remain unchanged until June 18 for grading. I have made a [template](https://github.com/whyjz/ncu-env-data-science-template) for you to automatically publish your Jupyer notebook (or plain markdown files) using GitHub Pages. You can also find the deployed [HTML here](https://whyjz.github.io/ncu-env-data-science-template/project.html). 
+期末專題為小組合作的作品，每組最多四人，共同完成專題內的多項任務目標。雖然非必須，不過建議選出一名組長，管理並規畫合作的各項進度。
 
-After June 18, you can decide whether to keep the report online or not. 
+期末專題包含三個階段：
 
-## Grading
-I will evaluate your submissions and post your grades using Ee-class. The grade breakdown is as follows:
+1. 小組提案書，於 11 月 5 日前繳交，長度為半頁到一頁。
+2. 12 月 24 日的專題口頭報告。
+3. 12 月 31 日前線上公開發布展示專題成果的網頁。
 
-- Readings and class discussion (20％): Each group worksheet accounts for 2% of the grade. I grade it using a simple rubric system: Good (2%), Fair (1%), and Absent (0%). All group members receive the same grade. This semester, we will have twelve worksheets, and the two lowest-graded worksheets will be dropped for final grade calculation.
+#### 口頭報告: 12 月 24 日
 
-- Assignments (50％): Each problem set accounts for 12.5% of the grade. The lowest-graded one will be dropped for final grade calculation. Most of the problems are from Hsieh's book, in which the suggested solution is provided. But remember: **The doing is often more important than the outcome.** The grades of your assignments are heavily based on the reproducibility of your workflow (8.75%) rather than the correctness of your results (3.75%). Please include scripts, screenshots, or other elements that can make other people reproduce your work. 
+書報討論風格的報告形式，可使用視覺輔助工具如投影片、多媒體、黑板等等。報告以中文進行，時間為 20--30 分鐘，並附帶問答環節。每位組員都需參與發言。
 
-- Term project (30％): Project proposal accounts for 5%. I will typically give you full credits for this unless it does not fulfill format requirements. Oral presentation accounts for 15%, and the final webpage accounts for 10%. These are graded based on the quality/completeness of the work, clarity of the presentation, and the ease of other people's reuse of your workflow or results. All team members receive the same base grade above, plus individual grade adjustments based on a confidential poll from the teammates. 
+#### 線上專題成果網頁: 12 月 31 日前發布
 
-(late-work-policy)=
-### Late work policy
-- Write-ups: A 10% penalty will be applied for each day past the deadline. 
-- Term project presentation: If you are absent on the oral presentation date, we accept video recordings to be shared within the class as a make-up. However, a 20% penalty will be applied for each day past the presentation date. 
-- With reasonable proof, the policies above may be exempted under particular circumstances, such as family emergencies or urgent medical conditions. Please let me know (Whyjay) as soon as possible if this happens so we can discuss make-up plans as needed.
+線上專題成果網頁應遵循學術論文的結構，例如引言、方法、結果、討論、參考文獻等小節，並包含不超過 70 字的摘要。報告應於 12 月 31 日下午 1 點前上線，並至少保持到隔年 1 月 7 日以供評分。1 月 7 日後，你可以自行決定是否維持發布。
 
+<!-- 我已經為你準備了一個範本，可用於自動發布你的 Jupyter notebook (或純 markdown 文件) 到 GitHub Pages 上。你也可以參考已發布的HTML 範例。 -->
+<!-- I have made a [template](https://github.com/whyjz/ncu-env-data-science-template) for you to automatically publish your Jupyer notebook (or plain markdown files) using GitHub Pages. You can also find the deployed [HTML here](https://whyjz.github.io/ncu-env-data-science-template/project.html).  -->
 
-## Code of conduct
+## 評分標準
 
-### Diversity, Equity, and Inclusion (DEI)
+我會使用 ee-class 評量並公佈成績。評分標準如下：
 
-- We will not tolerate any forms of discrimination and harassment during the class. 
+- 指定閱讀與課堂討論 (20%): 每份小組的紙本練習題佔 2% 成績。評分只有三個級距：甲 (2%，百分之七十以上的完成度)，乙 (1%，百分之三十到七十的完成度)，丙 (0%，低於百分之三十的完成度)。所有討論的小組成員獲得相同的成績。本學期有十一份工作表，成績最低的一份將被排除在期末成績計算之外。
 
-- We encourage conversations about inequality whenever you sense that. This includes but is not limited to [hidden curriculum](https://en.wikipedia.org/wiki/Hidden_curriculum) and [microaggression](https://en.wikipedia.org/wiki/Microaggression). 
+- 作業 (50%): 每份問題集佔 12.5% 成績，成績最低的一份將被排除在期末成績計算之外。大部分問題來自 Hsieh 的教科書，作者針對部分問題有提供建議解答。但請記住：過程比結果更重要。作業評分主要基於工作流程的可再現性 (8.75%) 而非結果的正確性 (3.75%)。因此完成的作業請包括程式腳本、截圖或其他能幫助他人重現你工作流程的元素。
 
-- Be respectful about different ideas and perspectives during discussion, and be mindful about your choice of words. 
+- 期末專題 (30%): 小組提案書佔 5%，只要格式符合要求，我通常會給滿分。口頭報告佔 15%，最終網頁佔 10%。後兩者將根據作品品質、完整性、報告的清晰度以及讓他人重新使用你工作流程或結果的便利性來評分。所有組員獲得相同的基礎分數，再根據組員間的機密投票進行個別成績調整。
 
-### Attribution of work
+### 遲交政策
 
-- Please be careful about using copyrighted material in any assignments, and make sure you have permission/license with proper attribution whenever you use it.
+- 書面作業：超過繳交時間後每延遲 24 小時，成績扣除 10%。
+- 期末口頭報告：如果你在報告當天缺席，可把你的報告錄影後分享給所有修課同學做為補交，但每延遲一天，成績扣除 20%。
+- 如果發生家庭或醫療的緊急情況並有合理的證明，可能可以不使用以上扣分規則，這時請儘快告知我 (Whyjay)，以便討論補交計劃以及評量方法。
 
-- Again, do not work with other students on the homework assignments. They must be your sole work.
+## 行為準則
 
-### Study time
-Since this is a 3-credit course, I expect you to have ~6 hours of study time every week outside of the class to get an adequate grade. If you spend much less or much more than that on readings, assignments, and the project, Please let me know.
+### 多元、平等與包容 (DEI)
 
-### AI policy
-Generative AI is allowed and encouraged (HEY... this is the power of data science!!). Use it with discretion, though -- generative AI is good at popular tasks (such as giving a code for visualizing a typical data structure) but not so good at giving ideas and perspectives. Their answers are usually very dull (if not failing a sanity check) due to the nature of the training process.
+- 零容忍任何形式的歧視和騷擾行為。
+- 在課堂的任何時段，如果你感覺到不平等、[隱性課程](https://zh.wikipedia.org/zh-tw/%E9%9A%90%E6%80%A7%E8%AF%BE%E7%A8%8B)和[微暴力](https://zh.wikipedia.org/zh-tw/%E5%BE%AE%E6%9A%B4%E5%8A%9B)等等狀況，我們鼓勵你隨時、公開或私下的討論這些問題。
+- 在討論中請尊重不同的觀點和想法，並注意以刻板印象為出發點的用詞與說明。
 
-### Working languages
-We use English as the primary language to communicate during the class and the oral presentation. Some exceptions are:
+### 作業與期末專題
 
-- You can use a different language in group discussion if everyone agrees. 
+- 在你的作品中使用受版權保護的材料請務必注意，確保在使用前取得使用許可，並對原作者進行適當的表彰。
+- 再次強調，請勿與其他同學合作完成作業，**作業必須是你的個人作品**。
 
-- Students taking RS5046 must use English for writing individual assignments, and students taking GP5024 can choose between English and 中文.
+### 學習時間
 
-You are welcome to complete assignments using any programming language. I am familiar with Python and Matlab and can comment more if you use either. We will use Python with the Jupyter ecosystem (including Colab) for the class demos.
+這是一門 3 學分的課程，如果要獲得滿意的成績，我預期每週在課外約還要花費 6 小時進行研讀、完成作業、寫程式等等活動。如果你花費的大大少於或多於此預估時間，再請告知我。
 
-### Auditing 
+### AI 政策
 
-Auditing is welcome. If you plan to audit the course, please note:
+我們鼓勵使用生成式 AI 或是 AI 輔助程式設計 (嘿...這就是資料科學的力量！！)。然而，請謹慎使用！生成式 AI 擅長處理常見任務 (如給出處理典型數據結構的程式碼)，但不太擅長提供創新想法或視角。因為其訓練過程的特性和使用的資料關係，其答案就算合理，也通常很無聊。
 
-- You will not be able to submit assignments and join any term project teams. 
-- You can join any group during the in-class discussion time as long as all the group members agree.
+### 工作語言
+
+我們課堂和口頭報告的主要語言為中文，但有一些例外：
+
+- 如果小組內所有成員同意，小組討論可以使用其他語言。
+- 個人作業可以使用中文或英文撰寫。
+
+作業可以使用任何程式語言完成。不過我熟悉 Python 和 Matlab，如果你使用其中之一，我可以給你更多回饋。我們會使用 Python 及 Jupyter 環境 (包括 Colab) 進行課堂展示。
+
+### 旁聽 
+
+歡迎旁聽。如果你打算旁聽此課程，請注意：
+
+- 你無法繳交作業或加入任何期末專題小組。
+- 在課堂討論時間內，只要所有小組討論的成員同意，你就可以加入參與討論。
 
 <!-- Other topics in data science (such as principal component and clustering analysis) will be covered through assigned readings, which we rely on during the class discussion. -->
 
