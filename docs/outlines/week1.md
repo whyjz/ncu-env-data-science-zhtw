@@ -1,22 +1,22 @@
-# Warming-up
+# 暖身
 
-**2024.02.20**
+**2024.09.10**
 
-## Lecture outline
+## 課程大綱
 
-What does the term "data science" mean to you?
+「資料科學」這個詞對你來說是什麼？
 
-So we have three terms here:
-- Statistics
-- Machine learning (ML)
-- Data science
-How are they different from each other? For example, what is the difference between a "statistical model" and a "machine learning model?" Or maybe they are the same thing? Just fancy words to be created to confuse people?
+以下有三個詞：
+- 統計學
+- 機器學習（ML）
+- 資料科學
+它們有什麼不同？如果搭配起來使用呢，例如，「統計模型」和「機器學習模型」的差別在哪裡？還是說它們其實是一樣的，只是加上了用來混淆視聽的一些豪華形容詞？
 
-What is "learning" as in machine learning?
+「機器學習」中的「學習」是什麼意思？
 
-What is the difference between supervised and unsupervised learning? (Q1 in Quiz #1)
+監督式學習和非監督式學習的差別是什麼？（Quiz #1-1）
 
-## Group discussion & demo topics
+## 小組討論 & 展示主題
 
-1. Can you implement Q3 in Quiz #1 and show me the histogram?
-2. Get the data necessary for doing Exercise 4.2 in Hsieh's book.
+1. 你能現在實作 Quiz #1-3 並秀出結果嗎？如果不知道如何進行，歡迎觀摩其他同學或是我的作法。
+2. 取得 Hsieh 的書中 Exercise 4.2 所需的數據。這是問題集 1 的其中一道題目。

@@ -1,10 +1,10 @@
-# Assignments
+# 作業
 
-## Problem set #1
+## 問題集 #1
 
-Complete Exercises 4.2, 4.3, 4.5, and 4.6 in Hsieh's book.
+完成 Hsieh 書中的 Exercises 4.2、4.3、4.5 和 4.6。
 
-## Problem set #2
+<!-- ## Problem set #2
 
 Complete Exercises 5.2, 5.6, 5.7, and 5.9 in Hsieh's book.
 
@@ -24,4 +24,4 @@ Complete the following exercises in Hsieh's book with the specified requirements
 
 1. Exercise 14.2, including (c)
 2. Exercise 12.5, but develop two prediction models instead of one. One of the models must be a random forest or a boosting model.
-3. Exercise 14.4, including (b)
+3. Exercise 14.4, including (b) -->

@@ -1,15 +1,15 @@
 format: jb-book
 root: index
 parts:
-  - caption: Overview
+  - caption: 概覽
     chapters:
     - file: syllabus
-    # - file: assignments
+    - file: assignments
     
-  - caption: Outlines
+  - caption: 大綱
     chapters:
     - file: outlines/week1
-    - file: outlines/week2-3
+    # - file: outlines/week2-3
     # - file: outlines/week4-5
     # - file: outlines/week6-8
     # - file: outlines/week10-11
