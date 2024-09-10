@@ -1,100 +1,91 @@
-# Statistical Tests: Are there interactions between environmental factors?
+# 統計檢定：環境因子之間有無互相影響？
 
-**2024.02.27, 2024.03.05**
+**2024.09.24, 2024.10.01**
 
-## Lecture outline
+## 大綱
 
-### Basics 
+### 基礎概念
 
-Random variable: A **value** that follows a probability distribution. Are the following quantities random variables?
-- The number of apples in a basket
-- Your height
-- The height of a person sitting here who I randomly pick up
-- Today’s temperature
-- The number I get by rolling a die
+隨機變數 (Random variable) 不是數學上所稱的變數 (Variable），反而比較接近一種符合某種機率分布的數值。
 
-What is a probability density function (PDF)? How is it different from a probability distribution?
+以下這些數量是隨機變數嗎？
+- 籃子裡的蘋果數量
+- 你的身高
+- 我隨機挑選出坐在這裡的一個人的身高
+- 今天的氣溫
+- 擲骰子得到的數字
 
-Now let's revisit expectation, variance, and their mathematical expressions (cont. Q2 in Quiz #1): Derive the expectation and the variance of the Bernoulli distribution $Ber(x|p) = p^x(1-p)^{1-x}$.
+機率密度函數 (probability density function, PDF)是什麼？它與機率分布有何不同？
 
-### Data skills
+我們來回顧一下期望值、變異數及其數學表示式（接續 Quiz #1-2）：推導出伯努利分布 $Ber(x|p) = p^x(1-p)^{1-x}$ 的期望值和變異數。
 
-Here are things we don't primarily focus on during the class but are essential for building up your data skills for reproducible science.
+### 資料處理技術
 
-- Programming
-- Collaboration and version control (Git & GitHub) (Check out Q4 in Quiz #1)
-- Jupyter (incl. Google Colab)
-- Data import and wrangling
-- Visualization
+以下是我們在本課程中不會花太多時間關注的技能，但如果你要建立可重現的科學分析，這些技能都不可或缺。
 
-### More about probability distributions
+- 程式設計
+- 程式碼與文檔的協作與版本控制（Git 和 GitHub）（參見 Quiz #1-4）
+- Jupyter（Google Colab 是其中一種）
+- 資料匯入與整理
+- 資料視覺化
 
-- Gaussian: many distributions converge to this thanks to the central limit theory
-- Poisson distribution (let's check Q5 in worksheet #1)
-- Student t-distribution: Bounded to the mean
-- Chi-squared ($\chi^2$) distribution: Bounded to the square of the Gaussians
+### 機率分佈
 
-### Hypothesis testing
+- 高斯分布：許多分布會收斂至此分佈（參考**中心極限定理**）
+- 卜瓦松分布：*練習題 #1-5*
+- Student t 分布：小樣本平均值的機率分佈
+- 卡方 ($\chi^2$) 分布：高斯分布的平方
 
-When to use hypothesis testing?
+### 假設檢定
 
-#### Five general steps
-1. Set up $H_0$ (null hypothesis)
-2. Set up $H_1$ (alternative hypothesis)
-3. Set up test statistic and significance level ($\alpha$)
-4. Find the null distribution for the test statistic; calculate the $p$-value
-5. Reject or not reject $H_0$ by comparing $p$ with $\alpha$
+何時使用假設檢定？
 
-#### Case study
-**One-sample t-test** (Section 4.2.1): Is the mean weight of a fish species from two lakes different? 
+#### 五步驟
 
-We already know this species' population mean ($\mu_0$) in the large lake. And we have a sample mean ($\bar{x}$) from 20 fish in the small lake.
+- 設定 $H_0$（虛無假說）
+- 設定 $H_1$（對立假說）
+- 設定檢定統計量與顯著水準 ($\alpha$)
+- 找出在虛無假說為真下，檢定統計量的分布（null distribution）；計算 $p$ 值 ($p$-value)
+- 比較 $p$ 值與 $\alpha$，決定是否拒絕 $H_0$
 
-Test statstic $t = \frac{\bar{x} - \mu_0}{s / \sqrt{N}}$
+#### 案例研究
 
-#### Type I vs Type II errors 
+**單樣本 t 檢定**（4.2.1 節）：某魚種在兩個湖泊內的平均重量是否不同？
 
-aka False positive vs False negative
+已知該魚種在大湖中的母體平均值為 $\mu_0$。另外，我們從小湖中抓了 20 條魚，測得樣本平均值為 $\bar{x}$。
 
-How do we design $\alpha$ and $N$ while keeping both types of errors in mind?
+檢定統計量 $t = \frac{\bar{x} - \mu_0}{s / \sqrt{N}}$
 
-#### In-depth topics about t-tests
+#### 第一型錯誤 vs 第二型錯誤
 
-**Two-sample t-test**: Assumption towards the samples matters
-- Are both variances the same?
-- Are two samples potentially dependent?
+分別又稱為假陽性 vs 假陰性。
 
-T-tests can also test the correlation with the null hypothesis $\rho = 0$.
+在設計 $\alpha$ 和 $N$ 時，如何權衡這兩類錯誤？
 
-#### Non-parametric tests
+#### t 檢定的深入討論
 
-Parametric vs non-parametric tests: which should I use?
+**雙樣本 t 檢定**：樣本的假設條件很重要 --
+- 兩者的變異數是否相同？
+- 兩個樣本是否有可能互相關聯？
 
-Here are tests we may mention during the class lecture:
-- Wilcoxon–Mann–Whitney test: Location (mean) difference 
-- Kolmogorov–Smirnov test: Goodness of fit for continuous data
-- Pearson's chi-squared test: Goodness of fit for categorical data
+t 檢定也可以用來檢測相關性（虛無假說為 $\rho = 0$）。
 
-#### Bootstrapping
+#### 無母數檢定
 
-How do we do bootstrapping? 
+母數檢定 (parametric tests) vs 無母數檢定 (non-parametric tests): 該使用哪一種？
 
-As we have the traditional method (Section 4.4) for estimating the CI, what is the point of using bootstrapping?
+以下是我們可能會在課堂上提到的無母數檢定方法：
+- Wilcoxon–Mann–Whitney 檢定：位置（平均值）差異
+- Kolmogorov–Smirnov 檢定：連續資料的適配度
+- 皮爾森卡方檢定：類別資料的適合度
 
+#### 自助重抽法 (Bootstrapping)
 
-<!-- Do you think an inflated die is fair? How to test it?
+自助重抽法是什麼？要如何進行？
 
-Histogram and statistical distributions -->
+使用傳統方法（4.4 節）已經可以估計信賴區間，那為什麼還要使用自助重抽法？
 
-<!-- List at least one random variable in environmental science and remote sensing that fit each statistical distribution:
-- Gaussian distribution (aka normal distribution)
-- Gamma distribution
-- Beta distribution
-- Binomial distribution -->
+## 小組討論 & 展示主題
 
-<!-- Suppose Yushan measures 3952.43 m by a satellite altimeter. And the maximum measurement error of this altimeter is 0.2 m according to its documentation. What is the uncertainty of Yushan’s height? What is the 95% confidence interval of Yushan’s height? -->
-
-## Group discussion & demo topics
-
-1. Load an Exercise data set using Jupyter Notebook (hosted by [Google Colaboratory](https://colab.google/), [Callysto Hub](https://www.callysto.ca/), or your local machine)
-2. Any questions about the first problem set?
+1. 使用 Jupyter Notebook（可以使用 [Google Colaboratory](https://colab.google/)、[Callysto Hub](https://www.callysto.ca/) 或是本地端電腦） 載入問題集 #1 需要的數據集。
+2. 關於問題集 #1，有任何想要問的嗎？
