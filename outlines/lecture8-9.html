@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Regression Models: Why is regularization so important? &#8212; 環境資料科學</title>
+    <title>Kernel Methods: Is dimensionality a curse or a blessing? &#8212; 環境資料科學</title>
   
   
   
@@ -59,7 +59,7 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'outlines/week4-5';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'outlines/lecture8-9';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -180,8 +180,8 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">大綱</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="week1.html">暖身</a></li>
-<li class="toctree-l1"><a class="reference internal" href="week2-3.html">統計檢定：環境因子之間有無互相影響？</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture1.html">暖身</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture2-3.html">統計檢定：環境因子之間有無互相影響？</a></li>
 </ul>
 
     </div>
@@ -236,7 +236,7 @@
       
       
       
-      <li><a href="../_sources/outlines/week4-5.md" target="_blank"
+      <li><a href="../_sources/outlines/lecture8-9.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -320,7 +320,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Regression Models: Why is regularization so important?</h1>
+    <h1>Kernel Methods: Is dimensionality a curse or a blessing?</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -331,21 +331,19 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-outline">Lecture outline</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basics">Basics</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-linear-regression-mlr">Multiple linear regression (MLR)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-topics-for-mlr">Advanced topics for MLR</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stepwise-regression">Stepwise regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-overview-of-the-classification-problem-and-the-bayes-theory">Quick overview of the classification problem and the Bayes theory</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nn-vs-kernel-methods">NN vs Kernel Methods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#timing-a-regression-problem">Timing a regression problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kernels">Kernels</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-ridge-regression">Kernel ridge regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#support-vector-machine-svm">Support Vector Machine (SVM)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#linearly-separable-case">Linearly separable case</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#non-linear-svm">Non-linear SVM</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regularized-least-squares-models">Regularized least-squares models</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ridge-regression">Ridge regression</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lasso">Lasso</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-process-regression">Gaussian process regression</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generalized-least-squares">Generalized Least Squares</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#group-discussion-demo-topics">Group discussion &amp; demo topics</a></li>
 </ul>
             </nav>
         </div>
@@ -357,101 +355,66 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="regression-models-why-is-regularization-so-important">
-<h1>Regression Models: Why is regularization so important?<a class="headerlink" href="#regression-models-why-is-regularization-so-important" title="Link to this heading">#</a></h1>
-<p><strong>2024.03.12, 2024.03.19</strong></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="kernel-methods-is-dimensionality-a-curse-or-a-blessing">
+<h1>Kernel Methods: Is dimensionality a curse or a blessing?<a class="headerlink" href="#kernel-methods-is-dimensionality-a-curse-or-a-blessing" title="Link to this heading">#</a></h1>
+<p><strong>2024.04.23, 2024.04.30</strong></p>
 <section id="lecture-outline">
 <h2>Lecture outline<a class="headerlink" href="#lecture-outline" title="Link to this heading">#</a></h2>
-<section id="basics">
-<h3>Basics<a class="headerlink" href="#basics" title="Link to this heading">#</a></h3>
-<p>Review of the simple linear regression:</p>
+<section id="quick-overview-of-the-classification-problem-and-the-bayes-theory">
+<h3>Quick overview of the classification problem and the Bayes theory<a class="headerlink" href="#quick-overview-of-the-classification-problem-and-the-bayes-theory" title="Link to this heading">#</a></h3>
+<p>Classification vs cluster analysis</p>
+</section>
+<section id="nn-vs-kernel-methods">
+<h3>NN vs Kernel Methods<a class="headerlink" href="#nn-vs-kernel-methods" title="Link to this heading">#</a></h3>
+<p>Higher dimension!</p>
+</section>
+<section id="timing-a-regression-problem">
+<h3>Timing a regression problem<a class="headerlink" href="#timing-a-regression-problem" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Model description and associated assumption</p></li>
-<li><p>Advantage of the “least square”</p></li>
-<li><p>Normal equations</p></li>
-</ul>
-<p>The sum of squares: how much variability can be explained/modeled by a regression model?</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(SST = SSE + SSR\)</span></p></li>
-</ul>
-<p>Confidence interval vs. Prediction interval</p>
-<p>When there is a serial correlation…</p>
-<ul class="simple">
-<li><p>Durbin–Watson statistic</p></li>
+<li><p>Primal and Dual Solutions: which one is faster?</p></li>
+<li><p>Primal and Dual Solutions for ridge regression</p></li>
 </ul>
 </section>
-<section id="multiple-linear-regression-mlr">
-<h3>Multiple linear regression (MLR)<a class="headerlink" href="#multiple-linear-regression-mlr" title="Link to this heading">#</a></h3>
-<p>What does “linear” mean in a linear regression model?</p>
-<p>Two equivalent expressions that are commonly seen in the environmental science studies:</p>
+<section id="kernels">
+<h3>Kernels<a class="headerlink" href="#kernels" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\textbf{y} = \textbf{X}\textbf{a} + \boldsymbol{\epsilon}\)</span>    (We’ll use this at the class)</p></li>
-<li><p><span class="math notranslate nohighlight">\(\textbf{d} = \textbf{G}\textbf{m}\)</span>    (Many geophysicists use this)</p></li>
+<li><p>Feature map</p></li>
+<li><p>kernel trick</p></li>
+<li><p>Mercer theorem vs positive semi-definite kernel function</p></li>
+<li><p>Differernt kernels</p></li>
+<li><p>advantages and disadvantages</p></li>
 </ul>
-<p>Least-squares solution:</p>
+</section>
+<section id="kernel-ridge-regression">
+<h3>Kernel ridge regression<a class="headerlink" href="#kernel-ridge-regression" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\hat{\textbf{a}}=(\textbf{X}^\text{T}\textbf{X})^{-1}\textbf{X}^\text{T}\textbf{y}\)</span></p></li>
+<li><p>Procedure</p></li>
+<li><p>Modularized design</p></li>
 </ul>
-<p>Gauss–Markov Theorem and BLUE</p>
 </section>
-<section id="advanced-topics-for-mlr">
-<h3>Advanced topics for MLR<a class="headerlink" href="#advanced-topics-for-mlr" title="Link to this heading">#</a></h3>
-<p>Circular and categorical Data: transform them so that we can use a linear model</p>
-<p>Analysis of Variance (ANOVA)</p>
+<section id="support-vector-machine-svm">
+<h3>Support Vector Machine (SVM)<a class="headerlink" href="#support-vector-machine-svm" title="Link to this heading">#</a></h3>
+<p>The original form of SVM does not have a kernel component!</p>
+<section id="linearly-separable-case">
+<h4>Linearly separable case<a class="headerlink" href="#linearly-separable-case" title="Link to this heading">#</a></h4>
 <ul class="simple">
-<li><p>Sum of squares explained by each predictor</p></li>
-<li><p>F-test</p></li>
+<li><p>Support vectors</p></li>
+<li><p>The pattern in the dual Lagrangian solution implied that we can slip in the kernel trick!</p></li>
 </ul>
-<section id="stepwise-regression">
-<h4>Stepwise regression<a class="headerlink" href="#stepwise-regression" title="Link to this heading">#</a></h4>
-<p>When you have lots of potential predictors…</p>
+</section>
+<section id="non-linear-svm">
+<h4>Non-linear SVM<a class="headerlink" href="#non-linear-svm" title="Link to this heading">#</a></h4>
+<p><span class="math notranslate nohighlight">\(\textbf{x}_n^T\textbf{x}_j\)</span> -&gt; <span class="math notranslate nohighlight">\(K(\textbf{x}_n, \textbf{x}_j) \equiv \phi^T(\textbf{x}_n)\phi(\textbf{x}_j) \)</span></p>
+</section>
+</section>
+<section id="gaussian-process-regression">
+<h3>Gaussian process regression<a class="headerlink" href="#gaussian-process-regression" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>The more, the better?</p></li>
-<li><p>The less, the better?</p></li>
-<li><p>When you have no choice but to keep all the predictors?</p></li>
+<li><p>Geostatistics</p></li>
+<li><p>Covariance-based interpolation where kernels are used for evaluating the (believed) covariance matrix</p></li>
 </ul>
-<p>How do we do stepwise regression?</p>
-<p>Criticism: Isn’t this <strong>cherry-picking</strong>?</p>
-<p>Rank-deficient (or ill-conditioned) problems and regularized least-squares (i.e., a family of shrinkage methods)</p>
+<p>Resources: <a class="reference external" href="https://distill.pub/2019/visual-exploration-gaussian-processes/">Görtler, et al., “A Visual Exploration of Gaussian Processes”, Distill, 2019.</a></p>
 </section>
-</section>
-<section id="regularized-least-squares-models">
-<h3>Regularized least-squares models<a class="headerlink" href="#regularized-least-squares-models" title="Link to this heading">#</a></h3>
-<p>Regularization tries to redesign the loss function by imposing an additional constraint.</p>
-<p>What are its benefits?</p>
-<ul class="simple">
-<li><p>To keep all the predictors in the regression model</p></li>
-<li><p>To improve the solution by making the input towards full rank or better conditions.</p></li>
-</ul>
-<section id="ridge-regression">
-<h4>Ridge regression<a class="headerlink" href="#ridge-regression" title="Link to this heading">#</a></h4>
-<p>a.k.a. L-2 regularization or Tikhonov regression</p>
-<p>Two expressions of the ridge regression: Implicit (Lagrangian, check out Appendix B of the textbook) and Explicit</p>
-<p>ridge regression solution:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\hat{\textbf{a}}=(\textbf{X}^\text{T}\textbf{X}+\lambda \textbf{I})^{-1}\textbf{X}^\text{T}\textbf{y}\)</span></p></li>
-</ul>
-<p>How to select <span class="math notranslate nohighlight">\(\lambda\)</span>?</p>
-</section>
-<section id="lasso">
-<h4>Lasso<a class="headerlink" href="#lasso" title="Link to this heading">#</a></h4>
-<p>a.k.a. L-1 regularization</p>
-<p>Lasso is typically solved numerically since its loss function is not differentiable.</p>
-<p>The most distinct difference between Lasso and Ridge: predictor selection</p>
-</section>
-</section>
-<section id="generalized-least-squares">
-<h3>Generalized Least Squares<a class="headerlink" href="#generalized-least-squares" title="Link to this heading">#</a></h3>
-<p>Exploring more ways to redesign the loss function!</p>
-<p>Data covariance matrix and weighted least squares</p>
-</section>
-</section>
-<section id="group-discussion-demo-topics">
-<h2>Group discussion &amp; demo topics<a class="headerlink" href="#group-discussion-demo-topics" title="Link to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p>Overview of the term project output: an example <a class="reference external" href="https://ucb-stat-159-s23.github.io/project-Group28/README.html">https://ucb-stat-159-s23.github.io/project-Group28/README.html</a></p></li>
-<li><p>Another example is this class webpage.</p></li>
-</ol>
 </section>
 </section>
 
@@ -502,21 +465,19 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-outline">Lecture outline</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basics">Basics</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-linear-regression-mlr">Multiple linear regression (MLR)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-topics-for-mlr">Advanced topics for MLR</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stepwise-regression">Stepwise regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-overview-of-the-classification-problem-and-the-bayes-theory">Quick overview of the classification problem and the Bayes theory</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nn-vs-kernel-methods">NN vs Kernel Methods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#timing-a-regression-problem">Timing a regression problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kernels">Kernels</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-ridge-regression">Kernel ridge regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#support-vector-machine-svm">Support Vector Machine (SVM)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#linearly-separable-case">Linearly separable case</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#non-linear-svm">Non-linear SVM</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regularized-least-squares-models">Regularized least-squares models</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ridge-regression">Ridge regression</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lasso">Lasso</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-process-regression">Gaussian process regression</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generalized-least-squares">Generalized Least Squares</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#group-discussion-demo-topics">Group discussion &amp; demo topics</a></li>
 </ul>
   </nav></div>
 

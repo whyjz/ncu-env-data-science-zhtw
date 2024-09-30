@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Neural Networks: How can you trust deep models that seem like black boxes? &#8212; 環境資料科學</title>
+    <title>統計檢定：環境因子之間有無互相影響？ &#8212; 環境資料科學</title>
   
   
   
@@ -59,9 +59,10 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'outlines/week6-8';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'outlines/lecture2-3';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="暖身" href="lecture1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -124,8 +125,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -179,9 +178,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../assignments.html">作業</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">大綱</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="week1.html">暖身</a></li>
-<li class="toctree-l1"><a class="reference internal" href="week2-3.html">統計檢定：環境因子之間有無互相影響？</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lecture1.html">暖身</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">統計檢定：環境因子之間有無互相影響？</a></li>
 </ul>
 
     </div>
@@ -236,7 +235,7 @@
       
       
       
-      <li><a href="../_sources/outlines/week6-8.md" target="_blank"
+      <li><a href="../_sources/outlines/lecture2-3.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -320,7 +319,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Neural Networks: How can you trust deep models that seem like black boxes?</h1>
+    <h1>統計檢定：環境因子之間有無互相影響？</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -330,16 +329,22 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-outline">Lecture outline</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perceptrons">Perceptrons</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-layer-perceptrons-mlp">Multi-layer Perceptrons (MLP)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extreme-learning-machine-elm">Extreme learning Machine (ELM)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#radial-basis-functions-rbf">Radial Basis Functions (RBF)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#back-propagation">Back-Propagation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tuning-and-validation">Tuning and validation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-emsemble-methods">Other Emsemble methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">大綱</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">基礎概念</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">資料處理技術</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">機率分佈</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">假設檢定</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">五步驟</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">案例研究</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vs">第一型錯誤 vs 第二型錯誤</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#t">t 檢定的深入討論</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">無母數檢定</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrapping">自助重抽法 (Bootstrapping)</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">小組討論 &amp; 展示主題</a></li>
 </ul>
             </nav>
         </div>
@@ -351,74 +356,101 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="neural-networks-how-can-you-trust-deep-models-that-seem-like-black-boxes">
-<h1>Neural Networks: How can you trust deep models that seem like black boxes?<a class="headerlink" href="#neural-networks-how-can-you-trust-deep-models-that-seem-like-black-boxes" title="Link to this heading">#</a></h1>
-<p><strong>2024.03.26, 2024.04.02, 2024.04.09</strong></p>
-<section id="lecture-outline">
-<h2>Lecture outline<a class="headerlink" href="#lecture-outline" title="Link to this heading">#</a></h2>
-<p>Neural Network (NN): it’s biological origin and how it relates to data science</p>
-<section id="perceptrons">
-<h3>Perceptrons<a class="headerlink" href="#perceptrons" title="Link to this heading">#</a></h3>
-<p>The basic structure of a neural network!</p>
-<p><strong>Activation function</strong>:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>統計檢定：環境因子之間有無互相影響？<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p><strong>2024.09.24, 2024.10.01</strong></p>
+<section id="id2">
+<h2>大綱<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<section id="id3">
+<h3>基礎概念<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>隨機變數 (Random variable) 不是數學上所稱的變數 (Variable），反而比較接近一種符合某種機率分布的數值。</p>
+<p>以下這些數量是隨機變數嗎？</p>
 <ul class="simple">
-<li><p>Heaviside step function</p></li>
-<li><p>logistic function (or <span class="math notranslate nohighlight">\(tanh\)</span>)</p></li>
-<li><p>Rectified linear unit (ReLU)</p></li>
-<li><p>Softplus</p></li>
+<li><p>籃子裡的蘋果數量</p></li>
+<li><p>你的身高</p></li>
+<li><p>我隨機挑選出坐在這裡的一個人的身高</p></li>
+<li><p>今天的氣溫</p></li>
+<li><p>擲骰子得到的數字</p></li>
 </ul>
-<p>Limitation on non-linear separation</p>
+<p>機率密度函數 (probability density function, PDF)是什麼？它與機率分布有何不同？</p>
+<p>我們來回顧一下期望值、變異數及其數學表示式（接續 Quiz #1-2）：推導出伯努利分布 <span class="math notranslate nohighlight">\(Ber(x|p) = p^x(1-p)^{1-x}\)</span> 的期望值和變異數。</p>
 </section>
-<section id="multi-layer-perceptrons-mlp">
-<h3>Multi-layer Perceptrons (MLP)<a class="headerlink" href="#multi-layer-perceptrons-mlp" title="Link to this heading">#</a></h3>
-<p>The simplest NN that has practical use!</p>
-<p>Hidden layer: transform the linear perceptron model into a non-linear model.</p>
-<p>Predictors, parameters, and loss function of MLP</p>
+<section id="id4">
+<h3>資料處理技術<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>以下是我們在本課程中不會花太多時間關注的技能，但如果你要建立可重現的科學分析，這些技能都不可或缺。</p>
 <ul class="simple">
-<li><p>number of observations vs parameters</p></li>
-</ul>
-<p>Challenges of a non-linear optimization</p>
-<ul class="simple">
-<li><p>curse of dimensionality?</p></li>
-<li><p>potential solution: Ensembles</p></li>
-</ul>
-<p>What’s the advantage?</p>
-<p>MLP: a Universal approximator!</p>
-</section>
-<section id="extreme-learning-machine-elm">
-<h3>Extreme learning Machine (ELM)<a class="headerlink" href="#extreme-learning-machine-elm" title="Link to this heading">#</a></h3>
-<p>The idea of using ensembles -&gt; transform a non-linear problem back to a linear problem</p>
-<p>What’s the advantage?</p>
-<p>How to determine the number of hidden layer nodes <span class="math notranslate nohighlight">\(L\)</span>?</p>
-<p>Skip connection</p>
-</section>
-<section id="radial-basis-functions-rbf">
-<h3>Radial Basis Functions (RBF)<a class="headerlink" href="#radial-basis-functions-rbf" title="Link to this heading">#</a></h3>
-<p>This is another way to reduce the non-linearity of NN into a linear problem.</p>
-<p>Why is it called “Radial Basis?” We’ll revisit this during the kernel method section.</p>
-</section>
-<section id="back-propagation">
-<h3>Back-Propagation<a class="headerlink" href="#back-propagation" title="Link to this heading">#</a></h3>
-<p>The life save of the MLP problem!</p>
-<p>Learning rate <span class="math notranslate nohighlight">\(\eta\)</span></p>
-<p>From the textbook: “Nowadays, the term ‘back-propagation’ is used somewhat ambiguously.”</p>
-<ul class="simple">
-<li><p>It could mean the original back-propagation algorithm (with inefficient gradient descent)</p></li>
-<li><p>or, more likely, it could mean using only the first part involving the backward error propagation to compute the gradient of J</p></li>
+<li><p>程式設計</p></li>
+<li><p>程式碼與文檔的協作與版本控制（Git 和 GitHub）（參見 Quiz #1-4）</p></li>
+<li><p>Jupyter（Google Colab 是其中一種）</p></li>
+<li><p>資料匯入與整理</p></li>
+<li><p>資料視覺化</p></li>
 </ul>
 </section>
-<section id="tuning-and-validation">
-<h3>Tuning and validation<a class="headerlink" href="#tuning-and-validation" title="Link to this heading">#</a></h3>
-<p>Grid search, random search, validation, cross-validation, and double cross-validation</p>
-</section>
-<section id="other-emsemble-methods">
-<h3>Other Emsemble methods<a class="headerlink" href="#other-emsemble-methods" title="Link to this heading">#</a></h3>
-<p>Help reduce the variance error (Section 8.3)</p>
+<section id="id5">
+<h3>機率分佈<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Bagging</p></li>
-<li><p>Stacking</p></li>
+<li><p>高斯分布：許多分布會收斂至此分佈（參考<strong>中心極限定理</strong>）</p></li>
+<li><p>卜瓦松分布：<em>練習題 #1-5</em></p></li>
+<li><p>Student t 分布：小樣本平均值的機率分佈</p></li>
+<li><p>卡方 (<span class="math notranslate nohighlight">\(\chi^2\)</span>) 分布：高斯分布的平方</p></li>
 </ul>
 </section>
+<section id="id6">
+<h3>假設檢定<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p>何時使用假設檢定？</p>
+<section id="id7">
+<h4>五步驟<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>設定 <span class="math notranslate nohighlight">\(H_0\)</span>（虛無假說）</p></li>
+<li><p>設定 <span class="math notranslate nohighlight">\(H_1\)</span>（對立假說）</p></li>
+<li><p>設定檢定統計量與顯著水準 (<span class="math notranslate nohighlight">\(\alpha\)</span>)</p></li>
+<li><p>找出在虛無假說為真下，檢定統計量的分布（null distribution）；計算 <span class="math notranslate nohighlight">\(p\)</span> 值 (<span class="math notranslate nohighlight">\(p\)</span>-value)</p></li>
+<li><p>比較 <span class="math notranslate nohighlight">\(p\)</span> 值與 <span class="math notranslate nohighlight">\(\alpha\)</span>，決定是否拒絕 <span class="math notranslate nohighlight">\(H_0\)</span></p></li>
+</ul>
+</section>
+<section id="id8">
+<h4>案例研究<a class="headerlink" href="#id8" title="Link to this heading">#</a></h4>
+<p><strong>單樣本 t 檢定</strong>（4.2.1 節）：某魚種在兩個湖泊內的平均重量是否不同？</p>
+<p>已知該魚種在大湖中的母體平均值為 <span class="math notranslate nohighlight">\(\mu_0\)</span>。另外，我們從小湖中抓了 20 條魚，測得樣本平均值為 <span class="math notranslate nohighlight">\(\bar{x}\)</span>。</p>
+<p>檢定統計量 <span class="math notranslate nohighlight">\(t = \frac{\bar{x} - \mu_0}{s / \sqrt{N}}\)</span></p>
+</section>
+<section id="vs">
+<h4>第一型錯誤 vs 第二型錯誤<a class="headerlink" href="#vs" title="Link to this heading">#</a></h4>
+<p>分別又稱為假陽性 vs 假陰性。</p>
+<p>在設計 <span class="math notranslate nohighlight">\(\alpha\)</span> 和 <span class="math notranslate nohighlight">\(N\)</span> 時，如何權衡這兩類錯誤？</p>
+</section>
+<section id="t">
+<h4>t 檢定的深入討論<a class="headerlink" href="#t" title="Link to this heading">#</a></h4>
+<p><strong>雙樣本 t 檢定</strong>：樣本的假設條件很重要 –</p>
+<ul class="simple">
+<li><p>兩者的變異數是否相同？</p></li>
+<li><p>兩個樣本是否有可能互相關聯？</p></li>
+</ul>
+<p>t 檢定也可以用來檢測相關性（虛無假說為 <span class="math notranslate nohighlight">\(\rho = 0\)</span>）。</p>
+</section>
+<section id="id9">
+<h4>無母數檢定<a class="headerlink" href="#id9" title="Link to this heading">#</a></h4>
+<p>母數檢定 (parametric tests) vs 無母數檢定 (non-parametric tests): 該使用哪一種？</p>
+<p>以下是我們可能會在課堂上提到的無母數檢定方法：</p>
+<ul class="simple">
+<li><p>Wilcoxon–Mann–Whitney 檢定：位置（平均值）差異</p></li>
+<li><p>Kolmogorov–Smirnov 檢定：連續資料的適配度</p></li>
+<li><p>皮爾森卡方檢定：類別資料的適合度</p></li>
+</ul>
+</section>
+<section id="bootstrapping">
+<h4>自助重抽法 (Bootstrapping)<a class="headerlink" href="#bootstrapping" title="Link to this heading">#</a></h4>
+<p>自助重抽法是什麼？要如何進行？</p>
+<p>使用傳統方法（4.4 節）已經可以估計信賴區間，那為什麼還要使用自助重抽法？</p>
+</section>
+</section>
+</section>
+<section id="id10">
+<h2>小組討論 &amp; 展示主題<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>使用 Jupyter Notebook（可以使用 <a class="reference external" href="https://colab.google/">Google Colaboratory</a>、<a class="reference external" href="https://www.callysto.ca/">Callysto Hub</a> 或是本地端電腦） 載入問題集 #1 需要的數據集。</p></li>
+<li><p>關於問題集 #1，有任何想要問的嗎？</p></li>
+</ol>
 </section>
 </section>
 
@@ -452,6 +484,15 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="lecture1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">暖身</p>
+      </div>
+    </a>
 </div>
                 </footer>
               
@@ -468,16 +509,22 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-outline">Lecture outline</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perceptrons">Perceptrons</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-layer-perceptrons-mlp">Multi-layer Perceptrons (MLP)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extreme-learning-machine-elm">Extreme learning Machine (ELM)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#radial-basis-functions-rbf">Radial Basis Functions (RBF)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#back-propagation">Back-Propagation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tuning-and-validation">Tuning and validation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-emsemble-methods">Other Emsemble methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">大綱</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">基礎概念</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">資料處理技術</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">機率分佈</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">假設檢定</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">五步驟</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">案例研究</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vs">第一型錯誤 vs 第二型錯誤</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#t">t 檢定的深入討論</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">無母數檢定</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrapping">自助重抽法 (Bootstrapping)</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">小組討論 &amp; 展示主題</a></li>
 </ul>
   </nav></div>
 
