@@ -55,11 +55,11 @@ Hsieh, W. (2023). Introduction to Environmental Data Science. Cambridge: Cambrid
   - 問題集 1
 * - 6 (10/15)
   - 迴歸模型 (I)
-  - 待定
+  - 5.1, 5.2, 5.5, 5.6
   -
 * - 7 (10/22)
   - 迴歸模型 (II)
-  - 待定
+  - 2.11, 2.13, 5.7, 5.8, 5.10
   - 
 * - 8 (10/29)
   - 神經網路 (I)
