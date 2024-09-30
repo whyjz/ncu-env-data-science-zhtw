@@ -1,92 +1,91 @@
-# Regression Models: Why is regularization so important?
+# 迴歸模型：為什麼正則化如此重要？
 
-**2024.03.12, 2024.03.19**
+**2024.10.15, 2024.10.22**
 
-## Lecture outline
+## 大綱
 
-### Basics
+### 基礎概念
 
-Review of the simple linear regression:
-- Model description and associated assumption
-- Advantage of the "least square"
-- Normal equations
+簡單線性迴歸的回顧：
 
-The sum of squares: how much variability can be explained/modeled by a regression model?
+- 模型描述及相關假設
+- 最小平方法的優點
+- **正規方程式**
+
+平方和（Sum of squares）的分析：迴歸模型能解釋多少變異性？
 - $SST = SSE + SSR$
 
-Confidence interval vs. Prediction interval
+信賴區間 vs. 預測區間
 
-When there is a serial correlation...
-- Durbin--Watson statistic
+當存在序列相關性時...
+- 杜賓--沃森統計量 (Durbin--Watson statistic)
 
-### Multiple linear regression (MLR)
+### 多元線性迴歸 (MLR)
 
-What does "linear" mean in a linear regression model?
+「線性」這個詞在線性迴歸模型中到底是什麼意思？
 
-Two equivalent expressions that are commonly seen in the environmental science studies: 
-- $\textbf{y} = \textbf{X}\textbf{a} + \boldsymbol{\epsilon}$    (We'll use this at the class)
-- $\textbf{d} = \textbf{G}\textbf{m}$    (Many geophysicists use this)
+環境科學研究中常見的兩種等價表達式：
+- $\textbf{y} = \textbf{X}\textbf{a} + \boldsymbol{\epsilon}$ （我們在課堂上會使用此公式）
+- $\textbf{d} = \textbf{G}\textbf{m}$ （許多地球物理從業人員使用這個公式）
 
-Least-squares solution:
+最小平方法的解：
 - $\hat{\textbf{a}}=(\textbf{X}^\text{T}\textbf{X})^{-1}\textbf{X}^\text{T}\textbf{y}$
 
-Gauss--Markov Theorem and BLUE
+高斯--馬可夫定理與最佳線性無偏估計 (BLUE)
 
-### Advanced topics for MLR
+### 多元線性迴歸的進階探討
 
-Circular and categorical Data: transform them so that we can use a linear model
+對於循環資料與類別資料，可以把它們轉換成可用於線性模型的形式
 
-Analysis of Variance (ANOVA)
-- Sum of squares explained by each predictor
-- F-test
+變異數分析 (ANOVA)
+- 每個預測變數解釋的平方和
+- F 檢定
 
-#### Stepwise regression
+#### 逐步迴歸
 
-When you have lots of potential predictors...
-- The more, the better?
-- The less, the better?
-- When you have no choice but to keep all the predictors?
+當有許多可能的預測變數時...
+- 應該納入越多越好嗎？
+- 應該納入少越好嗎？
+- 如果我們不得不保留所有預測變數時該怎麼辦？
 
-How do we do stepwise regression?
+要如何進行逐步回歸？
 
-Criticism: Isn't this **cherry-picking**?
+批評：這不就是 **cherry-picking** 嗎？
 
-Rank-deficient (or ill-conditioned) problems and regularized least-squares (i.e., a family of shrinkage methods)
+秩不足的問題、病態問題、收縮方法家庭與正則化最小平方法
 
-### Regularized least-squares models
+### 正則化最小平方法模型
 
-Regularization tries to redesign the loss function by imposing an additional constraint.
+正則化就是透過加上額外的限制項來重新設計損失函數。有那些好處呢？
+- 在迴歸模型中保留所有預測變數。
+- 讓迴歸模型的輸入滿秩或具有更佳的條件數，以改善解的不穩定度。
 
-What are its benefits?
-- To keep all the predictors in the regression model
-- To improve the solution by making the input towards full rank or better conditions.
+#### 嶺迴歸
 
-#### Ridge regression
+又名脊迴歸、L-2 正則化，或是吉洪諾夫迴歸
 
-a.k.a. L-2 regularization or Tikhonov regression 
+嶺迴歸的兩種表達形式：隱式（拉格朗日量，參見教科書附錄 B）與顯式
 
-Two expressions of the ridge regression: Implicit (Lagrangian, check out Appendix B of the textbook) and Explicit
-
-ridge regression solution:
+嶺迴歸的解：
 - $\hat{\textbf{a}}=(\textbf{X}^\text{T}\textbf{X}+\lambda \textbf{I})^{-1}\textbf{X}^\text{T}\textbf{y}$
 
-How to select $\lambda$?
+如何選擇 $\lambda$？
 
 #### Lasso
 
-a.k.a. L-1 regularization
+又名套索迴歸、拉索迴歸，或是 L-1 正則化
 
-Lasso is typically solved numerically since its loss function is not differentiable.
+由於損失函數不可微，Lasso 通常需要數值方法求解。
 
-The most distinct difference between Lasso and Ridge: predictor selection
+Lasso 與嶺迴歸的最明顯區別：可以選擇預測變數
 
-### Generalized Least Squares
+### 廣義最小平方法
 
-Exploring more ways to redesign the loss function!
+探索更多重新設計損失函數的方法！
 
-Data covariance matrix and weighted least squares
+資料協方差矩陣與加權最小平方法
 
-## Group discussion & demo topics
+## 小組討論 & 展示主題
 
-1. Overview of the term project output: an example https://ucb-stat-159-s23.github.io/project-Group28/README.html 
-2. Another example is this class webpage.
+1. 期末專題概述  <!-- : an example https://ucb-stat-159-s23.github.io/project-Group28/README.html  -->
+2. 線上專題成果網頁的展示 (就是本課程大綱啦)

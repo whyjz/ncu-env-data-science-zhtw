@@ -4,11 +4,22 @@
 
 完成 Hsieh 書中的 Exercises 4.2、4.3、4.5 和 4.6。
 
-<!-- ## Problem set #2
+使用資料：
+- 4.2: `Winnipeg_DJF_temp.csv`
+- 4.5: `SWE_Nino_Nina.csv`
+- 4.6: `nino34_long_anom.csv`
 
-Complete Exercises 5.2, 5.6, 5.7, and 5.9 in Hsieh's book.
+## 問題集 #2
 
-## Problem set #3
+完成 Hsieh 書中的 Exercises 5.2、5.6、5.7 和 5.9。
+
+使用資料：
+- 5.2: `Old_Faithful_geyser.csv`
+- 5.6: `Vanc_Tor_Temp_tele.csv`
+- 5.7: `Milwaukee_wind_direction_ozone.csv`
+- 5.9: `SWE_tele.csv`
+
+<!-- ## Problem set #3
 
 Complete Exercises 6.5, 6.6, and 8.1 in Hsieh's book.
 
