@@ -7,7 +7,7 @@
 使用資料：
 - 4.2: `Winnipeg_DJF_temp.csv`
 - 4.5: `SWE_Nino_Nina.csv`
-- 4.6: `nino34_long_anom.csv`
+- 4.6: `nino34_long_anom.csv` & `nino12_long_anom.csv`
 
 ## 問題集 #2
 
