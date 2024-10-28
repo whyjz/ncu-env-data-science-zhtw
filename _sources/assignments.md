@@ -19,11 +19,15 @@
 - 5.7: `Milwaukee_wind_direction_ozone.csv`
 - 5.9: `SWE_tele.csv`
 
-<!-- ## Problem set #3
+## 問題集 #3
 
-Complete Exercises 6.5, 6.6, and 8.1 in Hsieh's book.
+完成 Hsieh 書中的 Exercises 6.5、6.6 和 8.1。
 
-## Problem set #4
+使用資料：
+- 6.5: `SWE_tele.csv`
+- 6.6: `YVR_prcp_training.csv` & `YVR_prcp_testing.csv`
+
+<!-- ## Problem set #4
 
 1. Complete Exercise 12.1 in Hsieh's book.
 2. Following the first question, use the support vector machine to classify the forest types in the given dataset. Feel free to choose one-versus-the-rest or one-versus-one approach (and specify your choice). Train using the first two predictors and compare the results with the linear discriminant analysis.

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Neural Networks: How can you trust deep models that seem like black boxes? &#8212; 環境資料科學</title>
+    <title>神經網路：越深的學習，成效越好嗎？ &#8212; 環境資料科學</title>
   
   
   
@@ -16,17 +16,19 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
@@ -36,10 +38,11 @@
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -62,8 +65,10 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'outlines/lecture6-7';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="迴歸模型：為什麼正則化如此重要？" href="lecture4-5.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -79,19 +84,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -99,7 +93,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -107,8 +100,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -124,9 +117,8 @@
       
       
       
-        
-      
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -156,21 +148,17 @@
     
     
     <img src="../_static/csrsr_logo.png" class="logo__image only-light" alt="環境資料科學 - Home"/>
-    <script>document.write(`<img src="../_static/csrsr_logo.png" class="logo__image only-dark" alt="環境資料科學 - Home"/>`);</script>
+    <img src="../_static/csrsr_logo.png" class="logo__image only-dark pst-js-only" alt="環境資料科學 - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">概覽</span></p>
@@ -179,10 +167,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../assignments.html">作業</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">大綱</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="lecture1.html">暖身</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture2-3.html">統計檢定：如何知道環境因子之間有無互相影響？</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture4-5.html">迴歸模型：為什麼正則化如此重要？</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">神經網路：越深的學習，成效越好嗎？</a></li>
 </ul>
 
     </div>
@@ -290,24 +279,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -321,7 +302,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Neural Networks: How can you trust deep models that seem like black boxes?</h1>
+    <h1>神經網路：越深的學習，成效越好嗎？</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -331,16 +312,16 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-outline">Lecture outline</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perceptrons">Perceptrons</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-layer-perceptrons-mlp">Multi-layer Perceptrons (MLP)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extreme-learning-machine-elm">Extreme learning Machine (ELM)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#radial-basis-functions-rbf">Radial Basis Functions (RBF)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#back-propagation">Back-Propagation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tuning-and-validation">Tuning and validation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-emsemble-methods">Other Emsemble methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">大綱</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perceptrons">感知器 (Perceptrons)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-layer-perceptrons-mlp">多層感知器 (Multi-layer Perceptrons; MLP)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extreme-learning-machine-elm">極限學習機 (Extreme learning Machine; ELM)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#back-propagation">反向傳播 (Back-Propagation)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">超參數的調教與驗證</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">其他使用了集成方法的訓練技巧</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">小組討論 &amp; 展示主題</a></li>
 </ul>
             </nav>
         </div>
@@ -352,74 +333,92 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="neural-networks-how-can-you-trust-deep-models-that-seem-like-black-boxes">
-<h1>Neural Networks: How can you trust deep models that seem like black boxes?<a class="headerlink" href="#neural-networks-how-can-you-trust-deep-models-that-seem-like-black-boxes" title="Link to this heading">#</a></h1>
-<p><strong>2024.03.26, 2024.04.02, 2024.04.09</strong></p>
-<section id="lecture-outline">
-<h2>Lecture outline<a class="headerlink" href="#lecture-outline" title="Link to this heading">#</a></h2>
-<p>Neural Network (NN): it’s biological origin and how it relates to data science</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>神經網路：越深的學習，成效越好嗎？<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p><strong>2024.10.29, 2024.11.05</strong></p>
+<section id="id2">
+<h2>大綱<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>神經網路 (NN)：源自生物學的發想，以及與資料科學的關聯</p>
 <section id="perceptrons">
-<h3>Perceptrons<a class="headerlink" href="#perceptrons" title="Link to this heading">#</a></h3>
-<p>The basic structure of a neural network!</p>
-<p><strong>Activation function</strong>:</p>
+<h3>感知器 (Perceptrons)<a class="headerlink" href="#perceptrons" title="Link to this heading">#</a></h3>
+<p>神經網路的最基本結構！</p>
+<p><strong>激勵函數</strong>：</p>
 <ul class="simple">
-<li><p>Heaviside step function</p></li>
-<li><p>logistic function (or <span class="math notranslate nohighlight">\(tanh\)</span>)</p></li>
-<li><p>Rectified linear unit (ReLU)</p></li>
+<li><p>Heaviside 階梯函數（單位階躍函數）</p></li>
+<li><p>邏輯斯諦函數（或 <span class="math notranslate nohighlight">\(tanh\)</span>）</p></li>
+<li><p>線性整流函式（ReLU）</p></li>
 <li><p>Softplus</p></li>
 </ul>
-<p>Limitation on non-linear separation</p>
+<p>感知器好用嗎？在非線性分類問題上遇到的阻礙</p>
 </section>
 <section id="multi-layer-perceptrons-mlp">
-<h3>Multi-layer Perceptrons (MLP)<a class="headerlink" href="#multi-layer-perceptrons-mlp" title="Link to this heading">#</a></h3>
-<p>The simplest NN that has practical use!</p>
-<p>Hidden layer: transform the linear perceptron model into a non-linear model.</p>
-<p>Predictors, parameters, and loss function of MLP</p>
+<h3>多層感知器 (Multi-layer Perceptrons; MLP)<a class="headerlink" href="#multi-layer-perceptrons-mlp" title="Link to this heading">#</a></h3>
+<p>最簡單且實用的神經網路。</p>
+<p><strong>隱藏層</strong>：將線性感知器轉變為非線性模型的關鍵！</p>
+<p>MLP 的預測變數、參數與損失函數</p>
 <ul class="simple">
-<li><p>number of observations vs parameters</p></li>
+<li><p>觀測資料量 vs 參數數量</p></li>
 </ul>
-<p>Challenges of a non-linear optimization</p>
+<p>非線性最佳化的挑戰</p>
 <ul class="simple">
-<li><p>curse of dimensionality?</p></li>
-<li><p>potential solution: Ensembles</p></li>
+<li><p>維度詛咒？</p></li>
+<li><p>潛在解方：集成方法 (ensemble approach)</p></li>
 </ul>
-<p>What’s the advantage?</p>
-<p>MLP: a Universal approximator!</p>
+<p>說到底，MLP 有何優勢？</p>
+<ul class="simple">
+<li><p>萬用逼近器 (Universal approximator)！？這算是優勢嗎…</p></li>
+</ul>
 </section>
 <section id="extreme-learning-machine-elm">
-<h3>Extreme learning Machine (ELM)<a class="headerlink" href="#extreme-learning-machine-elm" title="Link to this heading">#</a></h3>
-<p>The idea of using ensembles -&gt; transform a non-linear problem back to a linear problem</p>
-<p>What’s the advantage?</p>
-<p>How to determine the number of hidden layer nodes <span class="math notranslate nohighlight">\(L\)</span>?</p>
-<p>Skip connection</p>
-</section>
-<section id="radial-basis-functions-rbf">
-<h3>Radial Basis Functions (RBF)<a class="headerlink" href="#radial-basis-functions-rbf" title="Link to this heading">#</a></h3>
-<p>This is another way to reduce the non-linearity of NN into a linear problem.</p>
-<p>Why is it called “Radial Basis?” We’ll revisit this during the kernel method section.</p>
+<h3>極限學習機 (Extreme learning Machine; ELM)<a class="headerlink" href="#extreme-learning-machine-elm" title="Link to this heading">#</a></h3>
+<p>開發集成方法的使用潛力，將非線性問題化為線性問題</p>
+<p>ELM 有何優勢？</p>
+<ul class="simple">
+<li><p>線性求解？</p></li>
+</ul>
+<p>如何確定隱藏層的節點數 <span class="math notranslate nohighlight">\(L\)</span>？</p>
+<p>跳躍連接</p>
+<!-- ### Radial Basis Functions (RBF)
+
+This is another way to reduce the non-linearity of NN into a linear problem.
+
+Why is it called "Radial Basis?" We'll revisit this during the kernel method section. -->
 </section>
 <section id="back-propagation">
-<h3>Back-Propagation<a class="headerlink" href="#back-propagation" title="Link to this heading">#</a></h3>
-<p>The life save of the MLP problem!</p>
-<p>Learning rate <span class="math notranslate nohighlight">\(\eta\)</span></p>
-<p>From the textbook: “Nowadays, the term ‘back-propagation’ is used somewhat ambiguously.”</p>
+<h3>反向傳播 (Back-Propagation)<a class="headerlink" href="#back-propagation" title="Link to this heading">#</a></h3>
+<p>神經網路模型問題的救星！沒有它，根本沒辦法求解。</p>
+<p>黑塞矩陣 (Hessian matrix, <span class="math notranslate nohighlight">\(\textbf{H}\)</span>) 與學習率 <span class="math notranslate nohighlight">\(\eta\)</span></p>
+<p>教科書摘錄：「Nowadays, the term ‘back-propagation’ is used somewhat ambiguously.」</p>
 <ul class="simple">
 <li><p>It could mean the original back-propagation algorithm (with inefficient gradient descent)</p></li>
 <li><p>or, more likely, it could mean using only the first part involving the backward error propagation to compute the gradient of J</p></li>
 </ul>
 </section>
-<section id="tuning-and-validation">
-<h3>Tuning and validation<a class="headerlink" href="#tuning-and-validation" title="Link to this heading">#</a></h3>
-<p>Grid search, random search, validation, cross-validation, and double cross-validation</p>
-</section>
-<section id="other-emsemble-methods">
-<h3>Other Emsemble methods<a class="headerlink" href="#other-emsemble-methods" title="Link to this heading">#</a></h3>
-<p>Help reduce the variance error (Section 8.3)</p>
+<section id="id3">
+<h3>超參數的調教與驗證<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Bagging</p></li>
-<li><p>Stacking</p></li>
+<li><p>網格搜尋</p></li>
+<li><p>隨機搜尋</p></li>
+<li><p>驗證</p></li>
+<li><p>交叉驗證</p></li>
+<li><p>雙重交叉驗證</p></li>
 </ul>
 </section>
+<section id="id4">
+<h3>其他使用了集成方法的訓練技巧<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>幫助減少 Variance error（第 8.3 節）</p>
+<ul class="simple">
+<li><p>裝袋法 (Bagging)</p></li>
+<li><p>堆疊法 (Stacking)</p></li>
+</ul>
+</section>
+</section>
+<section id="id5">
+<h2>小組討論 &amp; 展示主題<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>確認分組 &amp; 期末專題主題的討論</p></li>
+<li><p>製作期末 html 檔案的簡單方法</p></li>
+</ol>
 </section>
 </section>
 
@@ -453,6 +452,15 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="lecture4-5.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">迴歸模型：為什麼正則化如此重要？</p>
+      </div>
+    </a>
 </div>
                 </footer>
               
@@ -460,7 +468,8 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -469,16 +478,16 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-outline">Lecture outline</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perceptrons">Perceptrons</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-layer-perceptrons-mlp">Multi-layer Perceptrons (MLP)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extreme-learning-machine-elm">Extreme learning Machine (ELM)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#radial-basis-functions-rbf">Radial Basis Functions (RBF)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#back-propagation">Back-Propagation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tuning-and-validation">Tuning and validation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-emsemble-methods">Other Emsemble methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">大綱</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perceptrons">感知器 (Perceptrons)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-layer-perceptrons-mlp">多層感知器 (Multi-layer Perceptrons; MLP)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extreme-learning-machine-elm">極限學習機 (Extreme learning Machine; ELM)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#back-propagation">反向傳播 (Back-Propagation)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">超參數的調教與驗證</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">其他使用了集成方法的訓練技巧</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">小組討論 &amp; 展示主題</a></li>
 </ul>
   </nav></div>
 
@@ -527,8 +536,8 @@ By Whyjay Zheng (鄭懷傑)
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
   <footer class="bd-footer">
   </footer>
