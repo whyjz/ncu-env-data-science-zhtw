@@ -53,15 +53,41 @@ Why is it called "Radial Basis?" We'll revisit this during the kernel method sec
 
 ### 反向傳播 (Back-Propagation)
 
-神經網路模型問題的救星！沒有它，根本沒辦法求解。
+牛頓法: 概念的源頭
 
-黑塞矩陣 (Hessian matrix, $\textbf{H}$) 與學習率 $\eta$
+反向傳播: 神經網路模型問題的救星！沒有它，根本沒辦法求解。
 
 教科書摘錄：「Nowadays, the term ‘back-propagation’ is used somewhat ambiguously.」
 - It could mean the original back-propagation algorithm (with inefficient gradient descent)
 - or, more likely, it could mean using only the first part involving the backward error propagation to compute the gradient of J
 
-### 超參數的調教與驗證
+### 最佳化的過程 (aka 模型訓練)
+
+1. 找出損失函數最陡峭的下降方向
+2. 往那個方向前進，但是要前進多少？ --> 黑塞矩陣 (Hessian matrix, $\textbf{H}$) 與學習率 $\eta$
+
+**梯度下降與其變體**
+1. 梯度下降
+2. 動量梯度下降 
+1. 隨機梯度下降 (與 Mini-batch)
+
+期 (Epoch) 的意思
+
+什麼時候結束？
+1. 由訓練集觀之
+2. 由驗證集觀之 (提前停止法)
+
+### 設計損失函數
+
+MSE 與 MAE
+
+Variance and Bias Errors (方差與偏差)
+
+正則化 (嘿... 又碰面了!)
+1. 加入 $\lambda$
+2. 提前停止法也算是一種正則化
+
+### 超參數的調校與驗證
 
 - 網格搜尋
 - 隨機搜尋
@@ -69,12 +95,12 @@ Why is it called "Radial Basis?" We'll revisit this during the kernel method sec
 - 交叉驗證
 - 雙重交叉驗證
 
-### 其他使用了集成方法的訓練技巧
+<!-- ### 其他使用了集成方法的訓練技巧
 
 幫助減少 Variance error（第 8.3 節）
 
 - 裝袋法 (Bagging)
-- 堆疊法 (Stacking)
+- 堆疊法 (Stacking) -->
 
 ## 小組討論 & 展示主題
 
