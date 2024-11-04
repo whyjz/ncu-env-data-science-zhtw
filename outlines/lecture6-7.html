@@ -317,8 +317,9 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-layer-perceptrons-mlp">多層感知器 (Multi-layer Perceptrons; MLP)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extreme-learning-machine-elm">極限學習機 (Extreme learning Machine; ELM)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#back-propagation">反向傳播 (Back-Propagation)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">超參數的調教與驗證</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">其他使用了集成方法的訓練技巧</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aka">最佳化的過程 (aka 模型訓練)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">設計損失函數</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">超參數的調校與驗證</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">小組討論 &amp; 展示主題</a></li>
@@ -386,16 +387,45 @@ Why is it called "Radial Basis?" We'll revisit this during the kernel method sec
 </section>
 <section id="back-propagation">
 <h3>反向傳播 (Back-Propagation)<a class="headerlink" href="#back-propagation" title="Link to this heading">#</a></h3>
-<p>神經網路模型問題的救星！沒有它，根本沒辦法求解。</p>
-<p>黑塞矩陣 (Hessian matrix, <span class="math notranslate nohighlight">\(\textbf{H}\)</span>) 與學習率 <span class="math notranslate nohighlight">\(\eta\)</span></p>
+<p>牛頓法: 概念的源頭</p>
+<p>反向傳播: 神經網路模型問題的救星！沒有它，根本沒辦法求解。</p>
 <p>教科書摘錄：「Nowadays, the term ‘back-propagation’ is used somewhat ambiguously.」</p>
 <ul class="simple">
 <li><p>It could mean the original back-propagation algorithm (with inefficient gradient descent)</p></li>
 <li><p>or, more likely, it could mean using only the first part involving the backward error propagation to compute the gradient of J</p></li>
 </ul>
 </section>
+<section id="aka">
+<h3>最佳化的過程 (aka 模型訓練)<a class="headerlink" href="#aka" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>找出損失函數最陡峭的下降方向</p></li>
+<li><p>往那個方向前進，但是要前進多少？ –&gt; 黑塞矩陣 (Hessian matrix, <span class="math notranslate nohighlight">\(\textbf{H}\)</span>) 與學習率 <span class="math notranslate nohighlight">\(\eta\)</span></p></li>
+</ol>
+<p><strong>梯度下降與其變體</strong></p>
+<ol class="arabic simple">
+<li><p>梯度下降</p></li>
+<li><p>動量梯度下降</p></li>
+<li><p>隨機梯度下降 (與 Mini-batch)</p></li>
+</ol>
+<p>期 (Epoch) 的意思</p>
+<p>什麼時候結束？</p>
+<ol class="arabic simple">
+<li><p>由訓練集觀之</p></li>
+<li><p>由驗證集觀之 (提前停止法)</p></li>
+</ol>
+</section>
 <section id="id3">
-<h3>超參數的調教與驗證<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<h3>設計損失函數<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>MSE 與 MAE</p>
+<p>Variance and Bias Errors (方差與偏差)</p>
+<p>正則化 (嘿… 又碰面了!)</p>
+<ol class="arabic simple">
+<li><p>加入 <span class="math notranslate nohighlight">\(\lambda\)</span></p></li>
+<li><p>提前停止法也算是一種正則化</p></li>
+</ol>
+</section>
+<section id="id4">
+<h3>超參數的調校與驗證<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>網格搜尋</p></li>
 <li><p>隨機搜尋</p></li>
@@ -403,14 +433,12 @@ Why is it called "Radial Basis?" We'll revisit this during the kernel method sec
 <li><p>交叉驗證</p></li>
 <li><p>雙重交叉驗證</p></li>
 </ul>
-</section>
-<section id="id4">
-<h3>其他使用了集成方法的訓練技巧<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
-<p>幫助減少 Variance error（第 8.3 節）</p>
-<ul class="simple">
-<li><p>裝袋法 (Bagging)</p></li>
-<li><p>堆疊法 (Stacking)</p></li>
-</ul>
+<!-- ### 其他使用了集成方法的訓練技巧
+
+幫助減少 Variance error（第 8.3 節）
+
+- 裝袋法 (Bagging)
+- 堆疊法 (Stacking) -->
 </section>
 </section>
 <section id="id5">
@@ -483,8 +511,9 @@ Why is it called "Radial Basis?" We'll revisit this during the kernel method sec
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-layer-perceptrons-mlp">多層感知器 (Multi-layer Perceptrons; MLP)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extreme-learning-machine-elm">極限學習機 (Extreme learning Machine; ELM)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#back-propagation">反向傳播 (Back-Propagation)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">超參數的調教與驗證</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">其他使用了集成方法的訓練技巧</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aka">最佳化的過程 (aka 模型訓練)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">設計損失函數</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">超參數的調校與驗證</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">小組討論 &amp; 展示主題</a></li>
