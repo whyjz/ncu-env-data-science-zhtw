@@ -60,6 +60,8 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'assignments';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -171,6 +173,7 @@
 <li class="toctree-l1"><a class="reference internal" href="outlines/lecture2-3.html">統計檢定：如何知道環境因子之間有無互相影響？</a></li>
 <li class="toctree-l1"><a class="reference internal" href="outlines/lecture4-5.html">迴歸模型：為什麼正則化如此重要？</a></li>
 <li class="toctree-l1"><a class="reference internal" href="outlines/lecture6-7.html">神經網路：越深的學習，成效越好嗎？</a></li>
+<li class="toctree-l1"><a class="reference internal" href="outlines/lecture8-9.html">核方法：維度是詛咒還是祝福？</a></li>
 </ul>
 
     </div>
@@ -314,6 +317,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">問題集 #1</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">問題集 #2</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">問題集 #3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">問題集 #4</a></li>
 </ul>
             </nav>
         </div>
@@ -356,13 +360,15 @@
 <li><p>6.5: <code class="docutils literal notranslate"><span class="pre">SWE_tele.csv</span></code></p></li>
 <li><p>6.6: <code class="docutils literal notranslate"><span class="pre">YVR_prcp_training.csv</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">YVR_prcp_testing.csv</span></code></p></li>
 </ul>
-<!-- ## Problem set #4
-
-1. Complete Exercise 12.1 in Hsieh's book.
-2. Following the first question, use the support vector machine to classify the forest types in the given dataset. Feel free to choose one-versus-the-rest or one-versus-one approach (and specify your choice). Train using the first two predictors and compare the results with the linear discriminant analysis.
-3. Generate a synthetic signal with added noise $y = \sin x + 0.5 \times \mathcal{N}(0, 1)$ and collect 40 data points that are distributed within the range $x = [0, 4\pi]$. Now use (a) ridge regression, (b) kernel ridge regression, and (c) Gaussian progress regression to model the data and give the prediction at the range $x = [0, 8\pi]$ with visualization. Describe and justify your kernel selection and hyperparameter tuning process whenever necessary. Compare the results from three regression methods.
-
-## Problem set #5
+</section>
+<section id="id5">
+<h2>問題集 #4<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>完成 Hsieh 書中的 Exercise 12.1。使用資料：<code class="docutils literal notranslate"><span class="pre">forest_testing.csv</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">forest_testing.csv</span></code></p></li>
+<li><p>承上題，使用支持向量機（SVM）對同數據集中的森林類型進行分類。可以自由選擇「一對多」或「一對一」的方法，不過須註明你的選擇。使用前兩個預測變數進行訓練，並將本題與上題的結果進行比較。</p></li>
+<li><p>產生一個含有噪訊的合成訊號 <span class="math notranslate nohighlight">\(y = \sin x + 0.5 \times \mathcal{N}(0, 1)\)</span>，然後在 <span class="math notranslate nohighlight">\(x = [0, 4\pi]\)</span> 的區間內產生 40 個資料點。使用 (a) 嶺迴歸、(b) 核嶺迴歸，以及 (c) 高斯過程迴歸來建構模型，並且在 <span class="math notranslate nohighlight">\(x = [0, 8\pi]\)</span> 的區間內做出模型的預測。詳細描述並解釋你是怎麼決定或調整使用的核與其他超參數，有必要的話也可包含超參數調校的流程。最後，把結果盡可能地視覺化，並比較三種迴歸模型的結果。</p></li>
+</ol>
+<!-- ## Problem set #5
 
 Complete the following exercises in Hsieh's book with the specified requirements:
 
@@ -440,6 +446,7 @@ Complete the following exercises in Hsieh's book with the specified requirements
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">問題集 #1</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">問題集 #2</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">問題集 #3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">問題集 #4</a></li>
 </ul>
   </nav></div>
 

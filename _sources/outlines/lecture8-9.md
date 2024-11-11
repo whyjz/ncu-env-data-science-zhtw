@@ -1,50 +1,57 @@
-# Kernel Methods: Is dimensionality a curse or a blessing?
+# 核方法：維度是詛咒還是祝福？
 
-**2024.04.23, 2024.04.30**
+**2024.11.12, 2024.11.19**
 
-## Lecture outline
+## 大綱
 
-### Quick overview of the classification problem and the Bayes theory 
+### 分類問題
+分類 vs 聚類分析
 
-Classification vs cluster analysis
 
-### NN vs Kernel Methods
+### 神經網絡 vs 核方法
+都是把資料先**映射到更高的維度**！
 
-Higher dimension!
+#### 徑向基函數（RBF）
 
-### Timing a regression problem
+- 神經網絡模型可使用它來把非線性問題轉換為線性問題。
+- 使用核方法的模型：可使用「核技巧」的一種特徵映射法！
 
-- Primal and Dual Solutions: which one is faster?
-- Primal and Dual Solutions for ridge regression
+### 核方法的數學原理
 
-### Kernels
+- OLS 模型的**原始解**與**對偶解**
+- 嶺迴歸模型的原始解與對偶解
+- 原始解與對偶解，哪一個快？
 
-- Feature map
-- kernel trick
-- Mercer theorem vs positive semi-definite kernel function
-- Differernt kernels
-- advantages and disadvantages
+#### 核
 
-### Kernel ridge regression
+- 特徵映射 (Feature map)
+- 核技巧 (Kernel trick)
+- 什麼函數能當核？ -- 正定函數 (positive semi-definite function)
+- 核的種類
+- 核方法的優缺點
 
-- Procedure
-- Modularized design
+### 核嶺迴歸
 
-### Support Vector Machine (SVM)
+- 流程
+- 模組化設計
 
-The original form of SVM does not have a kernel component!
+### 支持向量機（SVM）
+SVM 的原始形式並沒有核組件！
 
-#### Linearly separable case
-- Support vectors
-- The pattern in the dual Lagrangian solution implied that we can slip in the kernel trick!
+#### 線性可分的情況
+- 支持向量
+- 在對偶拉格朗日解中的模式暗示我們可以使用核技巧！
 
-#### Non-linear SVM
-
+#### 非線性 SVM
 $\textbf{x}_n^T\textbf{x}_j$ -> $K(\textbf{x}_n, \textbf{x}_j) \equiv \phi^T(\textbf{x}_n)\phi(\textbf{x}_j) $
 
-### Gaussian process regression
+### 高斯過程迴歸
+- 地理統計學
+- 使用共變異數進行空間內插
+- 使用核技巧來評估共變異數矩陣
 
-- Geostatistics
-- Covariance-based interpolation where kernels are used for evaluating the (believed) covariance matrix
+額外參考資料: [Görtler, et al., "A Visual Exploration of Gaussian Processes", Distill, 2019.](https://distill.pub/2019/visual-exploration-gaussian-processes/)
 
-Resources: [Görtler, et al., "A Visual Exploration of Gaussian Processes", Distill, 2019.](https://distill.pub/2019/visual-exploration-gaussian-processes/)
+## 小組討論 & 展示主題
+
+1. Github Pages

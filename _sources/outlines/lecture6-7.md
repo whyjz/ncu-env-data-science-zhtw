@@ -45,12 +45,6 @@ ELM 有何優勢？
 
 跳躍連接
 
-<!-- ### Radial Basis Functions (RBF)
-
-This is another way to reduce the non-linearity of NN into a linear problem.
-
-Why is it called "Radial Basis?" We'll revisit this during the kernel method section. -->
-
 ### 反向傳播 (Back-Propagation)
 
 牛頓法: 概念的源頭
@@ -100,7 +94,8 @@ Variance and Bias Errors (方差與偏差)
 幫助減少 Variance error（第 8.3 節）
 
 - 裝袋法 (Bagging)
-- 堆疊法 (Stacking) -->
+- 堆疊法 (Stacking) 
+-->
 
 ## 小組討論 & 展示主題
 

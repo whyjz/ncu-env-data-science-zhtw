@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Kernel Methods: Is dimensionality a curse or a blessing? &#8212; 環境資料科學</title>
+    <title>核方法：維度是詛咒還是祝福？ &#8212; 環境資料科學</title>
   
   
   
@@ -65,6 +65,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'outlines/lecture8-9';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="神經網路：越深的學習，成效越好嗎？" href="lecture6-7.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -116,8 +117,6 @@
       
       
       
-        
-      
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
@@ -168,11 +167,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../assignments.html">作業</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">大綱</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="lecture1.html">暖身</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture2-3.html">統計檢定：如何知道環境因子之間有無互相影響？</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture4-5.html">迴歸模型：為什麼正則化如此重要？</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture6-7.html">神經網路：越深的學習，成效越好嗎？</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">核方法：維度是詛咒還是祝福？</a></li>
 </ul>
 
     </div>
@@ -303,7 +303,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Kernel Methods: Is dimensionality a curse or a blessing?</h1>
+    <h1>核方法：維度是詛咒還是祝福？</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -313,20 +313,26 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-outline">Lecture outline</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-overview-of-the-classification-problem-and-the-bayes-theory">Quick overview of the classification problem and the Bayes theory</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nn-vs-kernel-methods">NN vs Kernel Methods</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#timing-a-regression-problem">Timing a regression problem</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kernels">Kernels</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-ridge-regression">Kernel ridge regression</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#support-vector-machine-svm">Support Vector Machine (SVM)</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#linearly-separable-case">Linearly separable case</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#non-linear-svm">Non-linear SVM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">大綱</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">分類問題</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vs">神經網絡 vs 核方法</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rbf">徑向基函數（RBF）</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-process-regression">Gaussian process regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">核方法的數學原理</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">核</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">核嶺迴歸</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#svm">支持向量機（SVM）</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">線性可分的情況</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">非線性 SVM</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">高斯過程迴歸</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">小組討論 &amp; 展示主題</a></li>
 </ul>
             </nav>
         </div>
@@ -338,66 +344,81 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="kernel-methods-is-dimensionality-a-curse-or-a-blessing">
-<h1>Kernel Methods: Is dimensionality a curse or a blessing?<a class="headerlink" href="#kernel-methods-is-dimensionality-a-curse-or-a-blessing" title="Link to this heading">#</a></h1>
-<p><strong>2024.04.23, 2024.04.30</strong></p>
-<section id="lecture-outline">
-<h2>Lecture outline<a class="headerlink" href="#lecture-outline" title="Link to this heading">#</a></h2>
-<section id="quick-overview-of-the-classification-problem-and-the-bayes-theory">
-<h3>Quick overview of the classification problem and the Bayes theory<a class="headerlink" href="#quick-overview-of-the-classification-problem-and-the-bayes-theory" title="Link to this heading">#</a></h3>
-<p>Classification vs cluster analysis</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>核方法：維度是詛咒還是祝福？<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p><strong>2024.11.12, 2024.11.19</strong></p>
+<section id="id2">
+<h2>大綱<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<section id="id3">
+<h3>分類問題<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>分類 vs 聚類分析</p>
 </section>
-<section id="nn-vs-kernel-methods">
-<h3>NN vs Kernel Methods<a class="headerlink" href="#nn-vs-kernel-methods" title="Link to this heading">#</a></h3>
-<p>Higher dimension!</p>
-</section>
-<section id="timing-a-regression-problem">
-<h3>Timing a regression problem<a class="headerlink" href="#timing-a-regression-problem" title="Link to this heading">#</a></h3>
+<section id="vs">
+<h3>神經網絡 vs 核方法<a class="headerlink" href="#vs" title="Link to this heading">#</a></h3>
+<p>都是把資料先<strong>映射到更高的維度</strong>！</p>
+<section id="rbf">
+<h4>徑向基函數（RBF）<a class="headerlink" href="#rbf" title="Link to this heading">#</a></h4>
 <ul class="simple">
-<li><p>Primal and Dual Solutions: which one is faster?</p></li>
-<li><p>Primal and Dual Solutions for ridge regression</p></li>
+<li><p>神經網絡模型可使用它來把非線性問題轉換為線性問題。</p></li>
+<li><p>使用核方法的模型：可使用「核技巧」的一種特徵映射法！</p></li>
 </ul>
 </section>
-<section id="kernels">
-<h3>Kernels<a class="headerlink" href="#kernels" title="Link to this heading">#</a></h3>
+</section>
+<section id="id4">
+<h3>核方法的數學原理<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Feature map</p></li>
-<li><p>kernel trick</p></li>
-<li><p>Mercer theorem vs positive semi-definite kernel function</p></li>
-<li><p>Differernt kernels</p></li>
-<li><p>advantages and disadvantages</p></li>
+<li><p>OLS 模型的<strong>原始解</strong>與<strong>對偶解</strong></p></li>
+<li><p>嶺迴歸模型的原始解與對偶解</p></li>
+<li><p>原始解與對偶解，哪一個快？</p></li>
+</ul>
+<section id="id5">
+<h4>核<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>特徵映射 (Feature map)</p></li>
+<li><p>核技巧 (Kernel trick)</p></li>
+<li><p>什麼函數能當核？ – 正定函數 (positive semi-definite function)</p></li>
+<li><p>核的種類</p></li>
+<li><p>核方法的優缺點</p></li>
 </ul>
 </section>
-<section id="kernel-ridge-regression">
-<h3>Kernel ridge regression<a class="headerlink" href="#kernel-ridge-regression" title="Link to this heading">#</a></h3>
+</section>
+<section id="id6">
+<h3>核嶺迴歸<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Procedure</p></li>
-<li><p>Modularized design</p></li>
+<li><p>流程</p></li>
+<li><p>模組化設計</p></li>
 </ul>
 </section>
-<section id="support-vector-machine-svm">
-<h3>Support Vector Machine (SVM)<a class="headerlink" href="#support-vector-machine-svm" title="Link to this heading">#</a></h3>
-<p>The original form of SVM does not have a kernel component!</p>
-<section id="linearly-separable-case">
-<h4>Linearly separable case<a class="headerlink" href="#linearly-separable-case" title="Link to this heading">#</a></h4>
+<section id="svm">
+<h3>支持向量機（SVM）<a class="headerlink" href="#svm" title="Link to this heading">#</a></h3>
+<p>SVM 的原始形式並沒有核組件！</p>
+<section id="id7">
+<h4>線性可分的情況<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
 <ul class="simple">
-<li><p>Support vectors</p></li>
-<li><p>The pattern in the dual Lagrangian solution implied that we can slip in the kernel trick!</p></li>
+<li><p>支持向量</p></li>
+<li><p>在對偶拉格朗日解中的模式暗示我們可以使用核技巧！</p></li>
 </ul>
 </section>
-<section id="non-linear-svm">
-<h4>Non-linear SVM<a class="headerlink" href="#non-linear-svm" title="Link to this heading">#</a></h4>
+<section id="id8">
+<h4>非線性 SVM<a class="headerlink" href="#id8" title="Link to this heading">#</a></h4>
 <p><span class="math notranslate nohighlight">\(\textbf{x}_n^T\textbf{x}_j\)</span> -&gt; <span class="math notranslate nohighlight">\(K(\textbf{x}_n, \textbf{x}_j) \equiv \phi^T(\textbf{x}_n)\phi(\textbf{x}_j) \)</span></p>
 </section>
 </section>
-<section id="gaussian-process-regression">
-<h3>Gaussian process regression<a class="headerlink" href="#gaussian-process-regression" title="Link to this heading">#</a></h3>
+<section id="id9">
+<h3>高斯過程迴歸<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Geostatistics</p></li>
-<li><p>Covariance-based interpolation where kernels are used for evaluating the (believed) covariance matrix</p></li>
+<li><p>地理統計學</p></li>
+<li><p>使用共變異數進行空間內插</p></li>
+<li><p>使用核技巧來評估共變異數矩陣</p></li>
 </ul>
-<p>Resources: <a class="reference external" href="https://distill.pub/2019/visual-exploration-gaussian-processes/">Görtler, et al., “A Visual Exploration of Gaussian Processes”, Distill, 2019.</a></p>
+<p>額外參考資料: <a class="reference external" href="https://distill.pub/2019/visual-exploration-gaussian-processes/">Görtler, et al., “A Visual Exploration of Gaussian Processes”, Distill, 2019.</a></p>
 </section>
+</section>
+<section id="id10">
+<h2>小組討論 &amp; 展示主題<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Github Pages</p></li>
+</ol>
 </section>
 </section>
 
@@ -431,6 +452,15 @@
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="lecture6-7.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">神經網路：越深的學習，成效越好嗎？</p>
+      </div>
+    </a>
 </div>
                 </footer>
               
@@ -448,20 +478,26 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-outline">Lecture outline</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-overview-of-the-classification-problem-and-the-bayes-theory">Quick overview of the classification problem and the Bayes theory</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nn-vs-kernel-methods">NN vs Kernel Methods</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#timing-a-regression-problem">Timing a regression problem</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kernels">Kernels</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-ridge-regression">Kernel ridge regression</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#support-vector-machine-svm">Support Vector Machine (SVM)</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#linearly-separable-case">Linearly separable case</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#non-linear-svm">Non-linear SVM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">大綱</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">分類問題</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vs">神經網絡 vs 核方法</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rbf">徑向基函數（RBF）</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-process-regression">Gaussian process regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">核方法的數學原理</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">核</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">核嶺迴歸</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#svm">支持向量機（SVM）</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">線性可分的情況</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">非線性 SVM</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">高斯過程迴歸</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">小組討論 &amp; 展示主題</a></li>
 </ul>
   </nav></div>
 
