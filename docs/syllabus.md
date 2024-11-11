@@ -75,7 +75,7 @@ Hsieh, W. (2023). Introduction to Environmental Data Science. Cambridge: Cambrid
   - 問題集 3
 * - 11 (11/19)
   - 核方法 (II)
-  - 待定
+  - 12.1, 13.5, 13.7, 13.8
   -
 * - 12 (11/26)
   - 隨機森林 (I)

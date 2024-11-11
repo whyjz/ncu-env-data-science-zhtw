@@ -27,13 +27,13 @@
 - 6.5: `SWE_tele.csv`
 - 6.6: `YVR_prcp_training.csv` & `YVR_prcp_testing.csv`
 
-<!-- ## Problem set #4
+## 問題集 #4
 
-1. Complete Exercise 12.1 in Hsieh's book.
-2. Following the first question, use the support vector machine to classify the forest types in the given dataset. Feel free to choose one-versus-the-rest or one-versus-one approach (and specify your choice). Train using the first two predictors and compare the results with the linear discriminant analysis.
-3. Generate a synthetic signal with added noise $y = \sin x + 0.5 \times \mathcal{N}(0, 1)$ and collect 40 data points that are distributed within the range $x = [0, 4\pi]$. Now use (a) ridge regression, (b) kernel ridge regression, and (c) Gaussian progress regression to model the data and give the prediction at the range $x = [0, 8\pi]$ with visualization. Describe and justify your kernel selection and hyperparameter tuning process whenever necessary. Compare the results from three regression methods.
+1. 完成 Hsieh 書中的 Exercise 12.1。使用資料：`forest_testing.csv` & `forest_testing.csv`
+2. 承上題，使用支持向量機（SVM）對同數據集中的森林類型進行分類。可以自由選擇「一對多」或「一對一」的方法，不過須註明你的選擇。使用前兩個預測變數進行訓練，並將本題與上題的結果進行比較。
+3. 產生一個含有噪訊的合成訊號 $y = \sin x + 0.5 \times \mathcal{N}(0, 1)$，然後在 $x = [0, 4\pi]$ 的區間內產生 40 個資料點。使用 (a) 嶺迴歸、(b) 核嶺迴歸，以及 (c) 高斯過程迴歸來建構模型，並且在 $x = [0, 8\pi]$ 的區間內做出模型的預測。詳細描述並解釋你是怎麼決定或調整使用的核與其他超參數，有必要的話也可包含超參數調校的流程。最後，把結果盡可能地視覺化，並比較三種迴歸模型的結果。
 
-## Problem set #5
+<!-- ## Problem set #5
 
 Complete the following exercises in Hsieh's book with the specified requirements:
 

@@ -12,6 +12,6 @@ parts:
     - file: outlines/lecture2-3
     - file: outlines/lecture4-5
     - file: outlines/lecture6-7
-    # - file: outlines/lecture8-9
+    - file: outlines/lecture8-9
     # - file: outlines/lecture10-11
     # - file: outlines/lecture12
