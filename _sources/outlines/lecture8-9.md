@@ -54,4 +54,4 @@ $\textbf{x}_n^T\textbf{x}_j$ -> $K(\textbf{x}_n, \textbf{x}_j) \equiv \phi^T(\te
 
 ## 小組討論 & 展示主題
 
-1. Github Pages
+1. Github Pages: [從 0 到 1 的 GitHub Pages 教學手冊](https://hackmd.io/@YmcMgo-NSKOqgTGAjl_5tg/HJpJk8ABU/%2F%40Albertnotes%2FB1_iKcAwI)
