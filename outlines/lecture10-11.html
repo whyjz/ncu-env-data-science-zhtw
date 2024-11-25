@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Random Forests: When one model is not enough, make several? &#8212; 環境資料科學</title>
+    <title>隨機森林：使用集成模型的最佳時機是什麼？ &#8212; 環境資料科學</title>
   
   
   
@@ -65,6 +65,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'outlines/lecture10-11';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="核方法：維度是詛咒還是祝福？" href="lecture8-9.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -116,8 +117,6 @@
       
       
       
-        
-      
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
@@ -166,14 +165,18 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../syllabus.html">課程大綱</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../assignments.html">作業</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project.html">標題 (換成你的專題標題)</a></li>
+
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">大綱</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="lecture1.html">暖身</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture2-3.html">統計檢定：如何知道環境因子之間有無互相影響？</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture4-5.html">迴歸模型：為什麼正則化如此重要？</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture6-7.html">神經網路：越深的學習，成效越好嗎？</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture8-9.html">核方法：維度是詛咒還是祝福？</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">隨機森林：使用集成模型的最佳時機是什麼？</a></li>
 </ul>
 
     </div>
@@ -304,7 +307,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Random Forests: When one model is not enough, make several?</h1>
+    <h1>隨機森林：使用集成模型的最佳時機是什麼？</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -314,17 +317,17 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-outline">Lecture outline</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-and-regression-trees-cart">Classification and Regression Trees (CART)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randon-forest">Randon Forest</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boosting">Boosting</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-boosting">Gradient boosting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">大綱</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">集成方法的訓練技巧</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cart">分類與迴歸樹（CART）</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">隨機森林</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boosting">提升法（Boosting）</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">梯度提升</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#group-discussion-demo-topics">Group discussion &amp; demo topics</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slides-just-for-my-convenience-will-be-removed-after-today-s-class-due-to-copyright-issues">Slides (Just for my convenience; will be removed after today’s class due to copyright issues)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">小組討論 &amp; 展示主題</a></li>
 </ul>
             </nav>
         </div>
@@ -336,46 +339,48 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="random-forests-when-one-model-is-not-enough-make-several">
-<h1>Random Forests: When one model is not enough, make several?<a class="headerlink" href="#random-forests-when-one-model-is-not-enough-make-several" title="Link to this heading">#</a></h1>
-<p><strong>2024.05.14, 2024.05.21</strong></p>
-<section id="lecture-outline">
-<h2>Lecture outline<a class="headerlink" href="#lecture-outline" title="Link to this heading">#</a></h2>
-<section id="classification-and-regression-trees-cart">
-<h3>Classification and Regression Trees (CART)<a class="headerlink" href="#classification-and-regression-trees-cart" title="Link to this heading">#</a></h3>
-<p>Split and fit using constant functions.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>隨機森林：使用集成模型的最佳時機是什麼？<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p><strong>2024.11.26, 2024.12.03</strong></p>
+<section id="id2">
+<h2>大綱<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<section id="id3">
+<h3>集成方法的訓練技巧<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>幫助減少 Variance error（第 8.3 節）</p>
 <ul class="simple">
-<li><p>Prune and regularization</p></li>
-<li><p>Choosing loss function for classification: Entropy or Gini index</p></li>
+<li><p>裝袋法 (Bagging)</p></li>
+<li><p>堆疊法 (Stacking)</p></li>
 </ul>
 </section>
-<section id="randon-forest">
-<h3>Randon Forest<a class="headerlink" href="#randon-forest" title="Link to this heading">#</a></h3>
+<section id="cart">
+<h3>分類與迴歸樹（CART）<a class="headerlink" href="#cart" title="Link to this heading">#</a></h3>
+<p>使用階梯函數 (<span class="math notranslate nohighlight">\(f(\textbf{x}) = c_1 or c_2\)</span>) 來分割或擬合資料。</p>
 <ul class="simple">
-<li><p>Bootstrap + CART + Ensemble</p></li>
-<li><p>Out-of-bag data for model validation (<span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(n_{min}\)</span></p></li>
-<li><p>Extremely randomized trees: No bootstrap, and instead randomly selecting split points</p></li>
+<li><p>剪枝與正則化</p></li>
+<li><p>為分類問題選擇損失函數：熵（Entropy）或吉尼指數（Gini Index）</p></li>
+</ul>
+</section>
+<section id="id4">
+<h3>隨機森林<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>自助重抽法 + CART + 集成</p></li>
+<li><p>使用袋外（Out-of-Bag, OOB）數據進行模型驗證 (<span class="math notranslate nohighlight">\(p\)</span> 和 <span class="math notranslate nohighlight">\(n_{min}\)</span>)</p></li>
+<li><p>極端隨機樹（Extremely randomized trees）：不使用自助重抽，改為隨機選擇分割點</p></li>
 </ul>
 </section>
 <section id="boosting">
-<h3>Boosting<a class="headerlink" href="#boosting" title="Link to this heading">#</a></h3>
-<p>No bootstrap as well; instead, updating the previous model with a focus on the part the previous model does not do well.</p>
-<section id="gradient-boosting">
-<h4>Gradient boosting<a class="headerlink" href="#gradient-boosting" title="Link to this heading">#</a></h4>
-<ul class="simple">
-<li><p>Updating the previous model using gradient descent</p></li>
-<li><p>XGBoost (regularized gradient boosting): adding more regularizations</p></li>
-</ul>
+<h3>提升法（Boosting）<a class="headerlink" href="#boosting" title="Link to this heading">#</a></h3>
+<p>同樣不使用自助重抽法，而是一直不斷更新先前模型，並把改進的重點放在先前模型表現不佳的部分。</p>
+<section id="id5">
+<h4>梯度提升<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
+<p>使用梯度下降法更新先前模型
+XGBoost（正則化梯度提升）：增加更多正則化項</p>
 </section>
 </section>
 </section>
-<section id="group-discussion-demo-topics">
-<h2>Group discussion &amp; demo topics<a class="headerlink" href="#group-discussion-demo-topics" title="Link to this heading">#</a></h2>
-<p>I have made a <a class="reference external" href="https://github.com/whyjz/ncu-env-data-science-template">template</a> for you to automatically publish your Jupyer notebook (or plain markdown files) using GitHub Pages. You can also find the deployed <a class="reference external" href="https://whyjz.github.io/ncu-env-data-science-template/project.html">HTML here</a>.</p>
-</section>
-<section id="slides-just-for-my-convenience-will-be-removed-after-today-s-class-due-to-copyright-issues">
-<h2>Slides (Just for my convenience; will be removed after today’s class due to copyright issues)<a class="headerlink" href="#slides-just-for-my-convenience-will-be-removed-after-today-s-class-due-to-copyright-issues" title="Link to this heading">#</a></h2>
-<p><a class="reference external" href="https://docs.google.com/presentation/d/17eIMIMbfPACRaUueoTIXn2FfH2eFSqOPnURORtjEc3g/edit?usp=sharing">Slides</a></p>
+<section id="id6">
+<h2>小組討論 &amp; 展示主題<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>我已經弄了一個<a class="reference external" href="https://github.com/whyjz/ncu-env-data-science-zhtw/blob/main/docs/project.ipynb">模板 Jupyter Notebook</a>，你可以在這個模板之上撰寫你的期末專題，寫好後再把 Notebook 匯出成 HTML (<code class="docutils literal notranslate"><span class="pre">nbconvert</span></code>)，就可以利用 GitHub Pages 來發布你的作品。可以從<a class="reference external" href="https://whyjz.github.io/ncu-env-data-science-zhtw/project.html">這裡</a>看看部署完成的 HTML 會長怎樣。</p>
 </section>
 </section>
 
@@ -409,6 +414,15 @@
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="lecture8-9.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">核方法：維度是詛咒還是祝福？</p>
+      </div>
+    </a>
 </div>
                 </footer>
               
@@ -426,17 +440,17 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-outline">Lecture outline</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-and-regression-trees-cart">Classification and Regression Trees (CART)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randon-forest">Randon Forest</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boosting">Boosting</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-boosting">Gradient boosting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">大綱</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">集成方法的訓練技巧</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cart">分類與迴歸樹（CART）</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">隨機森林</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boosting">提升法（Boosting）</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">梯度提升</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#group-discussion-demo-topics">Group discussion &amp; demo topics</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slides-just-for-my-convenience-will-be-removed-after-today-s-class-due-to-copyright-issues">Slides (Just for my convenience; will be removed after today’s class due to copyright issues)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">小組討論 &amp; 展示主題</a></li>
 </ul>
   </nav></div>
 
