@@ -1,35 +1,38 @@
-# Random Forests: When one model is not enough, make several?
+# 隨機森林：使用集成模型的最佳時機是什麼？
 
-**2024.05.14, 2024.05.21**
+**2024.11.26, 2024.12.03**
 
-## Lecture outline
+## 大綱
 
-### Classification and Regression Trees (CART)
+### 集成方法的訓練技巧
 
-Split and fit using constant functions.
+幫助減少 Variance error（第 8.3 節）
 
-- Prune and regularization
-- Choosing loss function for classification: Entropy or Gini index
+- 裝袋法 (Bagging)
+- 堆疊法 (Stacking) 
 
-### Randon Forest
+### 分類與迴歸樹（CART）
 
-- Bootstrap + CART + Ensemble
-- Out-of-bag data for model validation ($p$ and $n_{min}$
-- Extremely randomized trees: No bootstrap, and instead randomly selecting split points
+使用階梯函數 ($f(\textbf{x}) = c_1 or c_2$) 來分割或擬合資料。
 
-### Boosting
+- 剪枝與正則化
+- 為分類問題選擇損失函數：熵（Entropy）或吉尼指數（Gini Index）
 
-No bootstrap as well; instead, updating the previous model with a focus on the part the previous model does not do well.
+### 隨機森林
 
-#### Gradient boosting
+- 自助重抽法 + CART + 集成
+- 使用袋外（Out-of-Bag, OOB）數據進行模型驗證 ($p$ 和 $n_{min}$)
+- 極端隨機樹（Extremely randomized trees）：不使用自助重抽，改為隨機選擇分割點
 
-- Updating the previous model using gradient descent 
-- XGBoost (regularized gradient boosting): adding more regularizations
+### 提升法（Boosting）
 
-## Group discussion & demo topics
+同樣不使用自助重抽法，而是一直不斷更新先前模型，並把改進的重點放在先前模型表現不佳的部分。
 
-I have made a [template](https://github.com/whyjz/ncu-env-data-science-template) for you to automatically publish your Jupyer notebook (or plain markdown files) using GitHub Pages. You can also find the deployed [HTML here](https://whyjz.github.io/ncu-env-data-science-template/project.html). 
+#### 梯度提升
 
-## Slides (Just for my convenience; will be removed after today's class due to copyright issues)
+使用梯度下降法更新先前模型
+XGBoost（正則化梯度提升）：增加更多正則化項
 
-[Slides](https://docs.google.com/presentation/d/17eIMIMbfPACRaUueoTIXn2FfH2eFSqOPnURORtjEc3g/edit?usp=sharing)
+## 小組討論 & 展示主題
+
+我已經弄了一個[模板 Jupyter Notebook](https://github.com/whyjz/ncu-env-data-science-zhtw/blob/main/docs/project.ipynb)，你可以在這個模板之上撰寫你的期末專題，寫好後再把 Notebook 匯出成 HTML (`nbconvert`)，就可以利用 GitHub Pages 來發布你的作品。可以從[這裡](https://whyjz.github.io/ncu-env-data-science-zhtw/project.html)看看部署完成的 HTML 會長怎樣。
