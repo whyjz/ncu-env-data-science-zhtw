@@ -2,14 +2,13 @@
 
 ## 問題集 #1
 
-完成 Hsieh 書中的 Exercises 4.2、4.3、4.5 和 4.6。
+1. 完成 Hsieh 書中的 Exercise 4.1。
+2. 完成 Hsieh 書中的 Exercise 4.5。（資料來源：`SWE_Nino_Nina.csv`）
+3. 完成 Hsieh 書中的 Exercise 4.6。（資料來源：`nino12_long_anom.csv` & `nino34_long_anom.csv`）
+4. 針對 `SWE_Nino_Nina.csv` 中的 SWE 資料，使用自助重抽法計算其中位數的 95% 信賴區間。務必避免使用百分位數法 (percentile method)。
+5. 重製「修課前 Quiz」第 3 題的圖表。（[圖表連結](https://drive.google.com/file/d/15WejYTcSHDGM3VNoX32WaD5r8l-BNNF-/view?usp=sharing)）*圖表來源：Nicolas P. Rougier (2021)*
 
-使用資料：
-- 4.2: `Winnipeg_DJF_temp.csv`
-- 4.5: `SWE_Nino_Nina.csv`
-- 4.6: `nino34_long_anom.csv` & `nino12_long_anom.csv`
-
-## 問題集 #2
+<!-- ## 問題集 #2
 
 完成 Hsieh 書中的 Exercises 5.2、5.6、5.7 和 5.9。
 
@@ -44,4 +43,4 @@
 使用資料：
 - 14.2: `wilt_training.csv` & `wilt_testing.csv`
 - 12.5: `SydneyAirport_weather.csv`
-- 14.4: `YVR_prcp_training.csv` & `YVR_prcp_testing.csv`
+- 14.4: `YVR_prcp_training.csv` & `YVR_prcp_testing.csv` -->
