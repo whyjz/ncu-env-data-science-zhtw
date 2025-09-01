@@ -16,33 +16,30 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -63,11 +60,9 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'outlines/lecture1';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="統計檢定：如何知道環境因子之間有無互相影響？" href="lecture2-3.html" />
     <link rel="prev" title="標題 (換成你的專題標題)" href="../project.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -83,8 +78,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -92,6 +98,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -99,8 +106,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -116,8 +123,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -147,17 +153,21 @@
     
     
     <img src="../_static/csrsr_logo.png" class="logo__image only-light" alt="環境資料科學 - Home"/>
-    <img src="../_static/csrsr_logo.png" class="logo__image only-dark pst-js-only" alt="環境資料科學 - Home"/>
+    <script>document.write(`<img src="../_static/csrsr_logo.png" class="logo__image only-dark" alt="環境資料科學 - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">概覽</span></p>
@@ -171,11 +181,6 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">大綱</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">暖身</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture2-3.html">統計檢定：如何知道環境因子之間有無互相影響？</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture4-5.html">迴歸模型：為什麼正則化如此重要？</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture6-7.html">神經網路：越深的學習，成效越好嗎？</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture8-9.html">核方法：維度是詛咒還是祝福？</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture10-11.html">隨機森林：使用集成模型的最佳時機是什麼？</a></li>
 </ul>
 
     </div>
@@ -283,16 +288,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -316,7 +329,13 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">課程大綱</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">課程大綱</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-skills">Data skills</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basics-of-statistics">Basics of statistics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-about-probability-distributions">More about probability distributions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#group-discussion-demos">Group discussion &amp; Demos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">小組討論 &amp; 展示主題</a></li>
 </ul>
             </nav>
@@ -331,7 +350,6 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
 <h1>暖身<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
-<p><strong>2024.09.10</strong></p>
 <section id="id2">
 <h2>課程大綱<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <p>「資料科學」這個詞對你來說是什麼？</p>
@@ -343,13 +361,64 @@
 它們有什麼不同？如果搭配起來使用呢，例如，「統計模型」和「機器學習模型」的差別在哪裡？還是說它們其實是一樣的，只是加上了用來混淆視聽的一些豪華形容詞？</p></li>
 </ul>
 <p>「機器學習」中的「學習」是什麼意思？</p>
-<p>監督式學習和非監督式學習的差別是什麼？（Quiz #1-1）</p>
+<p>監督式學習和非監督式學習的差別是什麼？</p>
+<p>「修課前 Quiz」第四題，你寫了什麼答案？</p>
+<section id="data-skills">
+<h3>Data skills<a class="headerlink" href="#data-skills" title="Link to this heading">#</a></h3>
+<p>Here are things we don’t primarily focus on during the class but are essential for building up your data skills for reproducible science.</p>
+<ul class="simple">
+<li><p>Programming</p></li>
+<li><p>Collaboration and version control (Git &amp; GitHub)</p></li>
+<li><p>Jupyter (incl. Google Colab)</p></li>
+<li><p>Data import and wrangling</p></li>
+<li><p>Visualization</p></li>
+</ul>
+</section>
+<section id="basics-of-statistics">
+<h3>Basics of statistics<a class="headerlink" href="#basics-of-statistics" title="Link to this heading">#</a></h3>
+<p>Random variable: A <strong>value</strong> that follows a probability distribution. Are the following quantities random variables?</p>
+<ul class="simple">
+<li><p>The number of apples in a basket</p></li>
+<li><p>Your height</p></li>
+<li><p>The height of a person sitting here who I randomly pick up</p></li>
+</ul>
+<!-- - Today’s temperature -->
+<!-- - The number I get by rolling a die -->
+<!-- What is a probability density function (PDF)? How is it different from a probability distribution? -->
+<p>Now let’s revisit expectation, variance, and their mathematical expressions (cont. Q1 in Pre-course Quiz):</p>
+<!-- Derive the expectation and the variance of the Bernoulli distribution $Ber(x|p) = p^x(1-p)^{1-x}$. -->
+</section>
+<section id="more-about-probability-distributions">
+<h3>More about probability distributions<a class="headerlink" href="#more-about-probability-distributions" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Gaussian: many distributions converge to this thanks to the central limit theory</p>
+<ul>
+<li><p>How does this relate to Q2 in the Pre-course Quiz?</p></li>
+</ul>
+</li>
+</ul>
+<!-- - Poisson distribution -->
+<ul class="simple">
+<li><p>Student t-distribution: Bounded to the mean</p></li>
+</ul>
+<!-- - Chi-squared ($\chi^2$) distribution: Bounded to the square of the Gaussians -->
+<ul class="simple">
+<li><p>Beta and Gamma distributions: different supports for different kinds of environment variables</p></li>
+</ul>
+</section>
+</section>
+<section id="group-discussion-demos">
+<h2>Group discussion &amp; Demos<a class="headerlink" href="#group-discussion-demos" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Discuss how you would reproduce the figure for Q3 in the Pre-course Quiz.</p></li>
+<li><p>Get the data necessary for doing Exercise 4.5 in Hsieh’s book.</p></li>
+</ol>
 </section>
 <section id="id3">
 <h2>小組討論 &amp; 展示主題<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
-<li><p>你能現在實作 Quiz #1-3 並秀出結果嗎？如果不知道如何進行，歡迎觀摩其他同學或是我的作法。</p></li>
-<li><p>取得 Hsieh 的書中 Exercise 4.2 所需的數據。這是問題集 1 的其中一道題目。</p></li>
+<li><p>討論要怎麼樣再現「修課前 Quiz」第三題的圖片。</p></li>
+<li><p>取得 Hsieh 的書中 Exercise 4.5 所需的數據。</p></li>
 </ol>
 </section>
 </section>
@@ -393,15 +462,6 @@
         <p class="prev-next-title">標題 (換成你的專題標題)</p>
       </div>
     </a>
-    <a class="right-next"
-       href="lecture2-3.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">統計檢定：如何知道環境因子之間有無互相影響？</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
@@ -409,8 +469,7 @@
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -419,7 +478,13 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">課程大綱</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">課程大綱</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-skills">Data skills</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basics-of-statistics">Basics of statistics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-about-probability-distributions">More about probability distributions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#group-discussion-demos">Group discussion &amp; Demos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">小組討論 &amp; 展示主題</a></li>
 </ul>
   </nav></div>
@@ -445,7 +510,7 @@ By Whyjay Zheng (鄭懷傑)
 
   <p class="copyright">
     
-      © Copyright 2024.
+      © Copyright 2024-2025.
       <br/>
     
   </p>
@@ -469,8 +534,8 @@ By Whyjay Zheng (鄭懷傑)
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

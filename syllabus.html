@@ -16,33 +16,30 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
-  <!-- So that users can add custom icons -->
-  <script src="_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -67,7 +64,6 @@
     <link rel="prev" title="GP5024: 環境資料科學 (Environmental data science)" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -83,8 +79,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -92,6 +99,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -99,8 +107,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -116,8 +124,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -147,17 +154,21 @@
     
     
     <img src="_static/csrsr_logo.png" class="logo__image only-light" alt="環境資料科學 - Home"/>
-    <img src="_static/csrsr_logo.png" class="logo__image only-dark pst-js-only" alt="環境資料科學 - Home"/>
+    <script>document.write(`<img src="_static/csrsr_logo.png" class="logo__image only-dark" alt="環境資料科學 - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">概覽</span></p>
@@ -171,11 +182,6 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">大綱</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="outlines/lecture1.html">暖身</a></li>
-<li class="toctree-l1"><a class="reference internal" href="outlines/lecture2-3.html">統計檢定：如何知道環境因子之間有無互相影響？</a></li>
-<li class="toctree-l1"><a class="reference internal" href="outlines/lecture4-5.html">迴歸模型：為什麼正則化如此重要？</a></li>
-<li class="toctree-l1"><a class="reference internal" href="outlines/lecture6-7.html">神經網路：越深的學習，成效越好嗎？</a></li>
-<li class="toctree-l1"><a class="reference internal" href="outlines/lecture8-9.html">核方法：維度是詛咒還是祝福？</a></li>
-<li class="toctree-l1"><a class="reference internal" href="outlines/lecture10-11.html">隨機森林：使用集成模型的最佳時機是什麼？</a></li>
 </ul>
 
     </div>
@@ -283,16 +289,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -325,23 +339,24 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">課堂內容</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">作業</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">期末專題</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">口頭報告: 12 月 24 日</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">線上專題成果網頁: 12 月 31 日前發布</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">小組提案書</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">口頭報告</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">線上專題成果網頁</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">評分標準</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">遲交政策</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">評分標準</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">遲交政策</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">行為準則</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">行為準則</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dei">多元、平等與包容 (DEI)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">作業與期末專題</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">學習時間</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">作業與期末專題</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">學習時間</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ai">AI 政策</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">工作語言</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">旁聽</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">工作語言</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">旁聽</a></li>
 </ul>
 </li>
 </ul>
@@ -357,7 +372,7 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
 <h1>課程大綱<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
-<p><strong>GP5024: 環境資料科學 (Environmental data science)</strong> 2024 年秋季</p>
+<p><strong>GP5024: 環境資料科學 (Environmental data science)</strong> 2025 年秋季</p>
 <p><a class="reference external" href="https://whyjz.github.io/">鄭懷傑</a> (Whyjay Zheng), <a class="reference external" href="mailto:whyjz&#37;&#52;&#48;csrsr&#46;ncu&#46;edu&#46;tw">whyjz<span>&#64;</span>csrsr<span>&#46;</span>ncu<span>&#46;</span>edu<span>&#46;</span>tw</a>, 科學一館-114，週二 13:00 - 15:30</p>
 <section id="id2">
 <h2>課程目標<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
@@ -373,7 +388,7 @@
 <p>本課程將需要你具備統計學和程式設計的必要知識。這裡有兩個自我檢查的方法：</p>
 <ul class="simple">
 <li><p>閱讀<a class="reference external" href="https://scikit-learn.org/1.4/tutorial/statistical_inference/supervised_learning.html">此網頁</a>，如果英文是主要的障礙，可以使用 Google 翻譯或類似的瀏覽器外掛。如果你能在合理的閱讀時間內理解大部分內容和步驟，那麼這門課應該蠻適合你！</p></li>
-<li><p>如果在 Quiz #1 中有超過兩個問題對你來說很困難，就建議先修讀入門統計學或程式設計課程。</p></li>
+<li><p>如果在「修課前 Quiz」中有超過兩個問題對你來說很困難，就建議先修讀入門統計學或程式設計課程。</p></li>
 </ul>
 </section>
 <section id="id4">
@@ -392,95 +407,85 @@
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>1 (9/10)</p></td>
-<td><p>課程大綱與暖身活動</p></td>
+<tr class="row-even"><td><p>1 (9/2)</p></td>
+<td><p>課程大綱與暖身活動｜修課前 Quiz</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>2 (9/17)</p></td>
-<td><p><em>不上課</em></p></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>3 (9/24)</p></td>
+<tr class="row-odd"><td><p>2 (9/9)</p></td>
 <td><p>統計檢定 (I)</p></td>
-<td><p>1.1–1.5, 3.1–3.4, 3.15, 3.16</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>4 (10/1)</p></td>
-<td><p>統計檢定 (II)</p></td>
 <td><p>4.1–4.5, 4.8</p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>5 (10/8)</p></td>
+<tr class="row-even"><td><p>3 (9/16)</p></td>
 <td><p><em>不上課</em></p></td>
 <td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>4 (9/23)</p></td>
+<td><p>統計檢定 (II)</p></td>
+<td><p>2.11, 5.1, 5.2, 5.5</p></td>
 <td><p>問題集 1</p></td>
 </tr>
-<tr class="row-odd"><td><p>6 (10/15)</p></td>
-<td><p>迴歸模型 (I)</p></td>
-<td><p>5.1, 5.2, 5.5, 5.6</p></td>
+<tr class="row-even"><td><p>5 (9/30)</p></td>
+<td><p>線性模型與正則化 (I)</p></td>
+<td><p>2.12, 2.13, 5.6–5.10</p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>7 (10/22)</p></td>
-<td><p>迴歸模型 (II)</p></td>
-<td><p>2.11, 2.13, 5.7, 5.8, 5.10</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>8 (10/29)</p></td>
-<td><p>神經網路 (I)</p></td>
+<tr class="row-odd"><td><p>6 (10/7)</p></td>
+<td><p>線性模型與正則化 (II)</p></td>
 <td><p>6.1–6.4, 7.1, 7.2</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>7 (10/14)</p></td>
+<td><p>神經網路 (I)</p></td>
+<td><p>7.3–7.6, 8.1–8.6</p></td>
 <td><p>問題集 2</p></td>
 </tr>
-<tr class="row-even"><td><p>9 (11/5)</p></td>
-<td><p>神經網路 (II)</p></td>
-<td><p>7.3–7.6, 8.1–8.6</p></td>
+<tr class="row-odd"><td><p>8 (10/21)</p></td>
+<td><p><em>不上課</em></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>9 (10/28)</p></td>
+<td><p><em>不上課</em></p></td>
+<td></td>
 <td><p>期末專題提案書</p></td>
 </tr>
-<tr class="row-odd"><td><p>10 (11/12)</p></td>
-<td><p>核方法 (I)</p></td>
-<td><p>2.14–2.16, 6.5, 13.1–13.4</p></td>
+<tr class="row-odd"><td><p>10 (11/4)</p></td>
+<td><p>神經網路 (II)</p></td>
+<td><p>2.14–2.16, 6.5, 6.8, 8.7, 8.8</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>11 (11/11)</p></td>
+<td><p>神經網路 (III)｜核方法 (I)</p></td>
+<td><p>12.1–12.3, 13.1–13.5</p></td>
 <td><p>問題集 3</p></td>
 </tr>
-<tr class="row-even"><td><p>11 (11/19)</p></td>
+<tr class="row-odd"><td><p>12 (11/18)</p></td>
 <td><p>核方法 (II)</p></td>
-<td><p>12.1, 13.5, 13.7, 13.8</p></td>
+<td><p>13.6–13.8</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>12 (11/26)</p></td>
-<td><p>隨機森林 (I)</p></td>
-<td><p>2.17, 8.7, 14.1</p></td>
+<tr class="row-even"><td><p>13 (11/25)</p></td>
+<td><p>核方法 (III)｜集成方法 (I)</p></td>
+<td><p>15.1–15.3</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>14 (12/2)</p></td>
+<td><p>集成方法 (II)</p></td>
+<td><p>2.17, 14.1, 14.2</p></td>
 <td><p>問題集 4</p></td>
 </tr>
-<tr class="row-even"><td><p>13 (12/3)</p></td>
-<td><p>隨機森林 (II)</p></td>
-<td><p>14.2, 14.3, 16.8, 16.9</p></td>
+<tr class="row-even"><td><p>15 (12/9)</p></td>
+<td><p>集成方法 (III)｜期末專題口頭發表｜修課後 Quiz</p></td>
+<td><p>14.3, 16.8, 16.9, 17.2</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>14 (12/10)</p></td>
+<tr class="row-odd"><td><p>16 (12/16)</p></td>
 <td><p><em>不上課</em></p></td>
 <td></td>
-<td><p>問題集 5</p></td>
-</tr>
-<tr class="row-even"><td><p>15 (12/17)</p></td>
-<td><p>總結</p></td>
-<td><p>6.8, 17.2</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>16 (12/24)</p></td>
-<td><p>期末專題口頭發表</p></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>17 (12/31)</p></td>
-<td><p><em>不上課</em></p></td>
-<td></td>
-<td><p>期末專題線上網頁</p></td>
-</tr>
-<tr class="row-odd"><td><p>18 (1/7)</p></td>
-<td><p><em>不上課</em></p></td>
-<td></td>
-<td></td>
+<td><p>問題集 5｜期末專題線上網頁</p></td>
 </tr>
 </tbody>
 </table>
@@ -498,46 +503,52 @@
 <p>課堂時間分為三個部分：</p>
 <ol class="arabic simple">
 <li><p>小組討論 (13:00–13:40)：以二至三人的小組為單位，討論並撰寫完成一張紙本練習題，題目都與指定的閱讀材料有關。</p></li>
-<li><p>授課 (13:40–15:00)：我 (Whyjay) 會介紹當天的主題。</p></li>
-<li><p>實作或第二次小組討論 (15:00–15:30)：我會展示一些數據處理的工作流程 (用於作業和期末專題研究)，你也會有一些時間，在我和同學的互相協助下親自熟悉這些操作。筆電非必須，但歡迎攜帶。</p></li>
+<li><p>授課 (13:40–15:10)：我 (Whyjay) 會介紹當天的主題。</p></li>
+<li><p>實作或第二次小組討論 (15:10–15:30)：我會展示一些數據處理的工作流程 (用於作業和期末專題研究)。如果還有時間的話，也可以繼續完成小組練習題。</p></li>
 </ol>
-<p>課堂有時會有不列入評分的小測驗，如果有的話通常在課堂開始時進行。你會有 5–10 分鐘的時間來解答。</p>
 </section>
 <section id="id9">
 <h3>作業<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
-<p>在整個學期中將有五份問題集。<strong>你必須獨立完成這些作業，不允許合作和抄襲</strong>。請參閱課程時間表中的作業截止週次，而作業必須在當週上課前完成繳交。建議使用 ee-class 繳交電子作業，但其他繳交形式也可以接受。如果你不使用 ee-class 的話，請確保我在截止日期前可以收到你的作業，以免發生遲交扣分的情形。</p>
+<p>在整個學期中將有五份問題集。<strong>你必須獨立完成這些作業，不允許合作和抄襲</strong>。所有的截止日期已寫在課程行事曆中，而截止時間是在上課前（也就是當日 1:00 pm）。建議使用 ee-class 繳交電子作業，但其他繳交形式也可以接受。如果你不使用 ee-class 的話，請確保我在截止日期前可以收到你的作業，以免發生遲交扣分的情形。</p>
 </section>
 <section id="id10">
 <h3>期末專題<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
 <p>期末專題為小組合作的作品，每組最多四人，共同完成專題內的多項任務目標。雖然非必須，不過建議選出一名組長，管理並規畫合作的各項進度。</p>
 <p>期末專題包含三個階段：</p>
 <ol class="arabic simple">
-<li><p>小組提案書，於 11 月 5 日前繳交，長度為半頁到一頁。</p></li>
-<li><p>12 月 24 日的專題口頭報告。</p></li>
-<li><p>12 月 31 日前線上公開發布展示專題成果的網頁。</p></li>
+<li><p>小組提案書</p></li>
+<li><p>專題口頭報告。</p></li>
+<li><p>線上公開發布展示專題成果的網頁。</p></li>
 </ol>
+<p>所有的截止日期已寫在課程行事曆中。書面報告的截止時間一樣是在上課前（當日 1:00 pm）。</p>
 <section id="id11">
-<h4>口頭報告: 12 月 24 日<a class="headerlink" href="#id11" title="Link to this heading">#</a></h4>
-<p>書報討論風格的報告形式，可使用視覺輔助工具如投影片、多媒體、黑板等等。報告以中文進行，時間為 20–30 分鐘，並附帶問答環節。每位組員都需參與發言。</p>
+<h4>小組提案書<a class="headerlink" href="#id11" title="Link to this heading">#</a></h4>
+<p>小組提案書應為半頁到一頁的長度，描述在學期末預期達成的目標。這些目標需要與在課程中介紹過的多種學習模型相關。</p>
 </section>
 <section id="id12">
-<h4>線上專題成果網頁: 12 月 31 日前發布<a class="headerlink" href="#id12" title="Link to this heading">#</a></h4>
-<p>線上專題成果網頁應遵循學術論文的結構，例如引言、方法、結果、討論、參考文獻等小節，並包含不超過 70 字的摘要。報告應於 12 月 31 日下午 1 點前上線，並至少保持到隔年 1 月 7 日以供評分。1 月 7 日後，你可以自行決定是否維持發布。</p>
+<h4>口頭報告<a class="headerlink" href="#id12" title="Link to this heading">#</a></h4>
+<p>書報討論風格的報告形式，可使用視覺輔助工具如投影片、多媒體、黑板等等。報告以中文進行，時間為 20–30 分鐘，並附帶問答環節。每位組員都需參與發言。</p>
+</section>
+<section id="id13">
+<h4>線上專題成果網頁<a class="headerlink" href="#id13" title="Link to this heading">#</a></h4>
+<p>線上專題成果網頁應遵循學術論文的結構，例如引言、方法、結果、討論、參考文獻等小節，並包含不超過 70 字的摘要。報告應於截止時間前上線，並至少保持 2 個禮拜以供評分。2 個禮拜過後，你可以自行決定是否維持發布。</p>
+<p>我之後會釋出網頁範本。</p>
 <!-- 我已經為你準備了一個範本，可用於自動發布你的 Jupyter notebook (或純 markdown 文件) 到 GitHub Pages 上。你也可以參考已發布的HTML 範例。 -->
 <!-- I have made a [template](https://github.com/whyjz/ncu-env-data-science-template) for you to automatically publish your Jupyer notebook (or plain markdown files) using GitHub Pages. You can also find the deployed [HTML here](https://whyjz.github.io/ncu-env-data-science-template/project.html).  -->
 </section>
 </section>
 </section>
-<section id="id13">
-<h2>評分標準<a class="headerlink" href="#id13" title="Link to this heading">#</a></h2>
+<section id="id14">
+<h2>評分標準<a class="headerlink" href="#id14" title="Link to this heading">#</a></h2>
 <p>我會使用 ee-class 評量並公佈成績。評分標準如下：</p>
 <ul class="simple">
-<li><p>指定閱讀與課堂討論 (20%): 每份小組的紙本練習題佔 2% 成績。評分只有三個級距：甲 (2%，百分之七十以上的完成度)，乙 (1%，百分之三十到七十的完成度)，丙 (0%，低於百分之三十的完成度)。所有討論的小組成員獲得相同的成績。本學期有十一份工作表，成績最低的一份將被排除在期末成績計算之外。</p></li>
+<li><p>指定閱讀與課堂討論 (22%): 每份小組的紙本練習題佔 2% 成績。評分只有三個級距：甲 (2%，百分之七十以上的完成度)，乙 (1%，百分之三十到七十的完成度)，丙 (0%，低於百分之三十的完成度)。所有討論的小組成員獲得相同的成績。本學期有十一份工作表，成績最低的一份將被排除在期末成績計算之外。</p></li>
 <li><p>作業 (50%): 每份問題集佔 12.5% 成績，成績最低的一份將被排除在期末成績計算之外。大部分問題來自 Hsieh 的教科書，作者針對部分問題有提供建議解答。但請記住：過程比結果更重要。作業評分主要基於工作流程的可再現性 (8.75%) 而非結果的正確性 (3.75%)。因此完成的作業請包括程式腳本、截圖或其他能幫助他人重現你工作流程的元素。</p></li>
 <li><p>期末專題 (30%): 小組提案書佔 5%，只要格式符合要求，我通常會給滿分。口頭報告佔 15%，最終網頁佔 10%。後兩者將根據作品品質、完整性、報告的清晰度以及讓他人重新使用你工作流程或結果的便利性來評分。所有組員獲得相同的基礎分數，再根據組員間的機密投票進行個別成績調整。</p></li>
 </ul>
-<section id="id14">
-<h3>遲交政策<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
+<p>所有評分項目的總和為102%。如果總分超過100%，您將獲得100%的成績。</p>
+<section id="id15">
+<h3>遲交政策<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>書面作業：超過繳交時間後每延遲 24 小時，成績扣除 10%。</p></li>
 <li><p>期末口頭報告：如果你在報告當天缺席，可把你的報告錄影後分享給所有修課同學做為補交，但每延遲一天，成績扣除 20%。</p></li>
@@ -545,8 +556,8 @@
 </ul>
 </section>
 </section>
-<section id="id15">
-<h2>行為準則<a class="headerlink" href="#id15" title="Link to this heading">#</a></h2>
+<section id="id16">
+<h2>行為準則<a class="headerlink" href="#id16" title="Link to this heading">#</a></h2>
 <section id="dei">
 <h3>多元、平等與包容 (DEI)<a class="headerlink" href="#dei" title="Link to this heading">#</a></h3>
 <ul class="simple">
@@ -555,23 +566,23 @@
 <li><p>在討論中請尊重不同的觀點和想法，並注意以刻板印象為出發點的用詞與說明。</p></li>
 </ul>
 </section>
-<section id="id16">
-<h3>作業與期末專題<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
+<section id="id17">
+<h3>作業與期末專題<a class="headerlink" href="#id17" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>在你的作品中使用受版權保護的材料請務必注意，確保在使用前取得使用許可，並對原作者進行適當的表彰。</p></li>
 <li><p>再次強調，請勿與其他同學合作完成作業，<strong>作業必須是你的個人作品</strong>。</p></li>
 </ul>
 </section>
-<section id="id17">
-<h3>學習時間<a class="headerlink" href="#id17" title="Link to this heading">#</a></h3>
+<section id="id18">
+<h3>學習時間<a class="headerlink" href="#id18" title="Link to this heading">#</a></h3>
 <p>這是一門 3 學分的課程，如果要獲得滿意的成績，我預期每週在課外約還要花費 6 小時進行研讀、完成作業、寫程式等等活動。如果你花費的大大少於或多於此預估時間，再請告知我。</p>
 </section>
 <section id="ai">
 <h3>AI 政策<a class="headerlink" href="#ai" title="Link to this heading">#</a></h3>
 <p>我們鼓勵使用生成式 AI 或是 AI 輔助程式設計 (嘿…這就是資料科學的力量！！)。然而，請謹慎使用！生成式 AI 擅長處理常見任務 (如給出處理典型數據結構的程式碼)，但不太擅長提供創新想法或視角。因為其訓練過程的特性和使用的資料關係，其答案就算合理，也通常很無聊。</p>
 </section>
-<section id="id18">
-<h3>工作語言<a class="headerlink" href="#id18" title="Link to this heading">#</a></h3>
+<section id="id19">
+<h3>工作語言<a class="headerlink" href="#id19" title="Link to this heading">#</a></h3>
 <p>我們課堂和口頭報告的主要語言為中文，但有一些例外：</p>
 <ul class="simple">
 <li><p>如果小組內所有成員同意，小組討論可以使用其他語言。</p></li>
@@ -579,8 +590,8 @@
 </ul>
 <p>作業可以使用任何程式語言完成。不過我熟悉 Python 和 Matlab，如果你使用其中之一，我可以給你更多回饋。我們會使用 Python 及 Jupyter 環境 (包括 Colab) 進行課堂展示。</p>
 </section>
-<section id="id19">
-<h3>旁聽<a class="headerlink" href="#id19" title="Link to this heading">#</a></h3>
+<section id="id20">
+<h3>旁聽<a class="headerlink" href="#id20" title="Link to this heading">#</a></h3>
 <p>歡迎旁聽。如果你打算旁聽此課程，請注意：</p>
 <ul class="simple">
 <li><p>你無法繳交作業或加入任何期末專題小組。</p></li>
@@ -597,8 +608,7 @@ Kernel Methods: Is dimensionality a curse or a blessing? (Weeks 10-12)
 Part 5
 Random Forests: When one model is not enough, make several? (Weeks 13-15)
 Part 6
-Final hacker group presentation (Week 16) -->
-</section>
+Final hacker group presentation (Week 16) --></section>
 </section>
 </section>
 
@@ -657,8 +667,7 @@ Final hacker group presentation (Week 16) -->
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -676,23 +685,24 @@ Final hacker group presentation (Week 16) -->
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">課堂內容</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">作業</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">期末專題</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">口頭報告: 12 月 24 日</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">線上專題成果網頁: 12 月 31 日前發布</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">小組提案書</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">口頭報告</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">線上專題成果網頁</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">評分標準</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">遲交政策</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">評分標準</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">遲交政策</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">行為準則</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">行為準則</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dei">多元、平等與包容 (DEI)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">作業與期末專題</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">學習時間</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">作業與期末專題</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">學習時間</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ai">AI 政策</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">工作語言</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">旁聽</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">工作語言</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">旁聽</a></li>
 </ul>
 </li>
 </ul>
@@ -719,7 +729,7 @@ By Whyjay Zheng (鄭懷傑)
 
   <p class="copyright">
     
-      © Copyright 2024.
+      © Copyright 2024-2025.
       <br/>
     
   </p>
@@ -743,8 +753,8 @@ By Whyjay Zheng (鄭懷傑)
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
