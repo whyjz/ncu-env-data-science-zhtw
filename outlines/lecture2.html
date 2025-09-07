@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>統計檢定：如何知道環境因子之間有無互相影響？ &#8212; 環境資料科學</title>
+    <title>統計檢定：與機器學習的關係何在？ &#8212; 環境資料科學</title>
   
   
   
@@ -59,9 +59,10 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'outlines/lecture2-3';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'outlines/lecture2';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="暖身" href="lecture1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -124,8 +125,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -182,8 +181,9 @@
 
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">大綱</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="lecture1.html">暖身</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">統計檢定：與機器學習的關係何在？</a></li>
 </ul>
 
     </div>
@@ -238,7 +238,7 @@
       
       
       
-      <li><a href="../_sources/outlines/lecture2-3.md" target="_blank"
+      <li><a href="../_sources/outlines/lecture2.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -322,7 +322,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>統計檢定：如何知道環境因子之間有無互相影響？</h1>
+    <h1>統計檢定：與機器學習的關係何在？</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -332,23 +332,19 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">大綱</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">基礎概念</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">資料處理技術</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">機率分佈</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">假設檢定</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">五步驟</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">案例研究</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vs">第一型錯誤 vs 第二型錯誤</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#p-p-hacking">p 值操弄 (p-hacking)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#t">t 檢定的深入討論</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">無母數檢定</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrapping">自助重抽法 (Bootstrapping)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">課程大綱</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">假說檢定五步驟</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#t">使用單樣本 t 檢定的案例研究</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vs">第一型錯誤 vs 第二型錯誤</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">t 檢定的深入討論</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#p-p-hacking">p 值操弄 (p-hacking)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">無母數檢定</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ci">信賴區間（CI）</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrapping">自助法 (Bootstrapping)</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">小組討論 &amp; 展示主題</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">最後的問題</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">小組討論與示範</a></li>
 </ul>
             </nav>
         </div>
@@ -361,106 +357,128 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>統計檢定：如何知道環境因子之間有無互相影響？<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
-<p><strong>2024.09.24, 2024.10.01</strong></p>
+<h1>統計檢定：與機器學習的關係何在？<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
 <section id="id2">
-<h2>大綱<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<h2>課程大綱<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>使用假說檢定的時機是什麼？</p>
 <section id="id3">
-<h3>基礎概念<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
-<p>隨機變數 (Random variable) 不是數學上所稱的變數 (Variable），反而比較接近一種符合某種機率分布的數值。</p>
-<p>以下這些數量是隨機變數嗎？</p>
-<ul class="simple">
-<li><p>籃子裡的蘋果數量</p></li>
-<li><p>你的身高</p></li>
-<li><p>我隨機挑選出坐在這裡的一個人的身高</p></li>
-<li><p>今天的氣溫</p></li>
-<li><p>擲骰子得到的數字</p></li>
-</ul>
-<p>機率密度函數 (probability density function, PDF)是什麼？它與機率分布有何不同？</p>
-<p>我們來回顧一下期望值、變異數及其數學表示式（接續 Quiz #1-2）：推導出伯努利分布 <span class="math notranslate nohighlight">\(Ber(x|p) = p^x(1-p)^{1-x}\)</span> 的期望值和變異數。</p>
-</section>
-<section id="id4">
-<h3>資料處理技術<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
-<p>以下是我們在本課程中不會花太多時間關注的技能，但如果你要建立可重現的科學分析，這些技能都不可或缺。</p>
-<ul class="simple">
-<li><p>程式設計</p></li>
-<li><p>程式碼與文檔的協作與版本控制（Git 和 GitHub）（參見 Quiz #1-4）</p></li>
-<li><p>Jupyter（Google Colab 是其中一種）</p></li>
-<li><p>資料匯入與整理</p></li>
-<li><p>資料視覺化</p></li>
-</ul>
-</section>
-<section id="id5">
-<h3>機率分佈<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>高斯分布：許多分布會收斂至此分佈（參考<strong>中央極限定理</strong>）</p></li>
-<li><p>卜瓦松分布：<em>練習題 #1-5</em></p></li>
-<li><p>Student t 分布：小樣本平均值的機率分佈</p></li>
-<li><p>卡方 (<span class="math notranslate nohighlight">\(\chi^2\)</span>) 分布：高斯分布的平方</p></li>
-</ul>
-</section>
-<section id="id6">
-<h3>假設檢定<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
-<p>何時使用假設檢定？</p>
-<section id="id7">
-<h4>五步驟<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
-<ul class="simple">
+<h3>假說檢定五步驟<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
 <li><p>設定 <span class="math notranslate nohighlight">\(H_0\)</span>（虛無假說）</p></li>
 <li><p>設定 <span class="math notranslate nohighlight">\(H_1\)</span>（對立假說）</p></li>
 <li><p>設定檢定統計量與顯著水準 (<span class="math notranslate nohighlight">\(\alpha\)</span>)</p></li>
 <li><p>找出在虛無假說為真下，檢定統計量的分布（null distribution）；計算 <span class="math notranslate nohighlight">\(p\)</span> 值 (<span class="math notranslate nohighlight">\(p\)</span>-value)</p></li>
 <li><p>比較 <span class="math notranslate nohighlight">\(p\)</span> 值與 <span class="math notranslate nohighlight">\(\alpha\)</span>，決定是否拒絕 <span class="math notranslate nohighlight">\(H_0\)</span></p></li>
-</ul>
-</section>
-<section id="id8">
-<h4>案例研究<a class="headerlink" href="#id8" title="Link to this heading">#</a></h4>
-<p><strong>單樣本 t 檢定</strong>（4.2.1 節）：某魚種在兩個湖泊內的平均重量是否不同？</p>
-<p>已知該魚種在大湖中的母體平均值為 <span class="math notranslate nohighlight">\(\mu_0\)</span>。另外，我們從小湖中抓了 20 條魚，測得樣本平均值為 <span class="math notranslate nohighlight">\(\bar{x}\)</span>。</p>
-<p>檢定統計量 <span class="math notranslate nohighlight">\(t = \frac{\bar{x} - \mu_0}{s / \sqrt{N}}\)</span></p>
-</section>
-<section id="vs">
-<h4>第一型錯誤 vs 第二型錯誤<a class="headerlink" href="#vs" title="Link to this heading">#</a></h4>
-<p>分別又稱為假陽性 vs 假陰性。</p>
-<p>在設計 <span class="math notranslate nohighlight">\(\alpha\)</span> 和 <span class="math notranslate nohighlight">\(N\)</span> 時，如何權衡這兩類錯誤？</p>
-</section>
-<section id="p-p-hacking">
-<h4>p 值操弄 (p-hacking)<a class="headerlink" href="#p-p-hacking" title="Link to this heading">#</a></h4>
-<p>如果我們重複「從小湖中抓 20 條魚」的這個動作 100 次… 再挑 p 值最低的那次回報如何？</p>
+</ol>
 </section>
 <section id="t">
-<h4>t 檢定的深入討論<a class="headerlink" href="#t" title="Link to this heading">#</a></h4>
+<h3>使用單樣本 t 檢定的案例研究<a class="headerlink" href="#t" title="Link to this heading">#</a></h3>
+<p>背景條件：</p>
+<ul class="simple">
+<li><p>已知某種存在大湖中的魚的每一尾個體的重量，因此平均重量也能確定（<span class="math notranslate nohighlight">\(\mu_0\)</span>）</p></li>
+<li><p>我們從小湖中抓了同種的 20 尾魚形成一個樣本，量測每尾的重量，再計算平均重量（樣本平均數；<span class="math notranslate nohighlight">\(\bar{x}\)</span>）</p></li>
+</ul>
+<p>研究問題（假說）：</p>
+<ul class="simple">
+<li><p>兩座湖泊的此魚種，平均重量是否不同？</p></li>
+<li><p>對應到虛無假說（<span class="math notranslate nohighlight">\(H_0\)</span>）：<span class="math notranslate nohighlight">\(\mu = \mu_0\)</span></p></li>
+</ul>
+<p>使用單樣本 t 檢定時還必須做出哪些假設？</p>
+<ul class="simple">
+<li><p>要假設這個樣本的母體為高斯分布嗎？</p></li>
+<li><p>要假設這個樣本的變異數（<span class="math notranslate nohighlight">\(s^2\)</span>）等於母體變異數（<span class="math notranslate nohighlight">\(\sigma^2\)</span>）嗎？</p></li>
+</ul>
+<p>人為選擇：</p>
+<ul class="simple">
+<li><p>單尾檢定或雙尾檢定？</p></li>
+<li><p>顯著水準設定為多少？</p></li>
+</ul>
+<p>檢定統計量 <span class="math notranslate nohighlight">\(t = \frac{\bar{x} - \mu_0}{s / \sqrt{N}}\)</span></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(N\)</span> 為樣本數</p></li>
+<li><p>這個檢定量的機率分布是什麼？</p></li>
+</ul>
+<p>報告結果：</p>
+<ul class="simple">
+<li><p>「小湖中的魚在 <span class="math notranslate nohighlight">\(\alpha = \)</span> 0.xx 的顯著水準下比大湖中的魚重（<span class="math notranslate nohighlight">\(p = \)</span> <a class="reference external" href="http://0.xxx">0.xxx</a>）。」</p></li>
+<li><p>「小湖中的魚與大湖中的魚在重量上沒有顯著差異（<span class="math notranslate nohighlight">\(\alpha = \)</span> 0.xx；<span class="math notranslate nohighlight">\(p = \)</span> <a class="reference external" href="http://0.xxx">0.xxx</a>）。」</p></li>
+</ul>
+</section>
+<section id="vs">
+<h3>第一型錯誤 vs 第二型錯誤<a class="headerlink" href="#vs" title="Link to this heading">#</a></h3>
+<p>分別又稱為假陽性 vs 假陰性。這兩型錯誤會有互相消長的情況：減少第一型錯誤出現的機會時，可能會增加第二型錯誤出現的機會，反之亦然。</p>
+<p>因此，要如何權衡這兩型錯誤，以及該如何基於權衡的結果設計 <span class="math notranslate nohighlight">\(\alpha\)</span> 和 <span class="math notranslate nohighlight">\(N\)</span> ？</p>
+</section>
+<section id="id4">
+<h3>t 檢定的深入討論<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <p><strong>雙樣本 t 檢定</strong>：樣本的假設條件很重要 –</p>
 <ul class="simple">
 <li><p>兩者的變異數是否相同？</p></li>
 <li><p>兩個樣本是否有可能互相關聯？</p></li>
+<li><p>資料是不是需要一點前處理？</p></li>
 </ul>
 <p>t 檢定也可以用來檢測相關性（虛無假說為 <span class="math notranslate nohighlight">\(\rho = 0\)</span>）。</p>
 </section>
-<section id="id9">
-<h4>無母數檢定<a class="headerlink" href="#id9" title="Link to this heading">#</a></h4>
+<section id="p-p-hacking">
+<h3>p 值操弄 (p-hacking)<a class="headerlink" href="#p-p-hacking" title="Link to this heading">#</a></h3>
+<p>如果我們重複「從小湖中抓 20 條魚」以及後續的假說檢定 100 次，再挑 <span class="math notranslate nohighlight">\(p\)</span> 值最低的那次回報如何？</p>
+<p><font color="red"><b>千萬不要這樣做！</b></font>為什麼？</p>
+</section>
+<section id="id5">
+<h3>無母數檢定<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
 <p>母數檢定 (parametric tests) vs 無母數檢定 (non-parametric tests): 該使用哪一種？</p>
 <p>以下是我們可能會在課堂上提到的無母數檢定方法：</p>
 <ul class="simple">
 <li><p>Wilcoxon–Mann–Whitney 檢定：位置（平均值）差異</p></li>
-<li><p>Kolmogorov–Smirnov 檢定：連續資料的適配度</p></li>
-<li><p>皮爾森卡方檢定：類別資料的適合度</p></li>
+<li><p>Kolmogorov–Smirnov 檢定：連續資料的適配度</p>
+<ul>
+<li><p>檢定統計量：兩筆樣本的累積分布函數之間的最大垂直距離</p></li>
+</ul>
+</li>
 </ul>
 </section>
+<section id="ci">
+<h3>信賴區間（CI）<a class="headerlink" href="#ci" title="Link to this heading">#</a></h3>
+<p>信賴區間主要用於預測未知的母體參數。信賴區間的估計需要使用與假說檢定類似的概念，不過我們不用設定虛無假說。</p>
+<p>「門檻值」的概念仍然需要。這裡不稱為顯著水準了，而是稱為「信心水準」。</p>
+<p>報告結果：</p>
+<ul class="simple">
+<li><p>xxx <span class="math notranslate nohighlight">\(\pm\)</span> yyy（zzz% CI）</p></li>
+<li><p>[aaa, bbb]（zzz% CI）</p></li>
+</ul>
+<p>信賴區間的頻率學派觀點：信賴區間如何解讀？</p>
+</section>
 <section id="bootstrapping">
-<h4>自助重抽法 (Bootstrapping)<a class="headerlink" href="#bootstrapping" title="Link to this heading">#</a></h4>
-<p>自助重抽法是什麼？要如何進行？</p>
-<p>使用傳統方法（4.4 節）已經可以估計信賴區間，那為什麼還要使用自助重抽法？</p>
+<h3>自助法 (Bootstrapping)<a class="headerlink" href="#bootstrapping" title="Link to this heading">#</a></h3>
+<p>在什麼情況下，找出母體參數的信賴區間是太不可能的？</p>
+<ul class="simple">
+<li><p>母體參數沒有合適的機率分布可以描述（機率分布未知或不存在）</p></li>
+<li><p>樣本太少</p></li>
+</ul>
+<p>如何使用自助法找出母體參數的信賴區間？</p>
+<ul class="simple">
+<li><p>百分位法：CI = <span class="math notranslate nohighlight">\([ \theta^{\ast}_{\alpha/2}, \theta^{\ast}_{(1 - \alpha/2)} ]\)</span>（<strong>不要使用這個！</strong>）</p></li>
+<li><p>基本法：CI = <span class="math notranslate nohighlight">\([ 2\theta_s - \theta^{\ast}_{(1 - \alpha/2)}, 2\theta_s - \theta^{\ast}_{\alpha/2} ]\)</span></p></li>
+<li><p>BCa</p></li>
+</ul>
 </section>
 </section>
+<section id="id6">
+<h2>最後的問題<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p><strong>統計檢定與機器學習有什麼關係？</strong></p>
+<ul class="simple">
+<li><p>簡易的替代方案（畢竟不是所有問題都需要機器學習）？</p></li>
+<li><p>理解基於統計的推論的重要性？</p></li>
+<li><p>有其他想法嗎？</p></li>
+</ul>
 </section>
-<section id="id10">
-<h2>小組討論 &amp; 展示主題<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<section id="id7">
+<h2>小組討論與示範<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
-<li><p>使用 Jupyter Notebook（可以使用 <a class="reference external" href="https://colab.google/">Google Colaboratory</a>、<a class="reference external" href="https://www.callysto.ca/">Callysto Hub</a> 或是本地端電腦） 載入問題集 #1 需要的數據集。</p></li>
-<li><p>關於問題集 #1，有任何想要問的嗎？</p></li>
-<li><p>使用 ee-class 瀏覽成績與繳交作業；作業的再現性要求</p></li>
+<li><p>你對問題集 #1 有任何問題嗎？</p></li>
+<li><p>使用 ee-class 瀏覽成績與繳交作業；再次說明作業的再現性要求</p></li>
 </ol>
-</section>
+<!-- 1. 使用 Jupyter Notebook（可以使用 [Google Colaboratory](https://colab.google/)、[Callysto Hub](https://hub.callysto.ca/) 或是本地端電腦） 載入問題集 #1 需要的數據集。 --></section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -493,6 +511,15 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="lecture1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">暖身</p>
+      </div>
+    </a>
 </div>
                 </footer>
               
@@ -509,23 +536,19 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">大綱</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">基礎概念</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">資料處理技術</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">機率分佈</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">假設檢定</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">五步驟</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">案例研究</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vs">第一型錯誤 vs 第二型錯誤</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#p-p-hacking">p 值操弄 (p-hacking)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#t">t 檢定的深入討論</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">無母數檢定</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrapping">自助重抽法 (Bootstrapping)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">課程大綱</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">假說檢定五步驟</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#t">使用單樣本 t 檢定的案例研究</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vs">第一型錯誤 vs 第二型錯誤</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">t 檢定的深入討論</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#p-p-hacking">p 值操弄 (p-hacking)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">無母數檢定</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ci">信賴區間（CI）</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrapping">自助法 (Bootstrapping)</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">小組討論 &amp; 展示主題</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">最後的問題</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">小組討論與示範</a></li>
 </ul>
   </nav></div>
 

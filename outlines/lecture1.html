@@ -57,9 +57,12 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'outlines/lecture1';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="統計檢定：與機器學習的關係何在？" href="lecture2.html" />
     <link rel="prev" title="標題 (換成你的專題標題)" href="../project.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -181,6 +184,7 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">大綱</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">暖身</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture2.html">統計檢定：與機器學習的關係何在？</a></li>
 </ul>
 
     </div>
@@ -330,13 +334,12 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">課程大綱</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-skills">Data skills</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basics-of-statistics">Basics of statistics</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-about-probability-distributions">More about probability distributions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">資料科學技能</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">統計學基礎</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">機率分布</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#group-discussion-demos">Group discussion &amp; Demos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">小組討論 &amp; 展示主題</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">小組討論 &amp; 展示主題</a></li>
 </ul>
             </nav>
         </div>
@@ -363,59 +366,47 @@ document.write(`
 <p>「機器學習」中的「學習」是什麼意思？</p>
 <p>監督式學習和非監督式學習的差別是什麼？</p>
 <p>「修課前 Quiz」第四題，你寫了什麼答案？</p>
-<section id="data-skills">
-<h3>Data skills<a class="headerlink" href="#data-skills" title="Link to this heading">#</a></h3>
-<p>Here are things we don’t primarily focus on during the class but are essential for building up your data skills for reproducible science.</p>
+<section id="id3">
+<h3>資料科學技能<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>以下是這門課的演講部分比較不會著重的資料科學技能，不過我們卻會透過作業跟專題來讓各位對這些面向有初步的實作型理解。</p>
 <ul class="simple">
-<li><p>Programming</p></li>
-<li><p>Collaboration and version control (Git &amp; GitHub)</p></li>
-<li><p>Jupyter (incl. Google Colab)</p></li>
-<li><p>Data import and wrangling</p></li>
-<li><p>Visualization</p></li>
+<li><p>程式設計</p></li>
+<li><p>版本控制（Git 與 GitHub）與開發協作</p></li>
+<li><p>Jupyter 和其衍生產品，像是 Google Colab</p></li>
+<li><p>資料匯入與整理</p></li>
+<li><p>資料視覺化</p></li>
 </ul>
 </section>
-<section id="basics-of-statistics">
-<h3>Basics of statistics<a class="headerlink" href="#basics-of-statistics" title="Link to this heading">#</a></h3>
-<p>Random variable: A <strong>value</strong> that follows a probability distribution. Are the following quantities random variables?</p>
+<section id="id4">
+<h3>統計學基礎<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>隨機變數：表示遵循某種機率分布的事件結果。隨機變數既不隨機，也不是傳統意義上的變數。這些結果的隨機性由一個機率分布函數決定。</p>
+<p>以下數量是隨機變數嗎？</p>
 <ul class="simple">
-<li><p>The number of apples in a basket</p></li>
-<li><p>Your height</p></li>
-<li><p>The height of a person sitting here who I randomly pick up</p></li>
+<li><p>籃子裡的蘋果數量</p></li>
+<li><p>你今天下午的身高</p></li>
+<li><p>擲灌鉛骰子得到的點數</p></li>
+<li><p>今天的氣溫</p></li>
 </ul>
-<!-- - Today’s temperature -->
-<!-- - The number I get by rolling a die -->
-<!-- What is a probability density function (PDF)? How is it different from a probability distribution? -->
-<p>Now let’s revisit expectation, variance, and their mathematical expressions (cont. Q1 in Pre-course Quiz):</p>
-<!-- Derive the expectation and the variance of the Bernoulli distribution $Ber(x|p) = p^x(1-p)^{1-x}$. -->
 </section>
-<section id="more-about-probability-distributions">
-<h3>More about probability distributions<a class="headerlink" href="#more-about-probability-distributions" title="Link to this heading">#</a></h3>
+<section id="id5">
+<h3>機率分布<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Gaussian: many distributions converge to this thanks to the central limit theory</p>
+<li><p>高斯分布：根據中央極限定理，許多分布會收斂到這個分布</p>
 <ul>
-<li><p>How does this relate to Q2 in the Pre-course Quiz?</p></li>
+<li><p>這個特性與「修課前 Quiz」第二題有什麼關係？</p></li>
 </ul>
 </li>
+<li><p>學生 t 分布：跟平均值相關</p></li>
+<li><p>貝塔分布與伽瑪分布：不同類型的環境科學變數，可能因為值域的影響而適用不同的分布來描述</p></li>
 </ul>
-<!-- - Poisson distribution -->
+<p>現在讓我們重新回顧期望值、變異數及其數學表達式（修課前 Quiz 第一題）。</p>
 <ul class="simple">
-<li><p>Student t-distribution: Bounded to the mean</p></li>
-</ul>
-<!-- - Chi-squared ($\chi^2$) distribution: Bounded to the square of the Gaussians -->
-<ul class="simple">
-<li><p>Beta and Gamma distributions: different supports for different kinds of environment variables</p></li>
+<li><p>伯努利分布 <span class="math notranslate nohighlight">\(Ber(x|p) = p^x(1-p)^{1-x}\)</span> 的期望值跟變異數是？</p></li>
 </ul>
 </section>
 </section>
-<section id="group-discussion-demos">
-<h2>Group discussion &amp; Demos<a class="headerlink" href="#group-discussion-demos" title="Link to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p>Discuss how you would reproduce the figure for Q3 in the Pre-course Quiz.</p></li>
-<li><p>Get the data necessary for doing Exercise 4.5 in Hsieh’s book.</p></li>
-</ol>
-</section>
-<section id="id3">
-<h2>小組討論 &amp; 展示主題<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<section id="id6">
+<h2>小組討論 &amp; 展示主題<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>討論要怎麼樣再現「修課前 Quiz」第三題的圖片。</p></li>
 <li><p>取得 Hsieh 的書中 Exercise 4.5 所需的數據。</p></li>
@@ -462,6 +453,15 @@ document.write(`
         <p class="prev-next-title">標題 (換成你的專題標題)</p>
       </div>
     </a>
+    <a class="right-next"
+       href="lecture2.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">統計檢定：與機器學習的關係何在？</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -479,13 +479,12 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">課程大綱</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-skills">Data skills</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basics-of-statistics">Basics of statistics</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-about-probability-distributions">More about probability distributions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">資料科學技能</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">統計學基礎</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">機率分布</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#group-discussion-demos">Group discussion &amp; Demos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">小組討論 &amp; 展示主題</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">小組討論 &amp; 展示主題</a></li>
 </ul>
   </nav></div>
 
