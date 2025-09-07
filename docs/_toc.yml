@@ -10,7 +10,7 @@ parts:
   - caption: 大綱
     chapters:
     - file: outlines/lecture1
-    # - file: outlines/lecture2-3
+    - file: outlines/lecture2
     # - file: outlines/lecture4-5
     # - file: outlines/lecture6-7
     # - file: outlines/lecture8-9

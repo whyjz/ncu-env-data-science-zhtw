@@ -16,45 +16,36 @@
 
 「修課前 Quiz」第四題，你寫了什麼答案？
 
-### Data skills
+### 資料科學技能
 
-Here are things we don't primarily focus on during the class but are essential for building up your data skills for reproducible science.
+以下是這門課的演講部分比較不會著重的資料科學技能，不過我們卻會透過作業跟專題來讓各位對這些面向有初步的實作型理解。
 
-- Programming
-- Collaboration and version control (Git & GitHub)
-- Jupyter (incl. Google Colab)
-- Data import and wrangling
-- Visualization
+- 程式設計
+- 版本控制（Git 與 GitHub）與開發協作
+- Jupyter 和其衍生產品，像是 Google Colab
+- 資料匯入與整理
+- 資料視覺化
 
-### Basics of statistics 
+### 統計學基礎
 
-Random variable: A **value** that follows a probability distribution. Are the following quantities random variables?
-- The number of apples in a basket
-- Your height
-- The height of a person sitting here who I randomly pick up
-<!-- - Today’s temperature -->
-<!-- - The number I get by rolling a die -->
+隨機變數：表示遵循某種機率分布的事件結果。隨機變數既不隨機，也不是傳統意義上的變數。這些結果的隨機性由一個機率分布函數決定。
 
-<!-- What is a probability density function (PDF)? How is it different from a probability distribution? -->
+以下數量是隨機變數嗎？
 
-Now let's revisit expectation, variance, and their mathematical expressions (cont. Q1 in Pre-course Quiz): 
+- 籃子裡的蘋果數量
+- 你今天下午的身高
+- 擲灌鉛骰子得到的點數
+- 今天的氣溫
 
-<!-- Derive the expectation and the variance of the Bernoulli distribution $Ber(x|p) = p^x(1-p)^{1-x}$. -->
+### 機率分布
 
-### More about probability distributions
+- 高斯分布：根據中央極限定理，許多分布會收斂到這個分布
+  - 這個特性與「修課前 Quiz」第二題有什麼關係？
+- 學生 t 分布：跟平均值相關
+- 貝塔分布與伽瑪分布：不同類型的環境科學變數，可能因為值域的影響而適用不同的分布來描述
 
-- Gaussian: many distributions converge to this thanks to the central limit theory
-  - How does this relate to Q2 in the Pre-course Quiz?
-<!-- - Poisson distribution -->
-- Student t-distribution: Bounded to the mean
-<!-- - Chi-squared ($\chi^2$) distribution: Bounded to the square of the Gaussians -->
-- Beta and Gamma distributions: different supports for different kinds of environment variables
-
-## Group discussion & Demos
-
-1. Discuss how you would reproduce the figure for Q3 in the Pre-course Quiz.
-2. Get the data necessary for doing Exercise 4.5 in Hsieh's book.
-
+現在讓我們重新回顧期望值、變異數及其數學表達式（修課前 Quiz 第一題）。
+- 伯努利分布 $Ber(x|p) = p^x(1-p)^{1-x}$ 的期望值跟變異數是？
 
 ## 小組討論 & 展示主題
 
