@@ -4,7 +4,7 @@
 
 1. 完成 Hsieh 書中的 Exercise 4.1。
 2. 完成 Hsieh 書中的 Exercise 4.5。（資料來源：`SWE_Nino_Nina.csv`）
-3. 完成 Hsieh 書中的 Exercise 4.6。（資料來源：`nino12_long_anom.csv` & `nino34_long_anom.csv`）
+3. 完成 Hsieh 書中的 Exercise 4.6。（資料來源：`Nino1+2_anomalies.csv` & `Nino3.4_anomalies.csv`）
 4. 針對 `SWE_Nino_Nina.csv` 中的 SWE 資料，使用自助重抽法計算其中位數的 95% 信賴區間。務必避免使用百分位數法 (percentile method)。
 5. 重製「修課前 Quiz」第 3 題的圖表。（[圖表連結](https://drive.google.com/file/d/15WejYTcSHDGM3VNoX32WaD5r8l-BNNF-/view?usp=sharing)）*圖表來源：Nicolas P. Rougier (2021)*
 
