@@ -8,17 +8,14 @@
 4. 針對 `SWE_Nino_Nina.csv` 中的 SWE 資料，使用自助重抽法計算其中位數的 95% 信賴區間。務必避免使用百分位數法 (percentile method)。
 5. 重製「修課前 Quiz」第 3 題的圖表。（[圖表連結](https://drive.google.com/file/d/15WejYTcSHDGM3VNoX32WaD5r8l-BNNF-/view?usp=sharing)）*圖表來源：Nicolas P. Rougier (2021)*
 
-<!-- ## 問題集 #2
+## 問題集 #2
 
-完成 Hsieh 書中的 Exercises 5.2、5.6、5.7 和 5.9。
+1. 完成 Hsieh 書中的 Exercise 5.7。（資料來源：`Milwaukee_wind_direction_ozone.csv`）
+2. 把 `SWE_tele.csv` 的資料進行視覺化呈現，並提出幾個可以用此圖來證明或支持的論點。
+3. 完成 Hsieh 書中的 Exercise 5.8。（資料來源：`SWE_tele.csv`）
+4. 完成 Hsieh 書中的 Exercise 5.9。（資料來源：`SWE_tele.csv`）
 
-使用資料：
-- 5.2: `Old_Faithful_geyser.csv`
-- 5.6: `Vanc_Tor_Temp_tele.csv`
-- 5.7: `Milwaukee_wind_direction_ozone.csv`
-- 5.9: `SWE_tele.csv`
-
-## 問題集 #3
+<!-- ## 問題集 #3
 
 完成 Hsieh 書中的 Exercises 6.5、6.6 和 8.1。
 
