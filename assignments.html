@@ -57,6 +57,8 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'assignments';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -335,6 +337,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">問題集 #1</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">問題集 #2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">問題集 #3</a></li>
 </ul>
             </nav>
         </div>
@@ -366,15 +369,15 @@ document.write(`
 <li><p>完成 Hsieh 書中的 Exercise 5.8。（資料來源：<code class="docutils literal notranslate"><span class="pre">SWE_tele.csv</span></code>）</p></li>
 <li><p>完成 Hsieh 書中的 Exercise 5.9。（資料來源：<code class="docutils literal notranslate"><span class="pre">SWE_tele.csv</span></code>）</p></li>
 </ol>
-<!-- ## 問題集 #3
-
-完成 Hsieh 書中的 Exercises 6.5、6.6 和 8.1。
-
-使用資料：
-- 6.5: `SWE_tele.csv`
-- 6.6: `YVR_prcp_training.csv` & `YVR_prcp_testing.csv`
-
-## 問題集 #4
+</section>
+<section id="id4">
+<h2>問題集 #3<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>完成 Hsieh 書中的 Exercise 6.5。請使用 MLP 或 ELM 模型，並使用交叉驗證來調校至少一個模型超參數。（資料來源：<code class="docutils literal notranslate"><span class="pre">SWE_tele.csv</span></code>）</p></li>
+<li><p>完成 Hsieh 書中的 Exercise 8.1。請調校 MLP 神經網路模型的學習率。為了方便比較結果，請使用我幫你生成的輸入資料來訓練與測試模型。資料可以從<a class="reference external" href="https://drive.google.com/drive/folders/1_qCa8-g6zYXFj7Pz8RD1JEj3hgtImE5O?usp=sharing">此連結</a>下載（<code class="docutils literal notranslate"><span class="pre">data_noise-*.csv</span></code>）。</p></li>
+<li><p>將 Exercise 8.1 的迴歸結果視覺化，至少要呈現高斯雜訊為 <span class="math notranslate nohighlight">\(y_{\textrm{signal}}\)</span> 的標準差 0.5 倍的情況。</p></li>
+</ol>
+<!-- ## 問題集 #4
 
 1. 完成 Hsieh 書中的 Exercise 12.1。使用資料：`forest_testing.csv` & `forest_testing.csv`
 2. 承上題，使用支持向量機（SVM）對同數據集中的森林類型進行分類。可以自由選擇「一對多」或「一對一」的方法，不過須註明你的選擇。使用前兩個預測變數進行訓練，並將本題與上題的結果進行比較。
@@ -461,6 +464,7 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">問題集 #1</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">問題集 #2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">問題集 #3</a></li>
 </ul>
   </nav></div>
 
