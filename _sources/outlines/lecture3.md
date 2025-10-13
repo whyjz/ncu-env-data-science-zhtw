@@ -141,6 +141,3 @@ LASSO 可以當作預測變數的選擇器。為什麼？
 
 1. Jupyter Notebook / JupyterLab 簡介
 2. 使用 Jupyter Notebook 載入練習資料集（由 [Google Colaboratory](https://colab.google/)、[Callysto Hub](https://www.callysto.ca/) 或你的本機提供計算資源）
-
-<!-- 1. 期末專題輸出概覽：範例 https://ucb-stat-159-s23.github.io/project-Group28/README.html 
-2. 另一個範例是這個課程網頁。 -->
