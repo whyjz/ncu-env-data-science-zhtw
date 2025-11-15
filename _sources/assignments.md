@@ -29,6 +29,6 @@
 
 ## 問題集 #5
 
-1. 完成 Hsieh 書中的 Exercise 12.5。請使用線性判別分析模型。你會需要自行設計資料處理流程的細節，並且加以說明為什麼要這麼做。(資料來源:`SydneyAirport_weather.csv`)
-2. 完成 Hsieh 書中的 Exercise 14.3。請使用與前一題完全相同的資料預處理流程。挑戰看看你能不能創造一個比線性判別分析更好的模型！(資料來源:`SydneyAirport_weather.csv`)
-3. 完成 Hsieh 書中的 Exercise 14.5，包括 (b) 小題。選擇幾個重要的預測變數來視覺化資料和預測數值。(資料來源:`bike_sharing_daily_data.csv` & `bike_sharing_Readme.txt`)
+1. 完成 Hsieh 書中的 Exercise 12.5。請使用線性判別分析模型。你會需要自行設計資料處理流程的細節，並且加以說明為什麼要這麼做。(資料來源：`SydneyAirport_weather.csv`)
+2. 完成 Hsieh 書中的 Exercise 14.3。請使用與前一題完全相同的資料預處理流程。挑戰看看你能不能創造一個比線性判別分析更好的模型！(資料來源：`SydneyAirport_weather.csv`)
+3. 完成 Hsieh 書中的 Exercise 14.5，包括 (b) 小題。選擇幾個重要的預測變數來視覺化資料和預測數值。(資料來源：`bike_sharing_daily_data.csv` & `bike_sharing_Readme.txt`)
