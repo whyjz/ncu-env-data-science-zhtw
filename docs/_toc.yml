@@ -13,6 +13,6 @@ parts:
     - file: outlines/lecture2
     - file: outlines/lecture3
     - file: outlines/lecture4
-    # - file: outlines/lecture8-9
+    - file: outlines/lecture5
     # - file: outlines/lecture10-11
     # - file: outlines/lecture12
