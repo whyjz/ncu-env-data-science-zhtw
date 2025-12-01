@@ -14,5 +14,4 @@ parts:
     - file: outlines/lecture3
     - file: outlines/lecture4
     - file: outlines/lecture5
-    # - file: outlines/lecture10-11
-    # - file: outlines/lecture12
+    - file: outlines/lecture6
