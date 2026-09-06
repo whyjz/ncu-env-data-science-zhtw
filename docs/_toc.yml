@@ -9,9 +9,9 @@ parts:
     
   - caption: 大綱
     chapters:
-    - file: outlines/lecture1
-    - file: outlines/lecture2
-    - file: outlines/lecture3
-    - file: outlines/lecture4
-    - file: outlines/lecture5
-    - file: outlines/lecture6
+    - file: outlines/Lec-Warmup
+    # - file: outlines/Lec-StatTests
+    # - file: outlines/Lec-LinearRegression
+    # - file: outlines/lecture4
+    # - file: outlines/lecture5
+    # - file: outlines/lecture6

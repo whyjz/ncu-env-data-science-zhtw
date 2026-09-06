@@ -1,21 +1,22 @@
 # 作業
 
-## 問題集 #1
+<!-- ## 問題集 #1
 
 1. 完成 Hsieh 書中的 Exercise 4.1。
 2. 完成 Hsieh 書中的 Exercise 4.5。（資料來源：`SWE_Nino_Nina.csv`）
 3. 完成 Hsieh 書中的 Exercise 4.6。（資料來源：`Nino1+2_anomalies.csv` & `Nino3.4_anomalies.csv`）
 4. 針對 `SWE_Nino_Nina.csv` 中的 SWE 資料，使用自助重抽法計算其中位數的 95% 信賴區間。務必避免使用百分位數法 (percentile method)。
-5. 重製「修課前 Quiz」第 3 題的圖表。（[圖表連結](https://drive.google.com/file/d/15WejYTcSHDGM3VNoX32WaD5r8l-BNNF-/view?usp=sharing)）*圖表來源：Nicolas P. Rougier (2021)*
+5. 重製「修課前 Quiz」第 3 題的圖表。（[圖表連結](https://drive.google.com/file/d/15WejYTcSHDGM3VNoX32WaD5r8l-BNNF-/view?usp=sharing)）*圖表來源：Nicolas P. Rougier (2021)* -->
 
-## 問題集 #2
+## 問題集 #1
 
-1. 完成 Hsieh 書中的 Exercise 5.7。（資料來源：`Milwaukee_wind_direction_ozone.csv`）
-2. 把 `SWE_tele.csv` 的資料進行視覺化呈現，並提出幾個可以用此圖來證明或支持的論點。
+1. 重製「修課前 Quiz」第 3 題的圖表。（[圖表連結](https://drive.google.com/file/d/15WejYTcSHDGM3VNoX32WaD5r8l-BNNF-/view?usp=sharing)）*圖表來源：Nicolas P. Rougier (2021)*
+2. 完成 Hsieh 書中的 Exercise 5.7。（資料來源：`Milwaukee_wind_direction_ozone.csv`）
+<!-- 2. 把 `SWE_tele.csv` 的資料進行視覺化呈現，並提出幾個可以用此圖來證明或支持的論點。 -->
 3. 完成 Hsieh 書中的 Exercise 5.8。（資料來源：`SWE_tele.csv`）
 4. 完成 Hsieh 書中的 Exercise 5.9。（資料來源：`SWE_tele.csv`）
 
-## 問題集 #3
+<!-- ## 問題集 #3
 
 1. 完成 Hsieh 書中的 Exercise 6.5。請使用 MLP 或 ELM 模型，並使用交叉驗證來調校至少一個模型超參數。（資料來源：`SWE_tele.csv`）
 2. 完成 Hsieh 書中的 Exercise 8.1。請調校 MLP 神經網路模型的學習率。為了方便比較結果，請使用我幫你生成的輸入資料來訓練與測試模型。資料可以從[此連結](https://drive.google.com/drive/folders/1_qCa8-g6zYXFj7Pz8RD1JEj3hgtImE5O?usp=sharing)下載（`data_noise-*.csv`）。
@@ -31,4 +32,4 @@
 
 1. 完成 Hsieh 書中的 Exercise 12.5。請使用線性判別分析模型。你會需要自行設計資料處理流程的細節，並且加以說明為什麼要這麼做。(資料來源：`SydneyAirport_weather.csv`)
 2. 完成 Hsieh 書中的 Exercise 14.3。請使用與前一題完全相同的資料預處理流程。挑戰看看你能不能創造一個比線性判別分析更好的模型！(資料來源：`SydneyAirport_weather.csv`)
-3. 完成 Hsieh 書中的 Exercise 14.5，包括 (b) 小題。選擇幾個重要的預測變數來視覺化資料和預測數值。(資料來源：`bike_sharing_daily_data.csv` & `bike_sharing_Readme.txt`)
+3. 完成 Hsieh 書中的 Exercise 14.5，包括 (b) 小題。選擇幾個重要的預測變數來視覺化資料和預測數值。(資料來源：`bike_sharing_daily_data.csv` & `bike_sharing_Readme.txt`) -->
