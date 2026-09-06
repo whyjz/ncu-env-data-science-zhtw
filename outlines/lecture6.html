@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>隨機森林：每隻「螞蟻」需要是一樣的嗎？ &#8212; 環境資料科學</title>
+    <title>集成模型：每隻「螞蟻」需要是一樣的嗎？ &#8212; 環境資料科學</title>
   
   
   
@@ -30,9 +30,9 @@
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -50,7 +50,7 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
@@ -187,7 +187,7 @@
 <li class="toctree-l1"><a class="reference internal" href="lecture3.html">線性模型與正則化：什麼時候我們願意犧牲無偏性？</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture4.html">神經網路：要怎麼相信看似黑盒子的複雜模型？</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture5.html">核方法：維度是詛咒還是祝福？</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">隨機森林：每隻「螞蟻」需要是一樣的嗎？</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">集成模型：每隻「螞蟻」需要是一樣的嗎？</a></li>
 </ul>
 
     </div>
@@ -326,7 +326,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>隨機森林：每隻「螞蟻」需要是一樣的嗎？</h1>
+    <h1>集成模型：每隻「螞蟻」需要是一樣的嗎？</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -359,7 +359,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>隨機森林：每隻「螞蟻」需要是一樣的嗎？<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<h1>集成模型：每隻「螞蟻」需要是一樣的嗎？<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
 <section id="id2">
 <h2>課程大綱<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <section id="id3">
@@ -398,7 +398,7 @@ XGBoost（正則化梯度提升）：增加更多正則化項</p>
 </section>
 <section id="id6">
 <h2>小組討論 &amp; 展示主題<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
-<p>我已經弄了一個<a class="reference external" href="https://github.com/whyjz/ncu-env-data-science-zhtw/blob/main/docs/project.ipynb">模板 Jupyter Notebook</a>，你可以在這個模板之上撰寫你的期末專題，寫好後再把 Notebook 匯出成 HTML (<code class="docutils literal notranslate"><span class="pre">nbconvert</span></code>)，就可以利用 GitHub Pages 來發布你的作品。可以從<a class="reference external" href="https://whyjz.github.io/ncu-env-data-science-zhtw/project.html">這裡</a>看看部署完成的 HTML 會長怎樣。</p>
+<p>我已經弄了一個<a class="reference external" href="https://github.com/whyjz/ncu-env-data-science-zhtw/blob/main/docs/project.ipynb">模板 Jupyter Notebook</a>，你可以在這個模板之上撰寫你的期末專題，寫好後再把 <a class="reference external" href="https://stackoverflow.com/questions/53460051/convert-ipynb-notebook-to-html-in-google-colab">Notebook 匯出成 HTML</a> (<code class="docutils literal notranslate"><span class="pre">nbconvert</span></code>)，就可以利用 GitHub Pages 來發布你的作品。可以從<a class="reference external" href="https://whyjz.github.io/ncu-env-data-science-zhtw/project.html">這裡</a>看看部署完成的 HTML 會長怎樣。</p>
 </section>
 </section>
 

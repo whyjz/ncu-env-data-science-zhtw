@@ -1,4 +1,4 @@
-# 隨機森林：每隻「螞蟻」需要是一樣的嗎？
+# 集成模型：每隻「螞蟻」需要是一樣的嗎？
 
 ## 課程大綱
 
@@ -33,4 +33,4 @@ XGBoost（正則化梯度提升）：增加更多正則化項
 
 ## 小組討論 & 展示主題
 
-我已經弄了一個[模板 Jupyter Notebook](https://github.com/whyjz/ncu-env-data-science-zhtw/blob/main/docs/project.ipynb)，你可以在這個模板之上撰寫你的期末專題，寫好後再把 Notebook 匯出成 HTML (`nbconvert`)，就可以利用 GitHub Pages 來發布你的作品。可以從[這裡](https://whyjz.github.io/ncu-env-data-science-zhtw/project.html)看看部署完成的 HTML 會長怎樣。
+我已經弄了一個[模板 Jupyter Notebook](https://github.com/whyjz/ncu-env-data-science-zhtw/blob/main/docs/project.ipynb)，你可以在這個模板之上撰寫你的期末專題，寫好後再把 [Notebook 匯出成 HTML](https://stackoverflow.com/questions/53460051/convert-ipynb-notebook-to-html-in-google-colab) (`nbconvert`)，就可以利用 GitHub Pages 來發布你的作品。可以從[這裡](https://whyjz.github.io/ncu-env-data-science-zhtw/project.html)看看部署完成的 HTML 會長怎樣。
