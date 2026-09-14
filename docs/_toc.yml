@@ -10,8 +10,8 @@ parts:
   - caption: 大綱
     chapters:
     - file: outlines/Lec-Warmup
-    # - file: outlines/Lec-StatTests
-    # - file: outlines/Lec-LinearRegression
+    - file: outlines/Lec-LinearRegression
     # - file: outlines/lecture4
     # - file: outlines/lecture5
     # - file: outlines/lecture6
+    # - file: outlines/Lec-StatTests
