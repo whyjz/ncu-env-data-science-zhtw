@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>核方法：維度是詛咒還是祝福？ &#8212; 環境資料科學</title>
+    <title>神經網路：要怎麼相信看似黑盒子的複雜模型？ &#8212; 環境資料科學</title>
   
   
   
@@ -59,7 +59,7 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'outlines/lecture5';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'outlines/Lec-NeuralNetwork';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -184,6 +184,7 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">大綱</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Lec-Warmup.html">暖身</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lec-LinearRegression.html">線性模型與正則化：什麼時候我們願意犧牲無偏性？</a></li>
 </ul>
 
     </div>
@@ -238,7 +239,7 @@
       
       
       
-      <li><a href="../_sources/outlines/lecture5.md" target="_blank"
+      <li><a href="../_sources/outlines/Lec-NeuralNetwork.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -322,7 +323,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>核方法：維度是詛咒還是祝福？</h1>
+    <h1>神經網路：要怎麼相信看似黑盒子的複雜模型？</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -333,21 +334,29 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">課程大綱</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">分類問題與貝式定理</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vs">神經網絡 vs 核方法</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">迴歸問題的計時賽</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">核</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">核嶺迴歸</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#svm">支持向量機（SVM）</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">線性可分的情況</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">非線性 SVM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perceptrons">感知器 (Perceptrons)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-layer-perceptrons-mlp">多層感知器 (Multi-layer Perceptrons; MLP)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aka">對非二次之損失函數進行最佳化 (aka 模型訓練)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">牛頓法</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">梯度下降法</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">梯度下降法的變體</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">什麼時候結束訓練？</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">高斯過程迴歸</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mlp">最佳化 MLP 神經網路</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#back-propagation">反向傳播 (Back-Propagation)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">最後的問題</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">小組討論與示範</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extreme-learning-machine-elm">極限學習機 (Extreme learning Machine; ELM)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#elm">ELM 的優勢</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">設計損失函數</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">超參數的調校與驗證</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">最後的問題</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">小組討論與示範</a></li>
 </ul>
             </nav>
         </div>
@@ -360,90 +369,164 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>核方法：維度是詛咒還是祝福？<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<h1>神經網路：要怎麼相信看似黑盒子的複雜模型？<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
 <section id="id2">
 <h2>課程大綱<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-<p>環境資料科學的大挑戰：<strong>維度詛咒</strong> (Curse of Dimensionality)。當輸入維度變多時：</p>
+<p>神經網路 (Neural Network; NN)：源自生物學的發想，以及與資料科學的關聯</p>
+<section id="perceptrons">
+<h3>感知器 (Perceptrons)<a class="headerlink" href="#perceptrons" title="Link to this heading">#</a></h3>
+<p>神經網路的最基本結構！</p>
+<p><strong>架構</strong>：</p>
 <ul class="simple">
-<li><p>資料點變得更稀疏</p></li>
-<li><p>最佳化的計算處理量呈指數增加</p></li>
+<li><p>（對只有單一輸出變數 <span class="math notranslate nohighlight">\(y\)</span> 的模型）<span class="math notranslate nohighlight">\(\hat{y} = f\Big(\sum_i w_i x_i + b\Big)\)</span></p></li>
+<li><p><strong>激勵函數</strong> <span class="math notranslate nohighlight">\(f\)</span>：</p>
+<ul>
+<li><p>Heaviside 階梯函數（單位階躍函數）</p></li>
+<li><p>邏輯斯諦函數（或 <span class="math notranslate nohighlight">\(tanh\)</span>）</p></li>
+<li><p>線性整流函式（ReLU）</p></li>
+<li><p>Softplus</p></li>
 </ul>
-<section id="id3">
-<h3>分類問題與貝式定理<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
-<p>分類問題 vs 聚類分析</p>
+</li>
+</ul>
+<p>感知器好用嗎？事實上僅適用於 <em>線性可分</em> 的問題。</p>
 </section>
-<section id="vs">
-<h3>神經網絡 vs 核方法<a class="headerlink" href="#vs" title="Link to this heading">#</a></h3>
-<p>都是把資料先<strong>映射到更高的維度</strong>！</p>
+<section id="multi-layer-perceptrons-mlp">
+<h3>多層感知器 (Multi-layer Perceptrons; MLP)<a class="headerlink" href="#multi-layer-perceptrons-mlp" title="Link to this heading">#</a></h3>
+<p>最簡單且實用的神經網路。</p>
+<p><strong>架構</strong>：</p>
+<ul class="simple">
+<li><p>（對只有單一輸出變數 <span class="math notranslate nohighlight">\(y\)</span> 的模型）<span class="math notranslate nohighlight">\(h_j = f\Big(\sum_i^{m_1} w_{ji} x_i + b_j\Big),\quad \hat{y} = g\Big(\sum_j^{m_2} \tilde{w}_{kj} h_j + \tilde{b}_k\Big)\)</span></p></li>
+<li><p><strong>隱藏層</strong>：將線性感知器轉變為非線性模型的關鍵！</p>
+<ul>
+<li><p>模型具有許多參數。在神經網路的框架中，模型參數也稱為<strong>權重</strong>。</p></li>
+<li><p><strong>超參數</strong>：與架構相關的參數。例如：隱藏節點數量。</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>損失函數</strong>：最常見的選擇是均方誤差 (MSE)。</p>
+<p><strong>求解器</strong>：必須以數值方法求解。（見下文）</p>
+<!-- - 觀測資料量 vs 參數數量 -->
+</section>
+<section id="aka">
+<h3>對非二次之損失函數進行最佳化 (aka 模型訓練)<a class="headerlink" href="#aka" title="Link to this heading">#</a></h3>
+<p>非二次 (函數最高項次不是平方) 之損失函數 <span class="math notranslate nohighlight">\(J(\textbf{w})\)</span> 在參數空間中可能有許多局部最小值，而且求得解析解幾乎是不可能的。不過我們還是可以利用數值方法求得單一個局部最小值，一個可行的策略為：</p>
+<ol class="arabic simple">
+<li><p>找出損失函數最陡峭的下降方向</p></li>
+<li><p>往那個方向前進，但是要前進多少？</p></li>
+</ol>
+<section id="id3">
+<h4>牛頓法<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
+<p>此方法須先計算赫氏矩陣 (Hessian Matrix) <span class="math notranslate nohighlight">\(\textbf{H}_0\)</span>，這個矩陣包含 <span class="math notranslate nohighlight">\(J\)</span> 的所有二階導數在 <span class="math notranslate nohighlight">\(\textbf{w}_0\)</span> 這個座標點的值。每一次的迭代求解會依照此式更新模型參數：</p>
+<p><span class="math notranslate nohighlight">\(\textbf{w}_{k+1} = \textbf{w}_k - \textbf{H}_k^{-1} \nabla J(\textbf{w}_k)\)</span></p>
 </section>
 <section id="id4">
-<h3>迴歸問題的計時賽<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>原始解與對偶解 (Primal and Dual Solutions)：哪個比較快？</p></li>
-<li><p>嶺迴歸的原始解與對偶解</p></li>
-</ul>
+<h4>梯度下降法<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
+<p>此方法將赫氏矩陣 <span class="math notranslate nohighlight">\(\textbf{H}_0\)</span> 替換為固定或彈性的步長 <span class="math notranslate nohighlight">\(\eta\)</span>，通常稱為<strong>學習率</strong>。每一次的迭代求解會依照此式更新模型參數：</p>
+<p><span class="math notranslate nohighlight">\(\textbf{w}_{k+1} = \textbf{w}_k - \eta \nabla J(\textbf{w}_k)\)</span></p>
 </section>
 <section id="id5">
-<h3>核<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>特徵映射 (Feature map)</p></li>
-<li><p>核技巧 (Kernel trick)</p></li>
-<li><p>Mercer 定理與正定函數 (positive semi-definite function)</p></li>
-<li><p>核的種類</p></li>
-<li><p>核方法的優缺點</p></li>
-</ul>
+<h4>梯度下降法的變體<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
+<p>「動量梯度下降」和「隨機梯度下降」 (與 Mini-batch)</p>
 </section>
 <section id="id6">
-<h3>核嶺迴歸<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>流程</p></li>
-<li><p>模組化設計</p></li>
-</ul>
+<h4>什麼時候結束訓練？<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
+<p>期 (Epoch) 的意思</p>
+<p>什麼時候結束？</p>
+<ol class="arabic simple">
+<li><p>由訓練集觀之</p></li>
+<li><p>由驗證集觀之 (提前停止法)</p></li>
+</ol>
 </section>
-<section id="svm">
-<h3>支持向量機（SVM）<a class="headerlink" href="#svm" title="Link to this heading">#</a></h3>
-<p>SVM 的原始形式並沒有核組件！</p>
-<section id="id7">
-<h4>線性可分的情況<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
+</section>
+<section id="mlp">
+<h3>最佳化 MLP 神經網路<a class="headerlink" href="#mlp" title="Link to this heading">#</a></h3>
+<p>架構帶來的挑戰：</p>
 <ul class="simple">
-<li><p>支持向量</p></li>
-<li><p>在對偶拉格朗日解中的模式暗示我們可以使用核技巧！</p></li>
+<li><p>維度詛咒？</p></li>
 </ul>
+<p>求解器帶來的挑戰：</p>
+<ul class="simple">
+<li><p>最佳化過程會根據初始權重選擇而陷入局部最小值。</p></li>
+</ul>
+<p>如何應對這些挑戰？集成方法 (ensemble approach)？正則化？</p>
+<p>如果節點數量足夠大，即使只有一個隱藏層，我們也能做到萬用逼近 (Universal approximation)！</p>
+<section id="back-propagation">
+<h4>反向傳播 (Back-Propagation)<a class="headerlink" href="#back-propagation" title="Link to this heading">#</a></h4>
+<p>克服維度詛咒，神經網路模型的救星！沒有它，根本沒辦法求解。</p>
+<p>教科書摘錄：「如今，『反向傳播』一詞的使用有些模稜兩可。」</p>
+<ul class="simple">
+<li><p>它可能指原始的反向傳播演算法（使用效率較低的梯度下降）；</p></li>
+<li><p>或者，更可能是指僅使用反向誤差傳播的第一部分來計算 <span class="math notranslate nohighlight">\(J\)</span> 的梯度，再搭配其他更快更有效率的演算法執行。</p></li>
+</ul>
+<!-- ### 梯度下降法的問題
+
+TBD -->
+</section>
+</section>
+<section id="extreme-learning-machine-elm">
+<h3>極限學習機 (Extreme learning Machine; ELM)<a class="headerlink" href="#extreme-learning-machine-elm" title="Link to this heading">#</a></h3>
+<p>使用集成方法的概念，將非線性問題轉換回線性問題。</p>
+<p><strong>架構</strong>：與 MLP 相同，另外再多兩條規則，使其轉換為線性問題：</p>
+<ol class="arabic simple">
+<li><p>輸入層的權重初始值是隨機指定的，而且不會迭代更新。</p></li>
+<li><p>隱藏層的激勵函數是恆等函數；<span class="math notranslate nohighlight">\(f(x) = x\)</span>。</p></li>
+</ol>
+<p><strong>損失函數</strong>：與 MLP 相同。</p>
+<p><strong>求解器</strong>：對每個集成成員尋找解析解，所有的解再取平均。</p>
+<section id="elm">
+<h4>ELM 的優勢<a class="headerlink" href="#elm" title="Link to this heading">#</a></h4>
+<p>有哪些優勢？</p>
+<!-- 如何決定隱藏層節點數 $L$？ -->
+<!-- 跳躍連接 -->
+<!-- ### 徑向基函數 (RBF)
+這是將神經網路的非線性降低為線性問題的另一種方法。
+為什麼稱為「徑向基」？我們將在核方法部分重新討論這個問題。 -->
+</section>
+</section>
+<section id="id7">
+<h3>設計損失函數<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<p>MSE 與 MAE</p>
+<p>Variance and Bias Errors (方差與偏差)</p>
+<p><strong>正則化</strong> (嘿… 又碰面了!)</p>
+<ol class="arabic simple">
+<li><p>加入 <span class="math notranslate nohighlight">\(\lambda\)</span></p></li>
+<li><p>提前停止法也算是一種正則化</p></li>
+</ol>
 </section>
 <section id="id8">
-<h4>非線性 SVM<a class="headerlink" href="#id8" title="Link to this heading">#</a></h4>
-<p><span class="math notranslate nohighlight">\(\textbf{x}_n^T\textbf{x}_j\)</span> -&gt; <span class="math notranslate nohighlight">\(K(\textbf{x}_n, \textbf{x}_j) \equiv \phi^T(\textbf{x}_n)\phi(\textbf{x}_j) \)</span></p>
+<h3>超參數的調校與驗證<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>網格搜尋</p></li>
+<li><p>隨機搜尋</p></li>
+<li><p>驗證</p></li>
+<li><p>交叉驗證</p></li>
+<li><p>雙重交叉驗證</p></li>
+</ul>
+<!-- ### 其他集成方法
+幫助減少變異數誤差（第 8.3 節）
+- Bagging
+- Stacking -->
 </section>
 </section>
 <section id="id9">
-<h3>高斯過程迴歸<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<h2>最後的問題<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+<p><strong>要怎麼相信看似黑盒子的複雜模型？</strong></p>
 <ul class="simple">
-<li><p>地理統計學</p></li>
-<li><p>使用共變異數進行空間內插</p></li>
-<li><p>使用核技巧來評估共變異數矩陣</p></li>
+<li><p>理解架構，理解模型限制</p></li>
+<li><p>因為損失函數具有許多局部極小值，要注意單次訓練神經網路模型時最終抵達的參數往往不會是最佳參數</p></li>
+<li><p>驗證要做！</p></li>
+<li><p>不要相信 (!?)</p></li>
+<li><p>還有其他可能性嗎？</p></li>
 </ul>
-<p>額外參考資料: <a class="reference external" href="https://distill.pub/2019/visual-exploration-gaussian-processes/">Görtler, et al., “A Visual Exploration of Gaussian Processes”, Distill, 2019.</a></p>
-</section>
 </section>
 <section id="id10">
-<h2>最後的問題<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
-<p><strong>維度是詛咒還是祝福？</strong></p>
-<ul class="simple">
-<li><p>是詛咒？維度一多，處理時間呈指數增長</p></li>
-<li><p>是祝福？核方法可以把低維空間的非線性模型轉換成高維空間內的線性模型</p></li>
-<li><p>仍然是詛咒？核方法天生沒有辦法處理很多資料點</p></li>
-<li><p>還有其他觀點嗎？</p></li>
-</ul>
-</section>
-<section id="id11">
-<h2>小組討論與示範<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
+<h2>小組討論與示範<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
-<li><p>Github Pages: <a class="reference external" href="https://hackmd.io/&#64;YmcMgo-NSKOqgTGAjl_5tg/HJpJk8ABU/%2F%40Albertnotes%2FB1_iKcAwI">從 0 到 1 的 GitHub Pages 教學手冊</a></p></li>
+<li><p>確認分組 &amp; 期末專題主題的討論</p></li>
+<li><p>製作期末 html 檔案的簡單方法</p></li>
 </ol>
-<!-- #### 徑向基函數（RBF）
-
-- 神經網絡模型可使用它來把非線性問題轉換為線性問題。
-- 使用核方法的模型：可使用「核技巧」的一種特徵映射法！ --></section>
+<!-- 1. 期末專題輸出概覽：範例 https://ucb-stat-159-s23.github.io/project-Group28/README.html 
+2. 另一個範例是這個課程網頁。 --></section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -493,21 +576,29 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">課程大綱</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">分類問題與貝式定理</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vs">神經網絡 vs 核方法</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">迴歸問題的計時賽</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">核</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">核嶺迴歸</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#svm">支持向量機（SVM）</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">線性可分的情況</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">非線性 SVM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perceptrons">感知器 (Perceptrons)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-layer-perceptrons-mlp">多層感知器 (Multi-layer Perceptrons; MLP)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aka">對非二次之損失函數進行最佳化 (aka 模型訓練)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">牛頓法</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">梯度下降法</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">梯度下降法的變體</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">什麼時候結束訓練？</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">高斯過程迴歸</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mlp">最佳化 MLP 神經網路</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#back-propagation">反向傳播 (Back-Propagation)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">最後的問題</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">小組討論與示範</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extreme-learning-machine-elm">極限學習機 (Extreme learning Machine; ELM)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#elm">ELM 的優勢</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">設計損失函數</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">超參數的調校與驗證</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">最後的問題</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">小組討論與示範</a></li>
 </ul>
   </nav></div>
 

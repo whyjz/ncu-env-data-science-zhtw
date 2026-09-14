@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>集成模型：每隻「螞蟻」需要是一樣的嗎？ &#8212; 環境資料科學</title>
+    <title>核方法：維度是詛咒還是祝福？ &#8212; 環境資料科學</title>
   
   
   
@@ -59,7 +59,7 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'outlines/lecture6';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'outlines/Lec-KernelMethods';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -184,6 +184,7 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">大綱</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Lec-Warmup.html">暖身</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lec-LinearRegression.html">線性模型與正則化：什麼時候我們願意犧牲無偏性？</a></li>
 </ul>
 
     </div>
@@ -238,7 +239,7 @@
       
       
       
-      <li><a href="../_sources/outlines/lecture6.md" target="_blank"
+      <li><a href="../_sources/outlines/Lec-KernelMethods.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -322,7 +323,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>集成模型：每隻「螞蟻」需要是一樣的嗎？</h1>
+    <h1>核方法：維度是詛咒還是祝福？</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -333,16 +334,21 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">課程大綱</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">集成方法的訓練技巧</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cart">分類與迴歸樹（CART）</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">隨機森林</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boosting">提升法（Boosting）</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">梯度提升</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">分類問題與貝式定理</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vs">神經網絡 vs 核方法</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">迴歸問題的計時賽</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">核</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">核嶺迴歸</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#svm">支持向量機（SVM）</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">線性可分的情況</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">非線性 SVM</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">高斯過程迴歸</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">小組討論 &amp; 展示主題</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">最後的問題</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">小組討論與示範</a></li>
 </ul>
             </nav>
         </div>
@@ -355,47 +361,90 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>集成模型：每隻「螞蟻」需要是一樣的嗎？<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<h1>核方法：維度是詛咒還是祝福？<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
 <section id="id2">
 <h2>課程大綱<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>環境資料科學的大挑戰：<strong>維度詛咒</strong> (Curse of Dimensionality)。當輸入維度變多時：</p>
+<ul class="simple">
+<li><p>資料點變得更稀疏</p></li>
+<li><p>最佳化的計算處理量呈指數增加</p></li>
+</ul>
 <section id="id3">
-<h3>集成方法的訓練技巧<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
-<p>幫助減少 Variance error（第 8.3 節）</p>
-<ul class="simple">
-<li><p>裝袋法 (Bagging)</p></li>
-<li><p>堆疊法 (Stacking)</p></li>
-</ul>
+<h3>分類問題與貝式定理<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>分類問題 vs 聚類分析</p>
 </section>
-<section id="cart">
-<h3>分類與迴歸樹（CART）<a class="headerlink" href="#cart" title="Link to this heading">#</a></h3>
-<p>使用階梯函數 (<span class="math notranslate nohighlight">\(f(\textbf{x}) = c_1 or c_2\)</span>) 來分割或擬合資料。</p>
-<ul class="simple">
-<li><p>剪枝與正則化</p></li>
-<li><p>為分類問題選擇損失函數：熵（Entropy）或吉尼指數（Gini Index）</p></li>
-</ul>
+<section id="vs">
+<h3>神經網絡 vs 核方法<a class="headerlink" href="#vs" title="Link to this heading">#</a></h3>
+<p>都是把資料先<strong>映射到更高的維度</strong>！</p>
 </section>
 <section id="id4">
-<h3>隨機森林<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<h3>迴歸問題的計時賽<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>自助重抽法 + CART + 集成</p></li>
-<li><p>使用袋外（Out-of-Bag, OOB）數據進行模型驗證 (<span class="math notranslate nohighlight">\(p\)</span> 和 <span class="math notranslate nohighlight">\(n_{min}\)</span>)</p></li>
-<li><p>極端隨機樹（Extremely randomized trees）：不使用自助重抽，改為隨機選擇分割點</p></li>
+<li><p>原始解與對偶解 (Primal and Dual Solutions)：哪個比較快？</p></li>
+<li><p>嶺迴歸的原始解與對偶解</p></li>
 </ul>
 </section>
-<section id="boosting">
-<h3>提升法（Boosting）<a class="headerlink" href="#boosting" title="Link to this heading">#</a></h3>
-<p>同樣不使用自助重抽法，而是一直不斷更新先前模型，並把改進的重點放在先前模型表現不佳的部分。</p>
 <section id="id5">
-<h4>梯度提升<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
-<p>使用梯度下降法更新先前模型
-XGBoost（正則化梯度提升）：增加更多正則化項</p>
-</section>
-</section>
+<h3>核<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>特徵映射 (Feature map)</p></li>
+<li><p>核技巧 (Kernel trick)</p></li>
+<li><p>Mercer 定理與正定函數 (positive semi-definite function)</p></li>
+<li><p>核的種類</p></li>
+<li><p>核方法的優缺點</p></li>
+</ul>
 </section>
 <section id="id6">
-<h2>小組討論 &amp; 展示主題<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
-<p>我已經弄了一個<a class="reference external" href="https://github.com/whyjz/ncu-env-data-science-zhtw/blob/main/docs/project.ipynb">模板 Jupyter Notebook</a>，你可以在這個模板之上撰寫你的期末專題，寫好後再把 <a class="reference external" href="https://stackoverflow.com/questions/53460051/convert-ipynb-notebook-to-html-in-google-colab">Notebook 匯出成 HTML</a> (<code class="docutils literal notranslate"><span class="pre">nbconvert</span></code>)，就可以利用 GitHub Pages 來發布你的作品。可以從<a class="reference external" href="https://whyjz.github.io/ncu-env-data-science-zhtw/project.html">這裡</a>看看部署完成的 HTML 會長怎樣。</p>
+<h3>核嶺迴歸<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>流程</p></li>
+<li><p>模組化設計</p></li>
+</ul>
 </section>
+<section id="svm">
+<h3>支持向量機（SVM）<a class="headerlink" href="#svm" title="Link to this heading">#</a></h3>
+<p>SVM 的原始形式並沒有核組件！</p>
+<section id="id7">
+<h4>線性可分的情況<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>支持向量</p></li>
+<li><p>在對偶拉格朗日解中的模式暗示我們可以使用核技巧！</p></li>
+</ul>
+</section>
+<section id="id8">
+<h4>非線性 SVM<a class="headerlink" href="#id8" title="Link to this heading">#</a></h4>
+<p><span class="math notranslate nohighlight">\(\textbf{x}_n^T\textbf{x}_j\)</span> -&gt; <span class="math notranslate nohighlight">\(K(\textbf{x}_n, \textbf{x}_j) \equiv \phi^T(\textbf{x}_n)\phi(\textbf{x}_j) \)</span></p>
+</section>
+</section>
+<section id="id9">
+<h3>高斯過程迴歸<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>地理統計學</p></li>
+<li><p>使用共變異數進行空間內插</p></li>
+<li><p>使用核技巧來評估共變異數矩陣</p></li>
+</ul>
+<p>額外參考資料: <a class="reference external" href="https://distill.pub/2019/visual-exploration-gaussian-processes/">Görtler, et al., “A Visual Exploration of Gaussian Processes”, Distill, 2019.</a></p>
+</section>
+</section>
+<section id="id10">
+<h2>最後的問題<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<p><strong>維度是詛咒還是祝福？</strong></p>
+<ul class="simple">
+<li><p>是詛咒？維度一多，處理時間呈指數增長</p></li>
+<li><p>是祝福？核方法可以把低維空間的非線性模型轉換成高維空間內的線性模型</p></li>
+<li><p>仍然是詛咒？核方法天生沒有辦法處理很多資料點</p></li>
+<li><p>還有其他觀點嗎？</p></li>
+</ul>
+</section>
+<section id="id11">
+<h2>小組討論與示範<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Github Pages: <a class="reference external" href="https://hackmd.io/&#64;YmcMgo-NSKOqgTGAjl_5tg/HJpJk8ABU/%2F%40Albertnotes%2FB1_iKcAwI">從 0 到 1 的 GitHub Pages 教學手冊</a></p></li>
+</ol>
+<!-- #### 徑向基函數（RBF）
+
+- 神經網絡模型可使用它來把非線性問題轉換為線性問題。
+- 使用核方法的模型：可使用「核技巧」的一種特徵映射法！ --></section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -445,16 +494,21 @@ XGBoost（正則化梯度提升）：增加更多正則化項</p>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">課程大綱</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">集成方法的訓練技巧</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cart">分類與迴歸樹（CART）</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">隨機森林</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boosting">提升法（Boosting）</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">梯度提升</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">分類問題與貝式定理</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vs">神經網絡 vs 核方法</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">迴歸問題的計時賽</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">核</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">核嶺迴歸</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#svm">支持向量機（SVM）</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">線性可分的情況</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">非線性 SVM</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">高斯過程迴歸</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">小組討論 &amp; 展示主題</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">最後的問題</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">小組討論與示範</a></li>
 </ul>
   </nav></div>
 

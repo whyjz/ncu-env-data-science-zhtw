@@ -62,6 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'outlines/Lec-LinearRegression';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="暖身" href="Lec-Warmup.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -124,8 +125,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -182,8 +181,9 @@
 
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">大綱</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Lec-Warmup.html">暖身</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">線性模型與正則化：什麼時候我們願意犧牲無偏性？</a></li>
 </ul>
 
     </div>
@@ -437,12 +437,12 @@ document.write(`
 <p>當你有大量潛在預測變數時…</p>
 <ul class="simple">
 <li><p>應該納入越多越好嗎？</p></li>
-<li><p>應該納入少越好嗎？</p></li>
-<li><p>如果我們不得不保留所有預測變數時該怎麼辦？</p></li>
+<li><p>應該納入越少越好嗎？</p></li>
+<li><p>如果不得不保留所有預測變數時該怎麼辦？</p></li>
 </ul>
 <p>逐步迴歸如何進行？</p>
 <p>批評：這不是<strong>採櫻桃謬誤</strong> (Cherry picking) 嗎？</p>
-<p>秩不足（或病態條件）問題與正則化最小平方法 -&gt; 使用收縮方法的模型家族</p>
+<p>秩不足（或病態條件）問題與正則化最小平方法 (使用收縮方法的模型家族)</p>
 </section>
 </section>
 <section id="id8">
@@ -456,7 +456,7 @@ document.write(`
 <p>例子：小組練習題的 One-hot encoding 那一題</p>
 <section id="id9">
 <h4>嶺迴歸<a class="headerlink" href="#id9" title="Link to this heading">#</a></h4>
-<p>又名脊迴歸、L-2 正則化，或是吉洪諾夫迴歸</p>
+<p>又名脊迴歸、L-2 正則化，或是吉洪諾夫（Tikhonov）迴歸</p>
 <p><strong>架構</strong>：與 MLR 相同</p>
 <p><strong>損失函數</strong>：正則化 OLS。<span class="math notranslate nohighlight">\( J = \boldsymbol{\epsilon}^\text{T} \boldsymbol{\epsilon} + \lambda\textbf{a}^\text{T}\textbf{a}\)</span></p>
 <ul class="simple">
@@ -548,6 +548,15 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="Lec-Warmup.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">暖身</p>
+      </div>
+    </a>
 </div>
                 </footer>
               
