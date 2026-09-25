@@ -48,11 +48,11 @@ Hsieh, W. (2023). Introduction to Environmental Data Science. Cambridge: Cambrid
 * - 4 (9/29)
   - 神經網路 (I)
   - 6.1--6.5
-  - 問題集 1
+  - 
 * - 5 (10/6)
   - 神經網路 (II)
   - 7.1--7.6, 7.8
-  - 
+  - <p style="color: red">問題集 1</p>
 * - 6 (10/13)
   - 神經網路 (III)
   - 8.1--8.8

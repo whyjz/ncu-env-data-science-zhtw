@@ -16,13 +16,13 @@
 3. 完成 Hsieh 書中的 Exercise 5.8。（資料來源：`SWE_tele.csv`）
 4. 完成 Hsieh 書中的 Exercise 5.9。（資料來源：`SWE_tele.csv`）
 
-<!-- ## 問題集 #3
+## 問題集 #2
 
-1. 完成 Hsieh 書中的 Exercise 6.5。請使用 MLP 或 ELM 模型，並使用交叉驗證來調校至少一個模型超參數。（資料來源：`SWE_tele.csv`）
-2. 完成 Hsieh 書中的 Exercise 8.1。請調校 MLP 神經網路模型的學習率。為了方便比較結果，請使用我幫你生成的輸入資料來訓練與測試模型。資料可以從[此連結](https://drive.google.com/drive/folders/1_qCa8-g6zYXFj7Pz8RD1JEj3hgtImE5O?usp=sharing)下載（`data_noise-*.csv`）。
+1. 完成 Hsieh 書中的 Exercise 6.5。請使用 MLP NN 或 ELM 模型，並使用交叉驗證來調校除了學習率之外的至少一個模型超參數。（資料來源：`SWE_tele.csv`）
+2. 完成 Hsieh 書中的 Exercise 8.1。請調校 MLP NN 模型的學習率。我已經幫你生成輸入資料了，可以從[此連結](https://drive.google.com/drive/folders/1_qCa8-g6zYXFj7Pz8RD1JEj3hgtImE5O?usp=sharing)下載（`data_noise-*.csv`）。
 3. 將 Exercise 8.1 的迴歸結果視覺化，至少要呈現高斯雜訊為 $y_{\textrm{signal}}$ 的標準差 0.5 倍的情況。
 
-## 問題集 #4
+<!-- ## 問題集 #4
 
 1. 完成 Hsieh 書中的 Exercise 12.1。另外，請把 (a) 小題的結果視覺化以重現書中的 Figure 12.1(b)，再確認圖中一樣有標示正確和錯誤的預測。（資料來源：`forest_training.csv` & `forest_testing.csv`）
 2. 承上題，使用支持向量機對同數據集中的森林類型進行分類。可以自由選擇「一對多」或「一對一」的方法，不過須註明你的選擇。使用前兩個預測變數進行訓練，並以相同的視覺化方法，把支持向量機與上題線性判別分析的結果進行比較。

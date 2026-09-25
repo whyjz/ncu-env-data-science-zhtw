@@ -11,7 +11,7 @@ parts:
     chapters:
     - file: outlines/Lec-Warmup
     - file: outlines/Lec-LinearRegression
-    # - file: outlines/lecture4
+    - file: outlines/Lec-NeuralNetwork
     # - file: outlines/lecture5
     # - file: outlines/lecture6
     # - file: outlines/Lec-StatTests
