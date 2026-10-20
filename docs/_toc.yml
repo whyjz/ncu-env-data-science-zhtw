@@ -12,6 +12,7 @@ parts:
     - file: outlines/Lec-Warmup
     - file: outlines/Lec-LinearRegression
     - file: outlines/Lec-NeuralNetwork
+    - file: outlines/Lec-PCA
     # - file: outlines/lecture5
     # - file: outlines/lecture6
     # - file: outlines/Lec-StatTests
