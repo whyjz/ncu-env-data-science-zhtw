@@ -1,0 +1,658 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>主成分分析：什麼時候要用無監督學習？ &#8212; 環境資料科學</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'outlines/Lec-PCA';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="神經網路：要怎麼相信看似黑盒子的複雜模型？" href="Lec-NeuralNetwork.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/csrsr_logo.png" class="logo__image only-light" alt="環境資料科學 - Home"/>
+    <script>document.write(`<img src="../_static/csrsr_logo.png" class="logo__image only-dark" alt="環境資料科學 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">概覽</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus.html">課程大綱</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assignments.html">作業</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project.html">標題 (換成你的專題標題)</a></li>
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">大綱</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Lec-Warmup.html">暖身</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lec-LinearRegression.html">線性模型與正則化：什麼時候我們願意犧牲無偏性？</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lec-NeuralNetwork.html">神經網路：要怎麼相信看似黑盒子的複雜模型？</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">主成分分析：什麼時候要用無監督學習？</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/outlines/Lec-PCA.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>主成分分析：什麼時候要用無監督學習？</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">課程大綱</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca">無監督學習與 PCA</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">資料點與維度</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">PCA 的簡單理解</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">數學表述</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">特徵值與特徵向量</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">主成分、特徵向量與模式</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">奇異值降解</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>主成分分析：什麼時候要用無監督學習？<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<section id="id2">
+<h2>課程大綱<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>主成分分析 (Principal Component Analysis; PCA)，又叫做經驗正交函數 (Empirical Orthogonal Function; EOF) 分析</p>
+<section id="pca">
+<h3>無監督學習與 PCA<a class="headerlink" href="#pca" title="Link to this heading">#</a></h3>
+<p>當變數一多，在進行迴歸模型之前就有許多工作要做：</p>
+<ul class="simple">
+<li><p>定義預測變數（這隱含著誤差模型）</p></li>
+<li><p>考慮到過擬合或維度詛咒的情況，選擇適當的迴歸模型</p></li>
+<li><p>指定資料點和維度（見下節）</p></li>
+</ul>
+<p>不管是線性模型還是非線性模型，這都是無法避免的，會花很多時間。</p>
+<p>有沒有純粹用於探索目的算法，在不預設前提之下，能以簡單的方法搜索變數之間的關聯？如果能讓之後的迴歸模型變簡單，那就更好了。</p>
+<section id="id3">
+<h4>資料點與維度<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
+<p>有些環境科學的資料，可以用不同的方式去定義「資料點」和「維度」。</p>
+<p>例子：某區域所有 AQI 測站的時序資料。有多種定義方式？</p>
+</section>
+<section id="id4">
+<h4>PCA 的簡單理解<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
+<p>指定資料點和維度（座標軸）後，嘗試旋轉座標軸，使得資料點盡可能沿著座標軸的軸線散佈。</p>
+</section>
+</section>
+<section id="id5">
+<h3>數學表述<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p>在旋轉之後，在新的某一座標軸投影的座標值，變異數需要最大化。</p>
+<p><span class="math notranslate nohighlight">\(\arg \min_{\textbf{e}_1} \text{var}(z_1) = \arg \min_{\textbf{e}_1} \textbf{e}^\textbf{T}_1\textbf{C}\textbf{e}_1\)</span> subject to <span class="math notranslate nohighlight">\(\textbf{e}^\textbf{T}_1\textbf{e}_1 - 1 = 0\)</span></p>
+<p><span class="math notranslate nohighlight">\(\textbf{C}\textbf{e}_1 - \lambda \textbf{e}_1 = 0\)</span></p>
+<p><span class="math notranslate nohighlight">\(a_j(t) = \textbf{e}^\textbf{T}_j (\textbf{x} - \bar{\textbf{x}})\)</span></p>
+<section id="id6">
+<h4>特徵值與特徵向量<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
+</section>
+</section>
+<section id="id7">
+<h3>主成分、特徵向量與模式<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+</section>
+<section id="id8">
+<h3>奇異值降解<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<p>Singular Value Decomposition</p>
+<!-- Neural Network (NN): its biological origin and how it relates to data science
+
+### Perceptrons
+
+
+
+This is the most basic structure of a neural network!
+
+**Architecture**: For a model with only a single output variable $y$: $\hat{y} = f\Big(\sum_i w_i x_i + b\Big)$
+- **Activation function** $f$:
+  - Heaviside step function
+  - logistic function (or $tanh$)
+  - Rectified linear unit (ReLU)
+  - Softplus
+
+Limitation on non-linear separation: only works for the *linearly separable* cases.
+
+### Multi-layer Perceptrons (MLP)
+
+The simplest NN that has a practical use!
+
+**Architecture**: For a model with only a single output variable $y$: $h_j = f\Big(\sum_i^{m_1} w_{ji} x_i + b_j\Big),\quad \hat{y} = g\Big(\sum_j^{m_2} \tilde{w}_{kj} h_j + \tilde{b}_k\Big)$
+- **Hidden layer**: transform the linear perceptron model into a non-linear model.
+  - number of model parameters. In NN, model parameters are also called **weights.**
+  - **Hyperparameters** parameters related to the architecture. Examples: number of hidden nodes.
+
+**Loss function**: The most common selection is the mean squared error (MSE). 
+
+**Solver**: Must be solved numerically. (see below)
+
+If the number of nodes is sufficiently large, we can achieve universal approximation even with only one hidden layer!
+
+### Optimizing a non-quadratic loss function
+
+Now the loss function $J(\textbf{w})$ can have many local minima in the parameter space. An analytical solution is no longer possible.
+
+#### Newton's method
+
+This method involves the calculation of the Hessian matrix $\textbf{H}_0$, which contains all the second order derivatives of $J$ assessed at $\textbf{w}_0$. One iteration can be expressed as
+
+$\textbf{w}_{k+1} = \textbf{w}_k - \textbf{H}_k^{-1} \nabla J(\textbf{w}_k)$
+
+#### Gradient descent method 
+
+This method replaces the Hessian matrix $\textbf{H}_0$ with a fixed or a flexible step size $\eta$, which is typically called a **learning rate**:
+
+$\textbf{w}_{k+1} = \textbf{w}_k - \eta \nabla J(\textbf{w}_k)$
+
+### Optimizing an MLP NN
+
+The structure of an MLP NN makes the calculation of $\nabla J(\textbf{w})$ difficult, but the good thing is that we have the *back-propagation* algorithm, which just needs one data point to derive $\nabla J(\textbf{w})$ based on model errors ($\hat{y} - y$). The term "back-propagation" means it starts by finding the gradient for the weights in the output layer, then uses those numbers to find the gradient for the weights in the previous hidden layer (i.e., propagation), and so on.
+
+#### Back-Propagation
+
+From the textbook: "Nowadays, the term ‘back-propagation’ is used somewhat ambiguously."
+- It could mean the original back-propagation algorithm (with inefficient gradient descent)
+- or, more likely, it could mean using only the first part involving the backward error propagation to compute the $\nabla J(\textbf{w})$.
+
+As it is based on the gradient descent method, the back-propagation needs a pre-defined **learning rate** to initialize.
+
+For the weights connecting the hidden and output layers:
+
+$\Delta \tilde{w}_{kj}=-\eta\frac{\partial J}{\partial \tilde{w}_{kj}} = \eta(y_k-\hat{y}_k)g'(\tilde{s}_k)h_j$
+
+For the weights connecting the input and hidden layers:
+
+$\Delta w_{ji}=-\eta\frac{\partial J}{\partial w_{ji}} = \eta \sum_k (y_k-\hat{y}_k)g'(\tilde{s}_k) \tilde{w}_{kj}f'(s_j)x_i$
+
+#### Using Back-Propagation
+
+Since you only need **one data point** to calculate $\nabla J(\textbf{w})$, there are different styles to apply the back-propagation algorithm:
+
+- Sequential training: Updating weights using one data point
+- Batch training: Updating weights using all data points (using average $\nabla J(\textbf{w})$)
+
+**Epoch**: The time when all data points are visited (used) once.
+
+And this procedure can be performed as many times as you want until arbitrary stopping criteria. For example:
+
+- When the model error (e.g., RMSE) starts to stabilize or even increase
+- When the prediction error of the validation data set starts to stabilize or even increase (**early stopping**)
+
+
+### General issues for non-linear fitting
+
+<!-- - Curse of dimensionality? -->
+<!-- Do you have ideas for addressing these challenges?
+
+- The optimization process falls into a local minimum depending on the initial weight selections.
+- Lots of weights result in potential overfitting.
+- Lots of hyperparameters to tune. (What are they?)
+- When an MLP with a single hidden layer grows, it adds lots of nodes, and the processing time increases like crazy due to the curse of dimensionality. -->
+<!-- How to address these challenges? Ensembles? Regularizations? -->
+<!-- Regularizations? Dropout? ...
+
+### Extreme Learning Machine (ELM)
+
+This is one proposed solution to the challenges above. The idea of using ensembles transforms a non-linear problem back to a linear problem.
+
+**Architecture**: Same as MLP; however, two rules are used to transform it into a linear problem.
+1. The weights applied to the input layer are randomly assigned for each ensemble member.
+2. The activation function of the hidden layer is an identical function.
+
+**Loss function**: Same as MLP.
+
+**Solver**: the problem is analytically solved for each ensemble member. -->
+<!-- How to determine the number of hidden layer nodes $L$? -->
+<!-- ### Radial Basis Functions (RBF)
+
+This is another way to reduce the non-linearity of NN into a linear problem.
+
+Why is it called "Radial Basis?" We'll revisit this during the kernel method section. -->
+<!-- ### Tuning hyperparameters (Model validation)
+
+Multiple ways to assign validation data:
+- Find an independent validation data set. Or reserve some data from training for later use for validation.
+- Cross-validation: using all training data to validate the model by segmenting the data and repeated validations.
+- Double cross-validation: an advanced cross-validation scheme to avoid issues caused by serial correlation of the input data.
+
+Multiple ways to search within the hyperparameter space:
+- Grid search
+- Random search
+
+### Ensemble technique
+
+The ensemble technique helps reduce the variance error without sacrificing bias error (Section 8.3).
+
+- Bagging: bootstrapping; creating different (sub-)input data sets
+- Stacking: combining totally different non-linear models.  --></section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./outlines"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Lec-NeuralNetwork.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">神經網路：要怎麼相信看似黑盒子的複雜模型？</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">課程大綱</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca">無監督學習與 PCA</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">資料點與維度</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">PCA 的簡單理解</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">數學表述</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">特徵值與特徵向量</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">主成分、特徵向量與模式</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">奇異值降解</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Whyjay Zheng (鄭懷傑)
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024-2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
