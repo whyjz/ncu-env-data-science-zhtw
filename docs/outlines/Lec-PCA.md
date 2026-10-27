@@ -45,6 +45,12 @@ $a_j(t) = \textbf{e}^\textbf{T}_j (\textbf{x} - \bar{\textbf{x}})$
 
 Singular Value Decomposition
 
+### 旋轉 PCA
+
+#### Varimax
+
+A-frame
+E-frame
 
 <!-- Neural Network (NN): its biological origin and how it relates to data science
 
