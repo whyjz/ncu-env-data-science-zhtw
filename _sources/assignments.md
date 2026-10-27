@@ -22,6 +22,14 @@
 2. 完成 Hsieh 書中的 Exercise 8.1。請調校 MLP NN 模型的學習率。我已經幫你生成輸入資料了，可以從[此連結](https://drive.google.com/drive/folders/1_qCa8-g6zYXFj7Pz8RD1JEj3hgtImE5O?usp=sharing)下載（`data_noise-*.csv`）。
 3. 將 Exercise 8.1 的迴歸結果視覺化，至少要呈現高斯雜訊為 $y_{\textrm{signal}}$ 的標準差 0.5 倍的情況。
 
+## 問題集 #3
+
+1. 完成 Hsieh 書中的 Exercise 9.4。請對資料或結果進行一些視覺化呈現。（資料來源：`Exer_9.4.csv`）
+
+加分題：（完成本題之後的作業評分以 110% 加權計算）
+
+2. 完成 Hsieh 書中的 Exercise 9.5。請對資料或結果進行一些視覺化呈現。（資料來源：`SFBay_no_NaN.csv`）
+
 <!-- ## 問題集 #4
 
 1. 完成 Hsieh 書中的 Exercise 12.1。另外，請把 (a) 小題的結果視覺化以重現書中的 Figure 12.1(b)，再確認圖中一樣有標示正確和錯誤的預測。（資料來源：`forest_training.csv` & `forest_testing.csv`）
