@@ -336,21 +336,21 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">課程大綱</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">分類問題與貝式定理</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vs">神經網絡 vs 核方法</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">迴歸問題的計時賽</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">維度詛咒</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">迴歸問題的計時賽：原始解與對偶解</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">核</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">核嶺迴歸</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">分類問題與貝式定理</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#svm">支持向量機（SVM）</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">線性可分的情況</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">非線性 SVM</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">線性可分的情況</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">非線性 SVM</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">高斯過程迴歸</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">高斯過程迴歸</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">最後的問題</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">小組討論與示範</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">最後的問題</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">小組討論與示範</a></li>
 </ul>
             </nav>
         </div>
@@ -366,30 +366,30 @@ document.write(`
 <h1>核方法：維度是詛咒還是祝福？<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
 <section id="id2">
 <h2>課程大綱<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<section id="id3">
+<h3>維度詛咒<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
 <p>環境資料科學的大挑戰：<strong>維度詛咒</strong> (Curse of Dimensionality)。當輸入維度變多時：</p>
 <ul class="simple">
 <li><p>資料點變得更稀疏</p></li>
 <li><p>最佳化的計算處理量呈指數增加</p></li>
 </ul>
-<section id="id3">
-<h3>分類問題與貝式定理<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
-<p>分類問題 vs 聚類分析</p>
-</section>
-<section id="vs">
-<h3>神經網絡 vs 核方法<a class="headerlink" href="#vs" title="Link to this heading">#</a></h3>
-<p>都是把資料先<strong>映射到更高的維度</strong>！</p>
+<p>我們在 PCA 一節中看到了把高維度資料降維的方法，以應對維度詛咒。然而，高維度的資料真的這麼不好嗎？</p>
+<p>如果我們執意逆向而行，會得到什麼？其實我們也早就看過了：雖然出發點不同，不過神經網路就是把低維度資料升維後再進行處理。那麼有沒有辦法以「升維」為中心思想，做出能夠用於資料分析的模型？</p>
+<p>核方法（Kernel methods）就是基於此中心思想而設計的模型。這類模型需要找個數學方法，把增加維度後一併提昇的運算複雜度變簡單才行。</p>
 </section>
 <section id="id4">
-<h3>迴歸問題的計時賽<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<h3>迴歸問題的計時賽：原始解與對偶解<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>原始解與對偶解 (Primal and Dual Solutions)：哪個比較快？</p></li>
 <li><p>嶺迴歸的原始解與對偶解</p></li>
+<li><p>對偶解、升維運算、內積之間的關係</p></li>
 </ul>
+<p>Gram matrix: <span class="math notranslate nohighlight">\(\textbf{G} = \textbf{X}\textbf{X^T}\)</span></p>
 </section>
 <section id="id5">
 <h3>核<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>特徵映射 (Feature map)</p></li>
+<li><p><strong>特徵映射</strong> (Feature map)</p></li>
 <li><p>核技巧 (Kernel trick)</p></li>
 <li><p>Mercer 定理與正定函數 (positive semi-definite function)</p></li>
 <li><p>核的種類</p></li>
@@ -403,23 +403,27 @@ document.write(`
 <li><p>模組化設計</p></li>
 </ul>
 </section>
+<section id="id7">
+<h3>分類問題與貝式定理<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<p>分類問題 vs 聚類分析</p>
+</section>
 <section id="svm">
 <h3>支持向量機（SVM）<a class="headerlink" href="#svm" title="Link to this heading">#</a></h3>
 <p>SVM 的原始形式並沒有核組件！</p>
-<section id="id7">
-<h4>線性可分的情況<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
+<section id="id8">
+<h4>線性可分的情況<a class="headerlink" href="#id8" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p>支持向量</p></li>
 <li><p>在對偶拉格朗日解中的模式暗示我們可以使用核技巧！</p></li>
 </ul>
 </section>
-<section id="id8">
-<h4>非線性 SVM<a class="headerlink" href="#id8" title="Link to this heading">#</a></h4>
+<section id="id9">
+<h4>非線性 SVM<a class="headerlink" href="#id9" title="Link to this heading">#</a></h4>
 <p><span class="math notranslate nohighlight">\(\textbf{x}_n^T\textbf{x}_j\)</span> -&gt; <span class="math notranslate nohighlight">\(K(\textbf{x}_n, \textbf{x}_j) \equiv \phi^T(\textbf{x}_n)\phi(\textbf{x}_j) \)</span></p>
 </section>
 </section>
-<section id="id9">
-<h3>高斯過程迴歸<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<section id="id10">
+<h3>高斯過程迴歸<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>地理統計學</p></li>
 <li><p>使用共變異數進行空間內插</p></li>
@@ -428,8 +432,8 @@ document.write(`
 <p>額外參考資料: <a class="reference external" href="https://distill.pub/2019/visual-exploration-gaussian-processes/">Görtler, et al., “A Visual Exploration of Gaussian Processes”, Distill, 2019.</a></p>
 </section>
 </section>
-<section id="id10">
-<h2>最後的問題<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<section id="id11">
+<h2>最後的問題<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
 <p><strong>維度是詛咒還是祝福？</strong></p>
 <ul class="simple">
 <li><p>是詛咒？維度一多，處理時間呈指數增長</p></li>
@@ -438,8 +442,8 @@ document.write(`
 <li><p>還有其他觀點嗎？</p></li>
 </ul>
 </section>
-<section id="id11">
-<h2>小組討論與示範<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
+<section id="id12">
+<h2>小組討論與示範<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>Github Pages: <a class="reference external" href="https://hackmd.io/&#64;YmcMgo-NSKOqgTGAjl_5tg/HJpJk8ABU/%2F%40Albertnotes%2FB1_iKcAwI">從 0 到 1 的 GitHub Pages 教學手冊</a></p></li>
 </ol>
@@ -505,21 +509,21 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">課程大綱</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">分類問題與貝式定理</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vs">神經網絡 vs 核方法</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">迴歸問題的計時賽</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">維度詛咒</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">迴歸問題的計時賽：原始解與對偶解</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">核</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">核嶺迴歸</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">分類問題與貝式定理</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#svm">支持向量機（SVM）</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">線性可分的情況</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">非線性 SVM</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">線性可分的情況</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">非線性 SVM</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">高斯過程迴歸</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">高斯過程迴歸</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">最後的問題</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">小組討論與示範</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">最後的問題</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">小組討論與示範</a></li>
 </ul>
   </nav></div>
 
