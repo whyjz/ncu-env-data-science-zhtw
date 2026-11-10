@@ -384,7 +384,11 @@ document.write(`
 <li><p>嶺迴歸的原始解與對偶解</p></li>
 <li><p>對偶解、升維運算、內積之間的關係</p></li>
 </ul>
-<p>Gram matrix: <span class="math notranslate nohighlight">\(\textbf{G} = \textbf{X}\textbf{X^T}\)</span></p>
+<p>對 MLS 來說，架構 <span class="math notranslate nohighlight">\(\textbf{y} = \textbf{X}\textbf{w} \)</span> 的解為 <span class="math notranslate nohighlight">\(\textbf{w} =(\textbf{X}^\text{T}\textbf{X})^{-1}\textbf{X}^\text{T}\textbf{y}\)</span>（<strong>原始解</strong>）。如果設</p>
+<p><span class="math notranslate nohighlight">\(\textbf{w} = \textbf{X}^\textbf{T}\textbf{\alpha}\)</span></p>
+<p>那麼 <span class="math notranslate nohighlight">\(\textbf{y} = \textbf{X}\textbf{X}^\textbf{T}\textbf{\alpha}\)</span>，<span class="math notranslate nohighlight">\(\textbf{\alpha} = (\textbf{X}\textbf{X}^\textbf{T})^{-1}\textbf{y}\)</span>。</p>
+<p>對於領迴歸來說，解為 <span class="math notranslate nohighlight">\(\textbf{\alpha} = (\textbf{X}\textbf{X}^\textbf{T} + \lambda\textbf{I})^{-1}\textbf{y}\)</span>（<strong>對偶解</strong>）。</p>
+<p>格拉姆矩陣（Gram matrix）：<span class="math notranslate nohighlight">\(\textbf{G} \equiv \textbf{X}\textbf{X^T}\)</span></p>
 </section>
 <section id="id5">
 <h3>核<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>

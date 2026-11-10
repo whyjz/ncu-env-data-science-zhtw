@@ -20,7 +20,15 @@
 - 嶺迴歸的原始解與對偶解
 - 對偶解、升維運算、內積之間的關係
 
-Gram matrix: $\textbf{G} = \textbf{X}\textbf{X^T}$
+對 MLS 來說，架構 $\textbf{y} = \textbf{X}\textbf{w} $ 的解為 $\textbf{w} =(\textbf{X}^\text{T}\textbf{X})^{-1}\textbf{X}^\text{T}\textbf{y}$（**原始解**）。如果設
+
+$\textbf{w} = \textbf{X}^\textbf{T}\textbf{\alpha}$
+
+那麼 $\textbf{y} = \textbf{X}\textbf{X}^\textbf{T}\textbf{\alpha}$，$\textbf{\alpha} = (\textbf{X}\textbf{X}^\textbf{T})^{-1}\textbf{y}$。
+
+對於領迴歸來說，解為 $\textbf{\alpha} = (\textbf{X}\textbf{X}^\textbf{T} + \lambda\textbf{I})^{-1}\textbf{y}$（**對偶解**）。
+
+格拉姆矩陣（Gram matrix）：$\textbf{G} \equiv \textbf{X}\textbf{X^T}$
 
 ### 核
 
